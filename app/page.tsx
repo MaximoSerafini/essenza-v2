@@ -215,7 +215,7 @@ const perfumes = [
       corazon: ["Jazmín", "Cacao", "Madera de agar (oud)"],
       fondo: ["Cuero", "Ámbar", "Vainilla"],
     },
-    genero: "Unisex",
+    genero: "Hombre",
     fragancia_referencia: "Nouveau Monde de Louis Vuitton",
     descripcion:
       "Exótica, sofisticada y envolvente. Jean Lowe Fraiche captura el espíritu aventurero combinando dulzura, especias y sensualidad profunda.",
