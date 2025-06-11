@@ -19,7 +19,7 @@ const perfumes = [
     marca: "Lattafa",
     nombre: "Badee Al Oud Sublime 100ml EDP",
     imagen: "https://i.imgur.com/6onMEB2.png",
-    precio: 60000,
+    precio: 51000,
     notas: {
       salida: ["Manzana", "Lichi", "Rosa"],
       corazon: ["ciruela", "jazmín"],
@@ -53,24 +53,7 @@ const perfumes = [
     marca: "Maison Alhambra",
     nombre: "B.A.D. HOMME 30 EDP",
     imagen: "https://i.imgur.com/XCBnNQU.png",
-    precio: 20000,
-    notas: {
-      salida: ["Pimienta Negra", "Cardamomo", "Bergamota"],
-      corazon: ["Incienso", "Cedro", "Vetiver"],
-      fondo: ["Cuero", "Oud", "Ámbar"],
-    },
-    genero: "Hombre",
-    fragancia_referencia: "Bad Boy de Carolina Herrera",
-    descripcion:
-      "Fragancia amaderada y fresca, con notas masculinas y sofisticadas, ideal para hombres de carácter fuerte.",
-    rating: 4.9,
-  },
-    {
-    id: 6,
-    marca: "Maison Alhambra",
-    nombre: "B.A.D. HOMME 100 EDP",
-    imagen: "https://i.imgur.com/hGafxDH.png",
-    precio: 28000,
+    precio: 17000,
     notas: {
       salida: ["Pimienta Negra", "Cardamomo", "Bergamota"],
       corazon: ["Incienso", "Cedro", "Vetiver"],
@@ -87,7 +70,7 @@ const perfumes = [
     marca: "Lattafa",
     nombre: "Haya",
     imagen: "https://i.imgur.com/lT4X1j2.png",
-    precio: 60000,
+    precio: 51000,
     notas: {
       salida: ["champaña", "fresa", "naranja", "rosa"],
       corazon: ["gardenia", "orquídea de vainilla", "jazmin"],
