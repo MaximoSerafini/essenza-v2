@@ -499,14 +499,14 @@ export default function EssenzaPerfumes() {
 
     cart.forEach((item, index) => {
       message += `${index + 1}. ${item.nombre}\n`
-      message += `   📦 Marca: ${item.marca}\n`
-      message += `   🔢 Cantidad: ${item.quantity}\n`
-      message += `   💰 Precio unitario: ${formatPrice(item.precio)}\n`
-      message += `   💵 Subtotal: ${formatPrice(item.precio * item.quantity)}\n\n`
+      message += `   Marca: ${item.marca}\n`
+      message += `   Cantidad: ${item.quantity}\n`
+      message += `   Precio unitario: ${formatPrice(item.precio)}\n`
+      message += `   Subtotal: ${formatPrice(item.precio * item.quantity)}\n\n`
     })
 
-    message += `🎯 *TOTAL: ${formatPrice(getTotalPrice())}*\n\n`
-    message += "¿Podrías confirmarme la disponibilidad y el método de pago? ¡Gracias! ✨"
+    message += `*TOTAL: ${formatPrice(getTotalPrice())}*\n\n`
+    message += "¿Podrías confirmarme la disponibilidad y el método de pago? ¡Gracias!"
 
     return encodeURIComponent(message)
   }, [cart, formatPrice, getTotalPrice])
