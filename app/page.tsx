@@ -83,6 +83,17 @@ const perfumes = [
     rating: 4.7,
   },
   {
+    id: 21
+    marca: "Maison Alhambra",
+    nombre: "Rose Seduction Vip Pour Femme 100ml EDP",
+    imagen: "https://i.imgur.com/Or5Mvso.png",
+    precio: 25000,
+    notas: {
+      salida: ["Pimienta rosa", "Champagne rosé"],
+      corazon: ["Rosa", "Flor del duraznero"],
+      fondo: ["Almizcle blanco", "Notas amaderadas"],
+    },
+  {
     id: 15,
     marca: "Lattafa",
     nombre: "Chants tenderina",
