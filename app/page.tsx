@@ -152,17 +152,7 @@ const perfumes = [
     sinDescuento: true,
     rating: 4.6,
   },
-  {
-    id: 21,
-    marca: "Maison Alhambra",
-    nombre: "Rose Seduction Vip Pour Femme 100ml EDP",
-    imagen: "https://i.imgur.com/Or5Mvso.png",
-    precio: 25000,
-    notas: {
-      salida: ["Pimienta rosa", "Champagne rosé"],
-      corazon: ["Rosa", "Flor del duraznero"],
-      fondo: ["Almizcle blanco", "Notas amaderadas"],
-    },
+ 
     genero: "Mujer",
     fragancia_referencia: "212 VIP Rosé de Carolina Herrera",
     descripcion:
