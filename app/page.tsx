@@ -52,7 +52,7 @@ const perfumes = [
     id: 6,
     marca: "Maison Alhambra",
     nombre: "B.A.D. HOMME 30 EDP",
-    imagen: "https://i.imgur.com/hGafxDH.png",
+    imagen: "https://i.imgur.com/XCBnNQU.png",
     precio: 20000,
     notas: {
       salida: ["Pimienta Negra", "Cardamomo", "Bergamota"],
@@ -69,7 +69,7 @@ const perfumes = [
     id: 6,
     marca: "Maison Alhambra",
     nombre: "B.A.D. HOMME 100 EDP",
-    imagen: "https://i.imgur.com/XCBnNQU.png",
+    imagen: "https://i.imgur.com/hGafxDH.png",
     precio: 28000,
     notas: {
       salida: ["Pimienta Negra", "Cardamomo", "Bergamota"],
@@ -506,7 +506,7 @@ export default function EssenzaPerfumes() {
     })
 
     message += `*TOTAL: ${formatPrice(getTotalPrice())}*\n\n`
-    message += "¿Podrías confirmarme la disponibilidad y el método de pago? ¡Gracias!"
+    message += "¿Podrías confirmarme la disponibilidad y el método de pago? ¡Gracias! "
 
     return encodeURIComponent(message)
   }, [cart, formatPrice, getTotalPrice])
