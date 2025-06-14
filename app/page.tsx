@@ -82,17 +82,7 @@ const perfumes = [
       "Es una fragancia de la familia olfativa para Mujeres. Esta fragrancia es nueva. Haya se lanzó en 2022.",
     rating: 4.7,
   },
-  {
-    id: 21
-    marca: "Maison Alhambra",
-    nombre: "Rose Seduction Vip Pour Femme 100ml EDP",
-    imagen: "https://i.imgur.com/Or5Mvso.png",
-    precio: 25000,
-    notas: {
-      salida: ["Pimienta rosa", "Champagne rosé"],
-      corazon: ["Rosa", "Flor del duraznero"],
-      fondo: ["Almizcle blanco", "Notas amaderadas"],
-    },
+
   {
     id: 15,
     marca: "Lattafa",
@@ -259,24 +249,6 @@ const perfumes = [
       "Perfecto para el día, entrenar o climas cálidos. Energética, fresca y moderna. Transmite vitalidad con elegancia.",
     sinDescuento: true,
     rating: 4.7,
-  },
-  {
-    id: 29,
-    marca: "Maison Alhambra",
-    nombre: "Your Touch 100ml EDP",
-    imagen: "https://i.imgur.com/yQvpAAk.png",
-    precio: 25000,
-    notas: {
-      salida: ["Frambuesa", "Limón", "Naranja"],
-      corazon: ["Rosa"],
-      fondo: ["Vainilla", "Almizcle", "Amberwood"],
-    },
-    genero: "Mujer",
-    fragancia_referencia: "Because It's You – Armani",
-    descripcion:
-      "Ideal para el día, citas o uso diario romántico. Dulce, femenina y envolvente. Aporta calidez y encanto.",
-    sinDescuento: true,
-    rating: 4.5,
   },
 ]
 
