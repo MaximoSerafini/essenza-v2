@@ -154,14 +154,6 @@ const perfumes = [
     rating: 4.6,
   },
   {
-    genero: "Mujer",
-    fragancia_referencia: "212 VIP Rosé de Carolina Herrera",
-    descripcion:
-      "Elegante, vibrante y femenina, Rose Seduction Vip combina el brillo de una copa de champagne con la suavidad floral de la rosa.",
-    sinDescuento: true,
-    rating: 4.9,
-  },
-  {
     id: 22,
     marca: "Maison Alhambra",
     nombre: "La Voie 100ml EDP",
