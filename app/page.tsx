@@ -171,24 +171,6 @@ const perfumes = [
     rating: 4.7,
   },
   {
-    id: 24,
-    marca: "Maison Alhambra",
-    nombre: "Jean Lowe Fraiche 100ml EDP",
-    imagen: "https://i.imgur.com/xa8yGJW.png",
-    precio: 26000,
-    notas: {
-      salida: ["Pétalos de rosa", "Caramelo"],
-      corazon: ["Jazmín", "Cacao", "Madera de agar (oud)"],
-      fondo: ["Cuero", "Ámbar", "Vainilla"],
-    },
-    genero: "Hombre",
-    fragancia_referencia: "Nouveau Monde de Louis Vuitton",
-    descripcion:
-      "Exótica, sofisticada y envolvente. Jean Lowe Fraiche captura el espíritu aventurero combinando dulzura, especias y sensualidad profunda.",
-    sinDescuento: true,
-    rating: 4.8,
-  },
-  {
     id: 25,
     marca: "Maison Alhambra",
     nombre: "Avant 100ml EDP",
