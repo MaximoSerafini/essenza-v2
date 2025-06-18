@@ -153,7 +153,7 @@ const perfumes = [
     sinDescuento: true,
     rating: 4.6,
   },
- 
+  {
     genero: "Mujer",
     fragancia_referencia: "212 VIP Rosé de Carolina Herrera",
     descripcion:
