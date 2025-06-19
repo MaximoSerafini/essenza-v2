@@ -172,24 +172,6 @@ const perfumes = [
     rating: 4.9,
   },
   {
-    id: 27,
-    marca: "Maison Alhambra",
-    nombre: "Jorge di Profondo 100ml EDP",
-    imagen: "https://i.imgur.com/ztIdMIW.png",
-    precio: 30000,
-    notas: {
-      salida: ["Aquozone", "Notas marinas", "Bergamota", "Mandarina verde"],
-      corazon: ["Romero", "Lavanda", "Ciprés", "Lentisco"],
-      fondo: ["Notas minerales", "Almizcle", "Ámbar", "Pachulí"],
-    },
-    genero: "Hombre",
-    fragancia_referencia: "Acqua di Giò Profondo – Armani",
-    descripcion:
-      "Ideal para el día, oficina o clima cálido. Fresca, limpia y profesional. Transmite elegancia relajada.",
-    sinDescuento: true,
-    rating: 4.6,
-  },
-  {
     id: 28,
     marca: "Maison Alhambra",
     nombre: "Dark Door Sport 100ml EDP",
