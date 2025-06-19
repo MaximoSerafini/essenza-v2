@@ -101,24 +101,6 @@ const perfumes = [
     rating: 4.2,
   },
   {
-    id: 19,
-    marca: "Maison Alhambra",
-    nombre: "My Party 100ml EDP",
-    imagen: "https://i.imgur.com/vlZWvR5.png",
-    precio: 26000,
-    notas: {
-      salida: ["Fresa", "Frambuesa", "Naranja", "Pera", "Mandarina", "Bergamota"],
-      corazon: ["Jazmín", "Jazmín sambac", "Datura", "Flor de azahar del naranjo"],
-      fondo: ["Pachulí", "Vainilla", "Musgo", "Cedro"],
-    },
-    genero: "Mujer",
-    fragancia_referencia: "Mon Paris de Yves Saint Laurent",
-    descripcion:
-      "Dulce, juvenil y adictiva. My Party es la fragancia perfecta para quienes aman los aromas románticos con un toque atrevido.",
-    sinDescuento: true,
-    rating: 4.8,
-  },
-  {
     id: 20,
     marca: "Maison Alhambra",
     nombre: "Pink Shimmer Secret 100ml EDP",
