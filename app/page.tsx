@@ -32,23 +32,6 @@ const perfumes = [
     rating: 4.8,
   },
   {
-    id: 4,
-    marca: "Maison Alhambra",
-    nombre: "La Vivacité 30 EDP",
-    imagen: "https://i.imgur.com/NmJ4AFA.png",
-    precio: 20000,
-    notas: {
-      salida: ["grosellas negras", "pera"],
-      corazon: ["iris", "flor de azahar del naranjo", "jazmín"],
-      fondo: ["pichulí", "praliné", "vainilla"],
-    },
-    genero: "Mujer",
-    fragancia_referencia: "La Vie Est Belle de Lancôme",
-    descripcion:
-      "Es una fragancia de la familia olfativa Floral Frutal para Mujeres. Esta fragrancia es nueva. La Vivacité se lanzó en 2024.",
-    rating: 4.6,
-  },
-  {
     id: 6,
     marca: "Maison Alhambra",
     nombre: "B.A.D. HOMME 30 EDP",
