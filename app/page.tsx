@@ -101,24 +101,6 @@ const perfumes = [
     rating: 4.2,
   },
   {
-    id: 20,
-    marca: "Maison Alhambra",
-    nombre: "Pink Shimmer Secret 100ml EDP",
-    imagen: "https://i.imgur.com/C5X8oia.png",
-    precio: 25000,
-    notas: {
-      salida: ["Piña", "Toronja", "Fresa"],
-      corazon: ["Peonía", "Bayas rojas", "Orquídea", "Azucena", "Jazmín"],
-      fondo: ["Musgo de roble", "Notas amaderadas", "Almizcle"],
-    },
-    genero: "Mujer",
-    fragancia_referencia: "Pink Warm & Cozy de Victoria's Secret",
-    descripcion:
-      "Dulce, cálido y relajado. Pink Shimmer Secret captura la esencia de una tarde de sol, entre risas, frescura frutal y suavidad floral.",
-    sinDescuento: true,
-    rating: 4.6,
-  },
-  {
     id: 22,
     marca: "Maison Alhambra",
     nombre: "La Voie 100ml EDP",
@@ -152,24 +134,6 @@ const perfumes = [
       "Versátil. Ideal para el día, salidas o eventos. Aroma masculino, elegante y seguro. Deja huella sin exagerar.",
     sinDescuento: true,
     rating: 4.9,
-  },
-  {
-    id: 28,
-    marca: "Maison Alhambra",
-    nombre: "Dark Door Sport 100ml EDP",
-    imagen: "https://i.imgur.com/GsOmOMD.png",
-    precio: 36000,
-    notas: {
-      salida: ["Pomelo", "Limón", "Resina de elemí", "Bergamota"],
-      corazon: ["Jengibre", "Cedro", "Vetiver"],
-      fondo: ["Lavanda", "Romero", "Sándalo"],
-    },
-    genero: "Hombre",
-    fragancia_referencia: "Dior Homme Sport",
-    descripcion:
-      "Perfecto para el día, entrenar o climas cálidos. Energética, fresca y moderna. Transmite vitalidad con elegancia.",
-    sinDescuento: true,
-    rating: 4.7,
   },
   {
     id: 24,
