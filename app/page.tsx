@@ -206,6 +206,10 @@ export default function EssenzaPerfumes() {
   const [isCartOpen, setIsCartOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [addingToCart, setAddingToCart] = useState(new Set())
+  const [discountCode, setDiscountCode] = useState("");
+  const [discountPercent, setDiscountPercent] = useState(0);
+  const [discountApplied, setDiscountApplied] = useState(false);
+  const [discountError, setDiscountError] = useState("");
 
   const debouncedSearchTerm = useDebounce(searchTerm, 300)
 
@@ -353,6 +357,35 @@ export default function EssenzaPerfumes() {
     return cart.reduce((total, item) => total + item.precio * item.quantity, 0)
   }, [cart])
 
+  const getDiscountAmount = useCallback(() => {
+    return (getTotalPrice() * discountPercent) / 100;
+  }, [getTotalPrice, discountPercent]);
+
+  const getTotalWithDiscount = useCallback(() => {
+    return getTotalPrice() - getDiscountAmount();
+  }, [getTotalPrice, getDiscountAmount]);
+
+  const handleApplyDiscount = () => {
+    if (discountCode.trim().toUpperCase() === "ESSENZA10") {
+      setDiscountPercent(10);
+      setDiscountApplied(true);
+      setDiscountError("");
+      toast({
+        title: "¡Descuento aplicado!",
+        description: "Se aplicó un 10% de descuento a tu compra.",
+      });
+    } else {
+      setDiscountPercent(0);
+      setDiscountApplied(false);
+      setDiscountError("Código inválido");
+      toast({
+        title: "Código inválido",
+        description: "El código ingresado no es válido.",
+        variant: "destructive",
+      });
+    }
+  };
+
   const generateWhatsAppMessage = useCallback(() => {
     let message = "🌸 ¡Hola! Me interesa comprar los siguientes perfumes de ESSENZA:\n\n"
 
@@ -364,11 +397,16 @@ export default function EssenzaPerfumes() {
       message += `   Subtotal: ${formatPrice(item.precio * item.quantity)}\n\n`
     })
 
-    message += `*TOTAL: ${formatPrice(getTotalPrice())}*\n\n`
+    if (discountPercent > 0) {
+      message += `Descuento aplicado: -${discountPercent}% (${formatPrice(getDiscountAmount())})\n`
+      message += `*TOTAL CON DESCUENTO: ${formatPrice(getTotalWithDiscount())}*\n\n`
+    } else {
+      message += `*TOTAL: ${formatPrice(getTotalPrice())}*\n\n`
+    }
     message += "¿Podrías confirmarme la disponibilidad y el método de pago? ¡Gracias! "
 
     return encodeURIComponent(message)
-  }, [cart, formatPrice, getTotalPrice])
+  }, [cart, formatPrice, getTotalPrice, discountPercent, getDiscountAmount, getTotalWithDiscount])
 
   const sendToWhatsApp = useCallback(() => {
     const phoneNumber = "5493794800282"
@@ -535,9 +573,46 @@ export default function EssenzaPerfumes() {
                           ))}
                         </div>
                         <div className="border-t pt-4 space-y-4 bg-white flex-shrink-0">
+                          <div className="flex flex-col gap-2">
+                            <div className="flex gap-2">
+                              <Input
+                                placeholder="Código de descuento"
+                                value={discountCode}
+                                onChange={e => setDiscountCode(e.target.value)}
+                                className="max-w-xs"
+                                disabled={discountApplied}
+                              />
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={handleApplyDiscount}
+                                disabled={discountApplied}
+                              >
+                                {discountApplied ? "Aplicado" : "Aplicar"}
+                              </Button>
+                            </div>
+                            {discountError && (
+                              <span className="text-xs text-red-500">{discountError}</span>
+                            )}
+                            {discountApplied && (
+                              <span className="text-xs text-green-600">¡Descuento aplicado!</span>
+                            )}
+                          </div>
+                          <div className="flex justify-between items-center text-base">
+                            <span>Subtotal:</span>
+                            <span>{formatPrice(getTotalPrice())}</span>
+                          </div>
+                          {discountPercent > 0 && (
+                            <div className="flex justify-between items-center text-base text-green-700">
+                              <span>Descuento ({discountPercent}%):</span>
+                              <span>-{formatPrice(getDiscountAmount())}</span>
+                            </div>
+                          )}
                           <div className="flex justify-between items-center text-lg font-bold">
                             <span>Total:</span>
-                            <span className="text-purple-600 animate-pulse">{formatPrice(getTotalPrice())}</span>
+                            <span className="text-purple-600 animate-pulse">
+                              {discountPercent > 0 ? formatPrice(getTotalWithDiscount()) : formatPrice(getTotalPrice())}
+                            </span>
                           </div>
                           <Button
                             onClick={sendToWhatsApp}
