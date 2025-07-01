@@ -187,6 +187,40 @@ const perfumes = [
     rating: 4.7,
     sinDescuento: false,
   },
+  {
+    id: 32,
+    marca: "Maison Alhambra",
+    nombre: "Jubilant Noir 100ml EDP",
+    imagen: "https://i.imgur.com/y7prdOL.png",
+    precio: 25500,
+    notas: {
+      salida: ["Pimienta", "cardamomo", "jengibre"],
+      corazon: ["Coco", "gardenia", "flor de azahar del naranjo", "peonía"],
+      fondo: ["Ámbar", "sándalo", "almizcle"],
+    },
+    genero: "Mujer",
+    fragancia_referencia: "Versace Crystal Noir",
+    descripcion: "Sensual y sofisticada, ideal para salidas nocturnas, cenas elegantes o eventos especiales. Su fondo cálido y especiado la hace perfecta para otoño e invierno, dejando una estela misteriosa y envolvente.",
+    rating: 4.8,
+    sinDescuento: false,
+  },
+  {
+    id: 33,
+    marca: "Maison Alhambra",
+    nombre: "Toro Pour Homme 100ml EDP",
+    imagen: "https://i.imgur.com/dxrwsHU.png",
+    precio: 26775,
+    notas: {
+      salida: ["Naranja", "toronja (pomelo)"],
+      corazon: ["Pimienta", "pelargonio"],
+      fondo: ["Vetiver", "pachulí", "cedro", "benjuí"],
+    },
+    genero: "Hombre",
+    fragancia_referencia: "Terre d'Hermès",
+    descripcion: "Elegante y con carácter, ideal para el día a día o entornos profesionales. Perfecto para climas templados a cálidos, y para hombres que buscan proyectar seguridad y estilo sin excesos. Va muy bien en otoño, primavera y también en reuniones formales.",
+    rating: 4.8,
+    sinDescuento: false,
+  },
 ]
 
 // Hook personalizado para debounce
