@@ -153,6 +153,40 @@ const perfumes = [
     sinDescuento: true,
     rating: 4.8,
   },
+  {
+    id: 30,
+    marca: "Calvin Klein",
+    nombre: "CK One 100ml EDP",
+    imagen: "https://i.imgur.com/b6cMmT9.png",
+    precio: 46750,
+    notas: {
+      salida: ["Limón", "notas verdes", "bergamota", "mandarina", "piña", "cardamomo", "papaya"],
+      corazon: ["Lirio de los valles", "jazmín", "violeta", "rosa", "nuez moscada", "raíz de lirio", "fresia"],
+      fondo: ["Acordes verdes", "almizcle", "cedro", "té verde", "sándalo", "musgo de roble", "ámbar"],
+    },
+    genero: "Unisex",
+    fragancia_referencia: "",
+    descripcion: "Perfecto para el uso diario, en especial durante la primavera y el verano. Fresco, liviano y versátil, ideal para ir al trabajo, a clases o salidas informales.",
+    rating: 4.6,
+    sinDescuento: false,
+  },
+  {
+    id: 31,
+    marca: "Maison Alhambra",
+    nombre: "Céleste 100ml EDP",
+    imagen: "https://i.imgur.com/tte0WD0.png",
+    precio: 32300,
+    notas: {
+      salida: ["Bergamota", "limón"],
+      corazon: ["Jazmín", "lirio de los valles", "rosa"],
+      fondo: ["Ylang-ylang", "sándalo", "almizcle", "musgo"],
+    },
+    genero: "Mujer",
+    fragancia_referencia: "Divine de JPG",
+    descripcion: "Fresca y luminosa, ideal para el día, especialmente en primavera y verano. Perfecta para usar en la oficina, reuniones o salidas al aire libre. Su aroma elegante y limpio la hace muy versátil y fácil de llevar a diario.",
+    rating: 4.7,
+    sinDescuento: false,
+  },
 ]
 
 // Hook personalizado para debounce
