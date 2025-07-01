@@ -345,7 +345,7 @@ const perfumes = [
     marca: "Maison Alhambra",
     nombre: "B.A.D. HOMME 100 EDP",
     imagen: "https://i.imgur.com/XCBnNQU.png",
-    precio: 28000,
+    precio: 29750,
     notas: {
       salida: ["Pimienta Negra", "Cardamomo", "Bergamota"],
       corazon: ["Incienso", "Cedro", "Vetiver"],
@@ -360,9 +360,9 @@ const perfumes = [
   {
     id: 24,
     marca: "Maison Alhambra",
-    nombre: "Jean Lowe Fraiche 100ml EDP",
+    nombre: "Jean Lowe Inmortal 100ml EDP",
     imagen: "https://i.imgur.com/xa8yGJW.png",
-    precio: 26000,
+    precio: 32300,
     notas: {
       salida: ["Pétalos de rosa", "Caramelo"],
       corazon: ["Jazmín", "Cacao", "Madera de agar (oud)"],
