@@ -221,6 +221,40 @@ const perfumes = [
     rating: 4.8,
     sinDescuento: false,
   },
+  {
+    id: 34,
+    marca: "Maison Alhambra",
+    nombre: "Perseus 100ml EDP",
+    imagen: "https://i.imgur.com/E3RPqSt.png",
+    precio: 30345,
+    notas: {
+      salida: ["Heliotropo", "comino", "bergamota"],
+      corazon: ["Almendra", "lavanda", "jazmín"],
+      fondo: ["Vainilla", "ámbar", "sándalo"],
+    },
+    genero: "Hombre",
+    fragancia_referencia: "Pegasus de Parfums De Marly",
+    descripcion: "Intensa y envolvente, ideal para la noche, salidas especiales o estaciones frías como otoño e invierno. Su combinación de especias, lavanda y vainilla le da un toque seductor y elegante, perfecto para quienes buscan dejar una impresión duradera.",
+    rating: 4.8,
+    sinDescuento: false,
+  },
+  {
+    id: 35,
+    marca: "Lattafa Perfumes",
+    nombre: "Mayar 100ml EDP",
+    imagen: "https://i.imgur.com/QOyJ3Fy.png",
+    precio: 33150,
+    notas: {
+      salida: ["Lichi", "frambuesa", "hojas de violeta"],
+      corazon: ["Rosa blanca", "peonía", "jazmín"],
+      fondo: ["Almizcle", "vainilla"],
+    },
+    genero: "Mujer",
+    fragancia_referencia: "Angel Nova de Mugler",
+    descripcion: "Dulce y femenina, ideal para el día y ocasiones casuales en primavera y verano. Perfecta para salidas diarias, encuentros informales o eventos donde se busque un aroma fresco y romántico.",
+    rating: 4.7,
+    sinDescuento: false,
+  },
 ]
 
 // Hook personalizado para debounce
