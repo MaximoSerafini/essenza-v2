@@ -306,6 +306,40 @@ const perfumes = [
     rating: 4.8,
     sinDescuento: false,
   },
+  {
+    id: 39,
+    marca: "Maison Alhambra",
+    nombre: "Delilah 100ml EDP",
+    imagen: "https://i.imgur.com/KpSyTIv.png",
+    precio: 29750,
+    notas: {
+      salida: ["Ruibarbo", "lichi", "bergamota"],
+      corazon: ["Rosa turca", "peonía", "azucena"],
+      fondo: ["Almizcle blanco", "vainilla", "madera de cachemira"],
+    },
+    genero: "Mujer",
+    fragancia_referencia: "Delina de Parfums de Marly",
+    descripcion: "Una fragancia romántica, sofisticada y ultra femenina, inspirada en el icónico Delina de Parfums de Marly. Ideal para el día, eventos especiales o cuando querés sentirte delicada pero con presencia. Perfecta para primavera y otoño, y para quienes aman las fragancias con corazón floral y fondo cremoso. Una joya olfativa que enamora desde el primer spray. Un dupe de lujo a un precio accesible.",
+    rating: 4.9,
+    sinDescuento: false,
+  },
+  {
+    id: 40,
+    marca: "Maison Alhambra",
+    nombre: "Reyna 100ml EDP",
+    imagen: "https://i.imgur.com/xNw6wk7.png",
+    precio: 25500,
+    notas: {
+      salida: ["Mandarina", "bergamota", "pomelo"],
+      corazon: ["Frambuesa", "flor de azahar", "grosellas negras"],
+      fondo: ["Malvavisco", "crema batida", "almizcle", "almizcle ambreta"],
+    },
+    genero: "Mujer",
+    fragancia_referencia: "",
+    descripcion: "Dulce, frutal y absolutamente encantadora… una fragancia que hace honor a su nombre: Reyna. Ideal para quienes aman los perfumes dulces pero con chispa, con un toque gourmand irresistible. Perfecta para salidas casuales, encuentros especiales o simplemente para sentirte linda y luminosa en tu día a día. Un aroma que deja una estela suave, deliciosa y femenina... ¡pura magia en cada spray!",
+    rating: 4.7,
+    sinDescuento: false,
+  },
 ]
 
 // Hook personalizado para debounce
