@@ -67,23 +67,6 @@ const perfumes = [
   },
 
   {
-    id: 15,
-    marca: "Lattafa",
-    nombre: "Chants tenderina",
-    imagen: "https://i.imgur.com/dyoXjzq.png",
-    precio: 28500,
-    notas: {
-      salida: ["Frutas", "Cítricos"],
-      corazon: ["Rosa", "Jazmín"],
-      fondo: ["Vainilla", "Almizcle"],
-    },
-    genero: "Mujer",
-    fragancia_referencia: "Chanel Chance Eau Tendre",
-    descripcion: "Aroma tierno y delicado, perfecto para ocasiones especiales.",
-    sinDescuento: true,
-    rating: 4.5,
-  },
-  {
     id: 17,
     marca: "Perfumeros",
     nombre: "Perfumeros",
