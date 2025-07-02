@@ -328,7 +328,7 @@ const perfumes = [
   {
     id: 41,
     marca: "Maison Alhambra",
-    nombre: "Salvo Elixir 100ml EDP",
+    nombre: "Salvo Elixir 60ml EDP",
     imagen: "https://i.imgur.com/lum97bG.png",
     precio: 23800,
     notas: {
