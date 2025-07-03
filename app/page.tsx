@@ -12,8 +12,29 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { toast } from "@/hooks/use-toast"
 import { Toaster } from "@/components/ui/toaster"
+// para el commit
 
-const perfumes = [
+// Definición de la interfaz Perfume para tipado estricto
+interface Perfume {
+  id: number;
+  marca: string;
+  nombre: string;
+  imagen: string;
+  precio: number;
+  notas: {
+    salida: string[];
+    corazon: string[];
+    fondo: string[];
+  };
+  genero: string;
+  fragancia_referencia: string;
+  descripcion: string;
+  rating: number;
+  sinDescuento?: boolean;
+  quantity?: number; // solo para el carrito
+}
+
+const perfumes: Perfume[] = [
   {
     id: 1,
     marca: "Lattafa",
@@ -205,6 +226,7 @@ const perfumes = [
     rating: 4.9,
     sinDescuento: false,
   },
+
 ]
 
 // Hook personalizado para debounce
@@ -250,18 +272,18 @@ function ProductSkeleton() {
 
 export default function EssenzaPerfumes() {
   const [searchTerm, setSearchTerm] = useState("")
-  const [selectedGender, setSelectedGender] = useState("Todos")
-  const [selectedBrand, setSelectedBrand] = useState("Todas")
-  const [selectedPerfume, setSelectedPerfume] = useState(null)
-  const [favorites, setFavorites] = useState(new Set())
-  const [cart, setCart] = useState([])
-  const [isCartOpen, setIsCartOpen] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
-  const [addingToCart, setAddingToCart] = useState(new Set())
-  const [discountCode, setDiscountCode] = useState("");
-  const [discountPercent, setDiscountPercent] = useState(0);
-  const [discountApplied, setDiscountApplied] = useState(false);
-  const [discountError, setDiscountError] = useState("");
+  const [selectedGender, setSelectedGender] = useState<string>("Todos")
+  const [selectedBrand, setSelectedBrand] = useState<string>("Todas")
+  const [selectedPerfume, setSelectedPerfume] = useState<Perfume | null>(null)
+  const [favorites, setFavorites] = useState<Set<number>>(new Set())
+  const [cart, setCart] = useState<Perfume[]>([])
+  const [isCartOpen, setIsCartOpen] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [addingToCart, setAddingToCart] = useState<Set<number>>(new Set())
+  const [discountCode, setDiscountCode] = useState<string>("");
+  const [discountPercent, setDiscountPercent] = useState<number>(0);
+  const [discountApplied, setDiscountApplied] = useState<boolean>(false);
+  const [discountError, setDiscountError] = useState<string>("");
 
   const debouncedSearchTerm = useDebounce(searchTerm, 300)
 
@@ -311,7 +333,7 @@ export default function EssenzaPerfumes() {
     })
   }, [debouncedSearchTerm, selectedGender, selectedBrand])
 
-  const formatPrice = useCallback((price) => {
+  const formatPrice = useCallback((price: number) => {
     return new Intl.NumberFormat("es-AR", {
       style: "currency",
       currency: "ARS",
@@ -319,7 +341,7 @@ export default function EssenzaPerfumes() {
     }).format(price)
   }, [])
 
-  const toggleFavorite = useCallback((id) => {
+  const toggleFavorite = useCallback((id: number) => {
     setFavorites((prev) => {
       const newFavorites = new Set(prev)
       if (newFavorites.has(id)) {
@@ -339,7 +361,7 @@ export default function EssenzaPerfumes() {
     })
   }, [])
 
-  const addToCart = useCallback(async (perfume) => {
+  const addToCart = useCallback(async (perfume: Perfume) => {
     setAddingToCart((prev) => new Set(prev).add(perfume.id))
 
     // Simular delay para mostrar loading
@@ -349,11 +371,11 @@ export default function EssenzaPerfumes() {
       const existingItem = prevCart.find((item) => item.id === perfume.id)
       if (existingItem) {
         const newCart = prevCart.map((item) =>
-          item.id === perfume.id ? { ...item, quantity: item.quantity + 1 } : item,
+          item.id === perfume.id ? { ...item, quantity: (item.quantity ?? 1) + 1 } : item,
         )
         toast({
           title: "Cantidad actualizada 🛒",
-          description: `${perfume.nombre} - Cantidad: ${existingItem.quantity + 1}`,
+          description: `${perfume.nombre} - Cantidad: ${(existingItem.quantity ?? 1) + 1}`,
         })
         return newCart
       } else {
@@ -377,7 +399,7 @@ export default function EssenzaPerfumes() {
     })
   }, [])
 
-  const removeFromCart = useCallback((id) => {
+  const removeFromCart = useCallback((id: number) => {
     setCart((prevCart) => {
       const item = prevCart.find((item) => item.id === id)
       if (item) {
@@ -391,7 +413,7 @@ export default function EssenzaPerfumes() {
   }, [])
 
   const updateQuantity = useCallback(
-    (id, newQuantity) => {
+    (id: number, newQuantity: number) => {
       if (newQuantity === 0) {
         removeFromCart(id)
       } else {
@@ -402,11 +424,11 @@ export default function EssenzaPerfumes() {
   )
 
   const getTotalItems = useCallback(() => {
-    return cart.reduce((total, item) => total + item.quantity, 0)
+    return cart.reduce((total, item) => total + (item.quantity ?? 1), 0)
   }, [cart])
 
   const getTotalPrice = useCallback(() => {
-    return cart.reduce((total, item) => total + item.precio * item.quantity, 0)
+    return cart.reduce((total, item) => total + item.precio * (item.quantity ?? 1), 0)
   }, [cart])
 
   const getDiscountAmount = useCallback(() => {
@@ -444,9 +466,9 @@ export default function EssenzaPerfumes() {
     cart.forEach((item, index) => {
       message += `${index + 1}. ${item.nombre}\n`
       message += `   Marca: ${item.marca}\n`
-      message += `   Cantidad: ${item.quantity}\n`
+      message += `   Cantidad: ${item.quantity ?? 1}\n`
       message += `   Precio unitario: ${formatPrice(item.precio)}\n`
-      message += `   Subtotal: ${formatPrice(item.precio * item.quantity)}\n\n`
+      message += `   Subtotal: ${formatPrice(item.precio * (item.quantity ?? 1))}\n\n`
     })
 
     if (discountPercent > 0) {
@@ -602,12 +624,12 @@ export default function EssenzaPerfumes() {
                                 >
                                   <Minus className="h-3 w-3" />
                                 </Button>
-                                <span className="w-8 text-center text-sm font-medium">{item.quantity}</span>
+                                <span className="w-8 text-center text-sm font-medium">{item.quantity ?? 1}</span>
                                 <Button
                                   variant="outline"
                                   size="icon"
                                   className="h-8 w-8 hover:bg-purple-100 transition-colors duration-200"
-                                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                  onClick={() => updateQuantity(item.id, (item.quantity ?? 1) + 1)}
                                   disabled={false}
                                 >
                                   <Plus className="h-3 w-3" />
