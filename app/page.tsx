@@ -53,23 +53,6 @@ const perfumes: Perfume[] = [
     rating: 4.8,
   },
   {
-    id: 6,
-    marca: "Maison Alhambra",
-    nombre: "B.A.D. HOMME 30 EDP",
-    imagen: "https://i.imgur.com/XCBnNQU.png",
-    precio: 17000,
-    notas: {
-      salida: ["Pimienta Negra", "Cardamomo", "Bergamota"],
-      corazon: ["Incienso", "Cedro", "Vetiver"],
-      fondo: ["Cuero", "Oud", "Ámbar"],
-    },
-    genero: "Hombre",
-    fragancia_referencia: "Bad Boy de Carolina Herrera",
-    descripcion:
-      "Fragancia amaderada y fresca, con notas masculinas y sofisticadas, ideal para hombres de carácter fuerte.",
-    rating: 4.9,
-  },
-  {
     id: 10,
     marca: "Lattafa",
     nombre: "Haya",
