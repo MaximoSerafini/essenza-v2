@@ -129,7 +129,7 @@ const perfumes: Perfume[] = [
     marca: "Lattafa Perfumes",
     nombre: "Mayar 100ml EDP",
     imagen: "https://i.imgur.com/QOyJ3Fy.png",
-    precio: 33150,
+    precio: 39000,
     notas: {
       salida: ["Lichi", "frambuesa", "hojas de violeta"],
       corazon: ["Rosa blanca", "peonía", "jazmín"],
@@ -146,7 +146,7 @@ const perfumes: Perfume[] = [
     marca: "Britney Spears",
     nombre: "Fantasy 100ml EDP",
     imagen: "https://i.imgur.com/RMxS2Is.png",
-    precio: 42500,
+    precio: 50000,
     notas: {
       salida: ["Kiwi", "lichi rojo", "membrillo"],
       corazon: ["Chocolate blanco", "quequito", "orquídea", "jazmín"],
@@ -163,7 +163,7 @@ const perfumes: Perfume[] = [
     marca: "Maison Alhambra",
     nombre: "Jorge di Profumo 100ml EDP",
     imagen: "https://i.imgur.com/AxEE6zi.png",
-    precio: 34000,
+    precio: 40000,
     notas: {
       salida: ["Bergamota", "limón siciliano", "pimienta negra"],
       corazon: ["Lavanda", "tabaco", "geranio"],
@@ -180,7 +180,7 @@ const perfumes: Perfume[] = [
     marca: "Maison Alhambra",
     nombre: "Delilah 100ml EDP",
     imagen: "https://i.imgur.com/KpSyTIv.png",
-    precio: 29750,
+    precio: 35000,
     notas: {
       salida: ["Ruibarbo", "lichi", "bergamota"],
       corazon: ["Rosa turca", "peonía", "azucena"],
