@@ -162,7 +162,7 @@ const perfumes: Perfume[] = [
     id: 37,
     marca: "Maison Alhambra",
     nombre: "Jorge di Profumo 100ml EDP",
-    imagen: "https://i.imgur.com/AxEE6zi.png",
+    imagen: "https://i.imgur.com/U48EYDK.png",
     precio: 40000,
     notas: {
       salida: ["Bergamota", "limón siciliano", "pimienta negra"],
@@ -315,6 +315,43 @@ const perfumes: Perfume[] = [
     sinDescuento: true,
     rating: 4.8,
   },
+  {
+    id: 31,
+    marca: "Maison Alhambra",
+    nombre: "Céleste 100ml EDP",
+    imagen: "https://i.imgur.com/tte0WD0.png",
+    precio: 36400,
+    notas: {
+      salida: ["Bergamota", "limón"],
+      corazon: ["Jazmín", "lirio de los valles", "rosa"],
+      fondo: ["Ylang-ylang", "sándalo", "almizcle", "musgo"],
+    },
+    genero: "Mujer",
+    fragancia_referencia: "Divine de JPG",
+    descripcion: "Fresca y luminosa, ideal para el día, especialmente en primavera y verano. Perfecta para usar en la oficina, reuniones o salidas al aire libre. Su aroma elegante y limpio la hace muy versátil y fácil de llevar a diario.",
+    rating: 4.7,
+    sinDescuento: false,
+  },
+
+  {
+    id: 47,
+    marca: "Maison Alhambra",
+    nombre: "Dark Door Sport 100ml EDP",
+    imagen: "https://i.imgur.com/GsOmOMD.png",
+    precio: 32000,
+    notas: {
+      salida: ["Pomelo", "Limón", "Resina de elemí", "Bergamota"],
+      corazon: ["Jengibre", "Cedro", "Vetiver"],
+      fondo: ["Lavanda", "Romero", "Sándalo"],
+    },
+    genero: "Hombre",
+    fragancia_referencia: "Dior Homme Sport",
+    descripcion:
+      "Perfecto para el día, entrenar o climas cálidos. Energética, fresca y moderna. Transmite vitalidad con elegancia.",
+    sinDescuento: true,
+    rating: 4.7,
+  },
+ 
 
   
 
