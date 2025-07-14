@@ -192,6 +192,77 @@ const perfumes: Perfume[] = [
     rating: 4.9,
     sinDescuento: false,
   },
+  {
+    id: 40,
+    marca: "Maison Alhambra",
+    nombre: "Yeah MAN 100ml EDP",
+    imagen: "https://i.imgur.com/el5kBaH.png", 
+    precio: 32400, 
+    notas: {
+      salida: ["Aldehídos", "manzana", "jengibre", "pomelo"],
+      corazon: ["Lavanda", "salvia", "geranio"],
+      fondo: ["Haba tonka", "incienso", "cedro", "pachulí"],
+    },
+    genero: "Hombre",
+    fragancia_referencia: "Y de YL",
+    descripcion:
+      "Una fragancia vibrante, juvenil y con mucha actitud, pensada para el hombre que quiere destacar sin esfuerzo. Perfecta para el día a día, salidas con amigos o para llevar a la oficina con un aire fresco y seguro. Ideal para primavera y verano, aunque su fondo cálido la hace versátil todo el año. Moderna, energizante y con ese toque irresistible que no pasa desapercibido. Dupe de Y de YL.",
+    rating: 4.7,
+    sinDescuento: false,
+  },
+  {
+    id: 41,
+    marca: "Maison Alhambra",
+    nombre: "Yeah! MAN 30ml EDP",
+    imagen: "https://i.imgur.com/xQGLWvE.png",
+    precio: 15000, 
+    notas: {
+      salida: ["Aldehídos", "manzana", "jengibre", "pomelo"],
+      corazon: ["Lavanda", "salvia", "geranio"],
+      fondo: ["Haba tonka", "incienso", "cedro", "pachulí"],
+    },
+    genero: "Hombre",
+    fragancia_referencia: "Y de YL",
+    descripcion:
+      "Una fragancia vibrante, juvenil y con mucha actitud, pensada para el hombre que quiere destacar sin esfuerzo. Perfecta para el día a día, salidas con amigos o para llevar a la oficina con un aire fresco y seguro. Ideal para primavera y verano, aunque su fondo cálido la hace versátil todo el año. Moderna, energizante y con ese toque irresistible que no pasa desapercibido. Dupe de Y de YL.",
+    rating: 4.7,
+    sinDescuento: false,
+  },
+  {
+    id: 42,
+    marca: "Maison Alhambra",
+    nombre: "Vogue Party 100ml EDP",
+    imagen: "https://i.imgur.com/o0c6Czi.png", 
+    precio: 34200, 
+    notas: {
+      salida: ["Almendra", "cereza"],
+      corazon: ["Agua de rosas", "azucena", "almizcle ambreta"],
+      fondo: ["Haba tonka", "vainilla", "musgo de roble", "vetiver"],
+    },
+    genero: "Mujer",
+    fragancia_referencia: "Carolina Herrera Very Good Girl Glam",
+    descripcion:
+      "Una fragancia atrevida, sofisticada y adictiva… como una noche de gala que no querés que termine. Perfecta para salidas nocturnas, fiestas o cualquier momento en el que quieras dejar una impresión elegante y misteriosa. Es una fragancia que abraza la piel y despierta los sentidos. Dulce, floral, con un fondo cálido y envolvente… Vogue Party es tu mejor accesorio de noche. Dupe de Carolina Herrera Very Good Girl Glam.",
+    rating: 4.8,
+    sinDescuento: false,
+  },
+  {
+    id: 43,
+    marca: "Victorioso",
+    nombre: "Fearless 100ml EDP",
+    imagen: "https://i.imgur.com/EnagqZ9.png",
+    precio: 36400,
+    notas: {
+      salida: ["piña", "manzana"],
+      corazon: ["lavanda"],
+      fondo: ["vainilla", "ámbar"],
+    },
+    genero: "Hombre",
+    fragancia_referencia: "Liquid Brun de French Avenue",
+    descripcion: "Cotidiano, moderno y audaz. Inspirado en Liquid Brun de French Avenue.",
+    rating: 4.7,
+    sinDescuento: false,
+  },
 
 ]
 
