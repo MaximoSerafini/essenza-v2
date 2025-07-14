@@ -263,6 +263,60 @@ const perfumes: Perfume[] = [
     rating: 4.7,
     sinDescuento: false,
   },
+  {
+    id: 44,
+    marca: "Victorioso",
+    nombre: "Heroic – Zakat 100ml EDP",
+    imagen: "https://i.imgur.com/EzPL9S0.png",
+    precio: 36400, 
+    notas: {
+      salida: ["Cítricos vibrantes", "especias aromáticas"],
+      corazon: ["Flores exóticas", "resinas intensas"],
+      fondo: ["Oud", "ámbar", "almizcle", "maderas nobles"],
+    },
+    genero: "Hombre",
+    fragancia_referencia: "Birds of Paradise For Him – Carolina Herrera",
+    descripcion: "Fuerza. Elegancia. Presencia. Una fragancia que no solo se lleva… se impone. Ideal para noches especiales, eventos formales o cuando querés destacar con un aroma opulento, exótico y memorable. Su estela intensa y refinada lo convierte en un perfume de poder y carácter. Inspirado en Birds of Paradise For Him de Carolina Herrera.",
+    rating: 4.8,
+    sinDescuento: false,
+  },
+  {
+    id: 45,
+    marca: "Maison Alhambra",
+    nombre: "Salvo 100ml EDP",
+    imagen: "https://i.imgur.com/M1SsSjv.png", 
+    precio: 32000, 
+    notas: {
+      salida: ["Bergamota"],
+      corazon: ["Lavanda", "pimienta de Sichuan", "anís estrellado", "nuez moscada"],
+      fondo: ["Ambroxan", "vainilla"],
+    },
+    genero: "Hombre",
+    fragancia_referencia: "Sauvage de Dior",
+    descripcion: "Intensa, magnética y adictiva. Una fragancia masculina con presencia arrolladora. Perfecta para todo momento: de día, de noche, para la oficina o una salida especial. Es una fragancia versátil, vibrante y seductora, ideal para el hombre que quiere dejar huella sin esfuerzo. Frescura cítrica, corazón especiado y un fondo cálido que envuelve la piel… Dupe de Sauvage de Dior.",
+    rating: 4.8,
+    sinDescuento: false,
+  },
+  {
+    id: 46,
+    marca: "Maison Alhambra",
+    nombre: "Jean Lowe Inmortal 30ml EDP",
+    imagen: "https://i.imgur.com/qJVdGgU.png",
+    precio: 15000,
+    notas: {
+      salida: ["Pétalos de rosa", "Caramelo"],
+      corazon: ["Jazmín", "Cacao", "Madera de agar (oud)"],
+      fondo: ["Cuero", "Ámbar", "Vainilla"],
+    },
+    genero: "Hombre",
+    fragancia_referencia: "Nouveau Monde de Louis Vuitton",
+    descripcion:
+      "Exótica, sofisticada y envolvente. Jean Lowe Fraiche captura el espíritu aventurero combinando dulzura, especias y sensualidad profunda.",
+    sinDescuento: true,
+    rating: 4.8,
+  },
+
+  
 
 ]
 
