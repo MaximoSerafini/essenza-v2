@@ -421,7 +421,7 @@ const perfumes: Perfume[] = [
   },
   {
     id: 53,
-    marca: "Pruñe Moi",
+    marca: "Prune Moi",
     nombre: "Pruñe Moi 60ml EDP",
     imagen: "https://i.imgur.com/QYfUfRt.png",
     precio: 25000, 
