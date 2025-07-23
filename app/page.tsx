@@ -246,23 +246,6 @@ const perfumes: Perfume[] = [
     sinDescuento: false,
   },
   {
-    id: 44,
-    marca: "Victorioso",
-    nombre: "Heroic – Zakat 100ml EDP",
-    imagen: "https://i.imgur.com/EzPL9S0.png",
-    precio: 36400, 
-    notas: {
-      salida: ["Cítricos vibrantes", "especias aromáticas"],
-      corazon: ["Flores exóticas", "resinas intensas"],
-      fondo: ["Oud", "ámbar", "almizcle", "maderas nobles"],
-    },
-    genero: "Hombre",
-    fragancia_referencia: "Birds of Paradise For Him – Carolina Herrera",
-    descripcion: "Fuerza. Elegancia. Presencia. Una fragancia que no solo se lleva… se impone. Ideal para noches especiales, eventos formales o cuando querés destacar con un aroma opulento, exótico y memorable. Su estela intensa y refinada lo convierte en un perfume de poder y carácter. Inspirado en Birds of Paradise For Him de Carolina Herrera.",
-    rating: 4.8,
-    sinDescuento: false,
-  },
-  {
     id: 45,
     marca: "Maison Alhambra",
     nombre: "Salvo 100ml EDP",
