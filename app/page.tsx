@@ -87,7 +87,24 @@ const perfumes: Perfume[] = [
     sinDescuento: true,
     rating: 4.2,
   },
-
+    {
+    id: 42,
+    marca: "Maison Alhambra",
+    nombre: "Vogue Party 100ml EDP",
+    imagen: "https://i.imgur.com/o0c6Czi.png", 
+    precio: 34200, 
+    notas: {
+      salida: ["Almendra", "cereza"],
+      corazon: ["Agua de rosas", "azucena", "almizcle ambreta"],
+      fondo: ["Haba tonka", "vainilla", "musgo de roble", "vetiver"],
+    },
+    genero: "Mujer",
+    fragancia_referencia: "Carolina Herrera Very Good Girl Glam",
+    descripcion:
+      "Una fragancia atrevida, sofisticada y adictiva… como una noche de gala que no querés que termine. Perfecta para salidas nocturnas, fiestas o cualquier momento en el que quieras dejar una impresión elegante y misteriosa. Es una fragancia que abraza la piel y despierta los sentidos. Dulce, floral, con un fondo cálido y envolvente… Vogue Party es tu mejor accesorio de noche. Dupe de Carolina Herrera Very Good Girl Glam.",
+    rating: 4.8,
+    sinDescuento: false,
+  },
   {
     id: 25,
     marca: "Maison Alhambra",
