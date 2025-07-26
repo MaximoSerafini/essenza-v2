@@ -193,23 +193,6 @@ const perfumes: Perfume[] = [
     sinDescuento: false,
   },
   {
-    id: 39,
-    marca: "Maison Alhambra",
-    nombre: "Delilah 100ml EDP",
-    imagen: "https://i.imgur.com/KpSyTIv.png",
-    precio: 35000,
-    notas: {
-      salida: ["Ruibarbo", "lichi", "bergamota"],
-      corazon: ["Rosa turca", "peonía", "azucena"],
-      fondo: ["Almizcle blanco", "vainilla", "madera de cachemira"],
-    },
-    genero: "Mujer",
-    fragancia_referencia: "Delina de Parfums de Marly",
-    descripcion: "Una fragancia romántica, sofisticada y ultra femenina, inspirada en el icónico Delina de Parfums de Marly. Ideal para el día, eventos especiales o cuando querés sentirte delicada pero con presencia. Perfecta para primavera y otoño, y para quienes aman las fragancias con corazón floral y fondo cremoso. Una joya olfativa que enamora desde el primer spray. Un dupe de lujo a un precio accesible.",
-    rating: 4.9,
-    sinDescuento: false,
-  },
-  {
     id: 43,
     marca: "Victorioso",
     nombre: "Fearless 100ml EDP",
