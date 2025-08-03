@@ -192,23 +192,6 @@ const perfumes: Perfume[] = [
     sinDescuento: false,
   },
   {
-    id: 45,
-    marca: "Maison Alhambra",
-    nombre: "Salvo 100ml EDP",
-    imagen: "https://i.imgur.com/M1SsSjv.png", 
-    precio: 32000, 
-    notas: {
-      salida: ["Bergamota"],
-      corazon: ["Lavanda", "pimienta de Sichuan", "anís estrellado", "nuez moscada"],
-      fondo: ["Ambroxan", "vainilla"],
-    },
-    genero: "Hombre",
-    fragancia_referencia: "Sauvage de Dior",
-    descripcion: "Intensa, magnética y adictiva. Una fragancia masculina con presencia arrolladora. Perfecta para todo momento: de día, de noche, para la oficina o una salida especial. Es una fragancia versátil, vibrante y seductora, ideal para el hombre que quiere dejar huella sin esfuerzo. Frescura cítrica, corazón especiado y un fondo cálido que envuelve la piel… Dupe de Sauvage de Dior.",
-    rating: 4.8,
-    sinDescuento: false,
-  },
-  {
     id: 31,
     marca: "Maison Alhambra",
     nombre: "Céleste 100ml EDP",
