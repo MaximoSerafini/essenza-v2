@@ -296,6 +296,40 @@ const perfumes: Perfume[] = [
     rating: 4.7,
     sinDescuento: false,
   },
+  {
+    id: 54,
+    marca: "Maison Alhambra",
+    nombre: "Pink Shimmer Secret 100ml EDP",
+    imagen: "https://i.imgur.com/rIimUkf.png", 
+    precio: 34800, 
+    notas: {
+      salida: ["Piña", "pomelo", "fresa"],
+      corazon: ["Peonía", "bayas rojas", "orquídea", "azucena", "jazmín"],
+      fondo: ["Musgo de roble", "notas amaderadas", "almizcle"],
+    },
+    genero: "Mujer",
+    fragancia_referencia: "Victoria's Secret",
+    descripcion: "Una explosión frutal, floral y coqueta, ideal para las amantes del estilo Victoria's Secret. Dulce, fresca y súper femenina. Ideal para el día a día, salidas con amigas, clases, o cuando simplemente querés sentirte linda y radiante. Alegre, juvenil y chispeante… Pink Shimmer Secret es ese aroma que te acompaña como un body splash glam, pero con estela de perfume. Inspirada en los clásicos dulces y sensuales de Victoria's Secret.",
+    rating: 4.7,
+    sinDescuento: false,
+  },
+  {
+    id: 55,
+    marca: "Maison Alhambra",
+    nombre: "Mia Dolcezza Verde 100ml EDP",
+    imagen: "https://i.imgur.com/ZH6ukYM.png", 
+    precio: 40000, 
+    notas: {
+      salida: ["Grosella negra", "pimienta rosa", "bergamota"],
+      corazon: ["Jazmín", "ylang-ylang", "nardo", "flor de azahar"],
+      fondo: ["Vainilla", "cachemira", "madera de gaiac", "ámbar"],
+    },
+    genero: "Mujer",
+    fragancia_referencia: "Valentino Donna Born in Roma Green Stravaganza",
+    descripcion: "La versión más fresca, vibrante y sofisticada de un clásico femenino. Perfecta para el día a día, reuniones, eventos o cuando querés un aroma elegante pero con frescura. Es versátil, moderna y con muy buena duración. Mia Dolcezza Verde combina la dulzura envolvente del original con un giro verde y especiado que la hace refinada, luminosa y con carácter. Imita a Valentino Donna Born in Roma Green Stravaganza.",
+    rating: 4.8,
+    sinDescuento: false,
+  },
 
   
 
