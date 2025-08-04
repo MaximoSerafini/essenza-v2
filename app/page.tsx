@@ -432,6 +432,40 @@ const perfumes: Perfume[] = [
     rating: 4.8,
     sinDescuento: false,
   },
+  {
+    id: 62,
+    marca: "Maison Alhambra",
+    nombre: "Jardin de REVE 100ml EDP",
+    imagen: "https://i.imgur.com/i6IBzUY.png", 
+    precio: 47000, 
+    notas: {
+      salida: ["Magnolia", "pera", "durazno", "bergamota", "mandarina"],
+      corazon: ["Jazmín", "nardos", "fresia", "lirio de los valles", "orquídea", "violeta", "ciruela", "rosa"],
+      fondo: ["Almizcle", "vainilla", "cedro", "zarzamora"],
+    },
+    genero: "Mujer",
+    fragancia_referencia: "J'adore de Dior",
+    descripcion: "Un homenaje floral y femenino inspirado en el icónico J'adore – Dior. Perfecta para mujeres que aman los aromas elegantes, sofisticados y con un toque romántico. Ideal para eventos especiales, trabajo o salidas casuales donde querés sentirte radiante. Jardin de Paris es un perfume que envuelve y enamora, dejando una estela inolvidable y femenina. Dupe de J'adore de Dior.",
+    rating: 4.8,
+    sinDescuento: false,
+  },
+  {
+    id: 63,
+    marca: "Maison Alhambra",
+    nombre: "Opera Rouge 100ml EDP",
+    imagen: "https://i.imgur.com/placeholder-operarouge.png", 
+    precio: 47000,
+    notas: {
+      salida: ["Notas de salida"],
+      corazon: ["Notas de corazón"],
+      fondo: ["Notas de fondo"],
+    },
+    genero: "Mujer",
+    fragancia_referencia: "",
+    descripcion: "Descripción del Opera Rouge - ajusta según los detalles que tengas.",
+    rating: 4.8,
+    sinDescuento: false,
+  },
 
   
 
