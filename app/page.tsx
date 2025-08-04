@@ -398,6 +398,40 @@ const perfumes: Perfume[] = [
     rating: 4.9,
     sinDescuento: false,
   },
+  {
+    id: 60,
+    marca: "Maison Alhambra",
+    nombre: "Philos Shine 100ml EDP",
+    imagen: "https://i.imgur.com/tsvgJGy.png", 
+    precio: 50000, 
+    notas: {
+      salida: ["Hojas de higuera", "bergamota"],
+      corazon: ["Notas florales", "violeta", "almizcle"],
+      fondo: ["Acordes amaderados", "ámbar"],
+    },
+    genero: "Unisex",
+    fragancia_referencia: "Philosykos – Diptyque",
+    descripcion: "Inspirado en la elegancia natural de Philosykos – Diptyque, este perfume te envuelve en un aroma verde, cremoso y atemporal. Ideal para quienes buscan una fragancia limpia, elegante y relajada, con vibra mediterránea. Perfecto para uso diario, días de sol o cuando querés un perfume que te haga sentir sofisticada sin esfuerzo. Philos Shine es como llevar un paseo entre higueras en la piel.",
+    rating: 4.8,
+    sinDescuento: false,
+  },
+  {
+    id: 61,
+    marca: "Maison Alhambra",
+    nombre: "Glacier Bold 100ml EDP",
+    imagen: "https://i.imgur.com/NMtczwn.png", 
+    precio: 50000, 
+    notas: {
+      salida: ["Bergamota vibrante"],
+      corazon: ["Madera de coco cremosa"],
+      fondo: ["Haba tonka seductora"],
+    },
+    genero: "Hombre",
+    fragancia_referencia: "Le Beau de Jean Paul Gaultier",
+    descripcion: "Inspirado en Le Beau de Jean Paul Gaultier, este perfume es poder, sensualidad y frescura tropical en un frasco. Masculino, sexy y directo. Ideal para noches especiales, salidas o cuando querés dejar huella. Con un toque veraniego y cálido a la vez: como unas vacaciones lujosas… en tu piel. ¿Sos fan de Le Beau? Este dupe no decepciona.",
+    rating: 4.8,
+    sinDescuento: false,
+  },
 
   
 
