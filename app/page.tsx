@@ -244,24 +244,6 @@ const perfumes: Perfume[] = [
     rating: 4.8,
     sinDescuento: false,
   },
-
-  {
-    id: 51,
-    marca: "Afnan",
-    nombre: "9PM 100ml EDP",
-    imagen: "https://i.imgur.com/oFaHcbs.png", 
-    precio: 61500, 
-    notas: {
-      salida: ["Manzana", "canela", "lavanda silvestre", "bergamota"],
-      corazon: ["Flor de azahar", "lirio de los valles"],
-      fondo: ["Vainilla", "haba tonka", "ámbar", "pachulí"],
-    },
-    genero: "Hombre",
-    fragancia_referencia: "Ultra Male de Jean Paul Gaultier",
-    descripcion: "Un perfume dulce, seductor y con carácter, ideal para destacar cuando el sol se esconde. Ideal para salidas nocturnas, citas o eventos donde querés dejar una impresión duradera. Su combinación de notas dulces y especiadas lo convierte en un perfume envolvente, intenso y adictivo. ¿Amás Ultra Male de Jean Paul Gaultier? Este es su dupe perfecto, con excelente duración y proyección. 9PM: Porque algunas fragancias están hechas para brillar después del atardecer.",
-    rating: 4.8,
-    sinDescuento: false,
-  },
   {
     id: 52,
     marca: "Maison Alhambra",
