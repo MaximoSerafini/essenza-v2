@@ -297,23 +297,6 @@ const perfumes: Perfume[] = [
     sinDescuento: false,
   },
   {
-    id: 54,
-    marca: "Maison Alhambra",
-    nombre: "Pink Shimmer Secret 100ml EDP",
-    imagen: "https://i.imgur.com/rIimUkf.png", 
-    precio: 34800, 
-    notas: {
-      salida: ["Piña", "pomelo", "fresa"],
-      corazon: ["Peonía", "bayas rojas", "orquídea", "azucena", "jazmín"],
-      fondo: ["Musgo de roble", "notas amaderadas", "almizcle"],
-    },
-    genero: "Mujer",
-    fragancia_referencia: "Victoria's Secret",
-    descripcion: "Una explosión frutal, floral y coqueta, ideal para las amantes del estilo Victoria's Secret. Dulce, fresca y súper femenina. Ideal para el día a día, salidas con amigas, clases, o cuando simplemente querés sentirte linda y radiante. Alegre, juvenil y chispeante… Pink Shimmer Secret es ese aroma que te acompaña como un body splash glam, pero con estela de perfume. Inspirada en los clásicos dulces y sensuales de Victoria's Secret.",
-    rating: 4.7,
-    sinDescuento: false,
-  },
-  {
     id: 55,
     marca: "Maison Alhambra",
     nombre: "Mia Dolcezza Verde 100ml EDP",
