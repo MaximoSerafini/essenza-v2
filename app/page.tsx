@@ -401,7 +401,7 @@ const perfumes: Perfume[] = [
     id: 63,
     marca: "Maison Alhambra",
     nombre: "Opera Rouge 100ml EDP",
-    imagen: "https://i.imgur.com/placeholder-operarouge.png", 
+    imagen: "https://i.imgur.com/GmkcNdO.png", 
     precio: 47000,
     notas: {
       salida: ["Notas de salida"],
@@ -418,8 +418,8 @@ const perfumes: Perfume[] = [
     id: 64,
     marca: "Maison Alhambra",
     nombre: "Yeah Man 100ml EDP",
-    imagen: "https://i.imgur.com/placeholder-yeahman.png", 
-    precio: 40000,
+    imagen: "https://i.imgur.com/GYwudgC.png", 
+    precio: 37300,
     notas: {
       salida: ["Bergamota", "limón"],
       corazon: ["Lavanda", "geranio"],
