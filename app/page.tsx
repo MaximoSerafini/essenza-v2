@@ -363,23 +363,7 @@ const perfumes: Perfume[] = [
     rating: 4.8,
     sinDescuento: false,
   },
-  {
-    id: 61,
-    marca: "Maison Alhambra",
-    nombre: "Glacier Bold 100ml EDP",
-    imagen: "https://i.imgur.com/NMtczwn.png", 
-    precio: 50000, 
-    notas: {
-      salida: ["Bergamota vibrante"],
-      corazon: ["Madera de coco cremosa"],
-      fondo: ["Haba tonka seductora"],
-    },
-    genero: "Hombre",
-    fragancia_referencia: "Le Beau de Jean Paul Gaultier",
-    descripcion: "Inspirado en Le Beau de Jean Paul Gaultier, este perfume es poder, sensualidad y frescura tropical en un frasco. Masculino, sexy y directo. Ideal para noches especiales, salidas o cuando querés dejar huella. Con un toque veraniego y cálido a la vez: como unas vacaciones lujosas… en tu piel. ¿Sos fan de Le Beau? Este dupe no decepciona.",
-    rating: 4.8,
-    sinDescuento: false,
-  },
+
   {
     id: 63,
     marca: "Maison Alhambra",
