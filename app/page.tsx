@@ -414,24 +414,6 @@ const perfumes: Perfume[] = [
     rating: 4.7,
     sinDescuento: false,
   },
-
-  {
-    id: 70,
-    marca: "Maison Alhambra",
-    nombre: "B.A.D Homme 100ml EDP",
-    imagen: "https://i.imgur.com/MhvYr9a.png", 
-    precio: 43000,
-    notas: {
-      salida: ["Bergamota", "pimienta"],
-      corazon: ["Lavanda", "cardamomo"],
-      fondo: ["Vetiver", "pachulí"],
-    },
-    genero: "Hombre",
-    fragancia_referencia: "",
-    descripcion: "Una fragancia masculina audaz y sofisticada, ideal para ocasiones especiales.",
-    rating: 4.7,
-    sinDescuento: false,
-  },
   {
     id: 71,
     marca: "Maison Alhambra",
