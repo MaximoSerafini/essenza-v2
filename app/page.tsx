@@ -228,23 +228,6 @@ const perfumes: Perfume[] = [
     rating: 4.7,
   },
   {
-    id: 48,
-    marca: "Glacier",
-    nombre: "Glacier Bella 100ml EDP",
-    imagen: "https://i.imgur.com/fr6qoDI.png",
-    precio: 30000,
-    notas: {
-      salida: ["Pera", "bergamota"],
-      corazon: ["Acordes florales", "cuero suave"],
-      fondo: ["Vainilla", "vetiver", "ámbar", "almizcle"],
-    },
-    genero: "Mujer",
-    fragancia_referencia: "Le Belle – Jean Paul Gaultier",
-    descripcion: "Una fragancia cautivadora, sensual y adictiva… inspirada en la elegancia y la feminidad intensa de Le Belle – Jean Paul Gaultier. Ideal para salidas nocturnas, citas especiales o cuando querés destacar con un aroma seductor y envolvente. Perfecta para otoño e invierno, aunque su dulzura puede acompañarte todo el año. Para mujeres que saben lo que quieren y no temen dejar huella.",
-    rating: 4.8,
-    sinDescuento: false,
-  },
-  {
     id: 52,
     marca: "Maison Alhambra",
     nombre: "Alive Now 30ml EDP",
