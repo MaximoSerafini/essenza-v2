@@ -674,7 +674,7 @@ const perfumes: Perfume[] = [
     id: 84,
     marca: "Salvo",
     nombre: "Salvo Elixir 60ml EDP",
-    imagen: "https://acdn-us.mitiendanube.com/stores/003/977/860/products/maisonalhambrasalvoelixir-c11ed95894e10e638a17335853094204-1024-1024.webp", 
+    imagen: "https://i.imgur.com/gcNNgi6.png", 
     precio: 37800,
     notas: {
       salida: ["Bergamota", "limón", "pimienta"],
