@@ -670,6 +670,23 @@ const perfumes: Perfume[] = [
     rating: 4.5,
     sinDescuento: false,
   },
+  {
+    id: 84,
+    marca: "Salvo",
+    nombre: "Salvo Elixir 60ml EDP",
+    imagen: "https://acdn-us.mitiendanube.com/stores/003/977/860/products/maisonalhambrasalvoelixir-c11ed95894e10e638a17335853094204-1024-1024.webp", 
+    precio: 37800,
+    notas: {
+      salida: ["Bergamota", "limón", "pimienta"],
+      corazon: ["Lavanda", "geranio", "especias"],
+      fondo: ["Sándalo", "pachulí", "almizcle"],
+    },
+    genero: "Hombre",
+    fragancia_referencia: "",
+    descripcion: "Una fragancia masculina intensa y duradera, con notas frescas y especiadas. Perfecta para el hombre moderno que busca un aroma distintivo y elegante.",
+    rating: 4.7,
+    sinDescuento: false,
+  },
 ]
 
 // Hook personalizado para debounce
