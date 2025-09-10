@@ -35,40 +35,6 @@ interface Perfume {
 }
 
 const perfumes: Perfume[] = [
-  {
-    id: 1,
-    marca: "Lattafa",
-    nombre: "Badee Al Oud Sublime 100ml EDP",
-    imagen: "https://i.imgur.com/6onMEB2.png",
-    precio: 51000,
-    notas: {
-      salida: ["Manzana", "Lichi", "Rosa"],
-      corazon: ["ciruela", "jazmín"],
-      fondo: ["vainila", "musgo", "pachulí"],
-    },
-    genero: "Mujer",
-    fragancia_referencia: "Eden Juicy Apple",
-    descripcion:
-      "Es una fragancia de la familia olfativa Amaderada Aromática para Hombres y Mujeres. Esta fragrancia es nueva. Badee Al Oud Sublime se lanzó en 2023.",
-    rating: 4.8,
-  },
-  {
-    id: 10,
-    marca: "Lattafa",
-    nombre: "Haya",
-    imagen: "https://i.imgur.com/lT4X1j2.png",
-    precio: 51000,
-    notas: {
-      salida: ["champaña", "fresa", "naranja", "rosa"],
-      corazon: ["gardenia", "orquídea de vainilla", "jazmin"],
-      fondo: ["sándalo", "ámbar", "castaña"],
-    },
-    genero: "Mujer",
-    fragancia_referencia: "Prada Paradox",
-    descripcion:
-      "Es una fragancia de la familia olfativa para Mujeres. Esta fragrancia es nueva. Haya se lanzó en 2022.",
-    rating: 4.7,
-  },
 
   {
     id: 17,
@@ -532,23 +498,6 @@ const perfumes: Perfume[] = [
     fragancia_referencia: "",
     descripcion: "Una fragancia femenina dulce y floral en formato 80ml, perfecta para el uso diario.",
     rating: 4.6,
-    sinDescuento: false,
-  },
-  {
-    id: 76,
-    marca: "Maison Alhambra",
-    nombre: "Mia Dolcezza Preto 100ml EDP",
-    imagen: "https://i.imgur.com/YoNcF51.png", 
-    precio: 37300,
-    notas: {
-      salida: ["Frutas negras", "bergamota"],
-      corazon: ["Rosa negra", "jazmín"],
-      fondo: ["Vainilla", "almizcle", "ámbar"],
-    },
-    genero: "Mujer",
-    fragancia_referencia: "",
-    descripcion: "Una fragancia dulce y misteriosa en su versión Preto (negra), más intensa y seductora.",
-    rating: 4.8,
     sinDescuento: false,
   },
   {
