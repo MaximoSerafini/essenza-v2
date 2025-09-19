@@ -174,25 +174,6 @@ const perfumes: Perfume[] = [
     rating: 4.7,
     sinDescuento: false,
   },
-
-  {
-    id: 47,
-    marca: "Maison Alhambra",
-    nombre: "Dark Door Sport 100ml EDP",
-    imagen: "https://i.imgur.com/GsOmOMD.png",
-    precio: 32000,
-    notas: {
-      salida: ["Pomelo", "Limón", "Resina de elemí", "Bergamota"],
-      corazon: ["Jengibre", "Cedro", "Vetiver"],
-      fondo: ["Lavanda", "Romero", "Sándalo"],
-    },
-    genero: "Hombre",
-    fragancia_referencia: "Dior Homme Sport",
-    descripcion:
-      "Perfecto para el día, entrenar o climas cálidos. Energética, fresca y moderna. Transmite vitalidad con elegancia.",
-    sinDescuento: true,
-    rating: 4.7,
-  },
   {
     id: 48,
     marca: "Glacier",
@@ -225,23 +206,6 @@ const perfumes: Perfume[] = [
     fragancia_referencia: "Angel Nova de Mugler",
     descripcion: "Versátil y moderna, ideal para el uso diario o para una salida especial. Funciona muy bien en otoño e invierno gracias a sus notas cálidas y envolventes. Su mezcla frutal y dulce con un fondo amaderado le da un carácter elegante y seductor, perfecto para mujeres seguras y auténticas. Imitación del Angel Nova de Mugler.",
     rating: 4.8,
-    sinDescuento: false,
-  },
-  {
-    id: 53,
-    marca: "Prune Moi",
-    nombre: "Pruñe Moi 60ml EDP",
-    imagen: "https://i.imgur.com/QYfUfRt.png",
-    precio: 25000, 
-    notas: {
-      salida: ["Cassis"],
-      corazon: ["Jazmín", "rosas"],
-      fondo: ["Vainilla", "patchouli"],
-    },
-    genero: "Mujer",
-    fragancia_referencia: "",
-    descripcion: "Ideal para ocasiones especiales, salidas nocturnas o eventos donde quieras dejar una impresión elegante y sensual. Su combinación cálida y floral la hace perfecta para otoño e invierno, con buena duración y proyección gracias al patchouli y la vainilla.",
-    rating: 4.7,
     sinDescuento: false,
   },
   {
