@@ -174,23 +174,7 @@ const perfumes: Perfume[] = [
     rating: 4.7,
     sinDescuento: false,
   },
-  {
-    id: 48,
-    marca: "Glacier",
-    nombre: "Glacier Bella 100ml EDP",
-    imagen: "https://i.imgur.com/fr6qoDI.png",
-    precio: 30000,
-    notas: {
-      salida: ["Pera", "bergamota"],
-      corazon: ["Acordes florales", "cuero suave"],
-      fondo: ["Vainilla", "vetiver", "ámbar", "almizcle"],
-    },
-    genero: "Mujer",
-    fragancia_referencia: "Le Belle – Jean Paul Gaultier",
-    descripcion: "Una fragancia cautivadora, sensual y adictiva… inspirada en la elegancia y la feminidad intensa de Le Belle – Jean Paul Gaultier. Ideal para salidas nocturnas, citas especiales o cuando querés destacar con un aroma seductor y envolvente. Perfecta para otoño e invierno, aunque su dulzura puede acompañarte todo el año. Para mujeres que saben lo que quieren y no temen dejar huella.",
-    rating: 4.8,
-    sinDescuento: false,
-  },
+  
   {
     id: 52,
     marca: "Maison Alhambra",
@@ -344,41 +328,8 @@ const perfumes: Perfume[] = [
     rating: 4.8,
     sinDescuento: false,
   },
-  {
-    id: 64,
-    marca: "Maison Alhambra",
-    nombre: "Yeah Man 100ml EDP",
-    imagen: "https://i.imgur.com/GYwudgC.png", 
-    precio: 37300,
-    notas: {
-      salida: ["Bergamota", "limón"],
-      corazon: ["Lavanda", "geranio"],
-      fondo: ["Sándalo", "almizcle"],
-    },
-    genero: "Hombre",
-    fragancia_referencia: "",
-    descripcion: "Una fragancia masculina fresca y moderna, ideal para el hombre contemporáneo.",
-    rating: 4.7,
-    sinDescuento: false,
-  },
 
-  {
-    id: 70,
-    marca: "Maison Alhambra",
-    nombre: "B.A.D Homme 100ml EDP",
-    imagen: "https://i.imgur.com/MhvYr9a.png", 
-    precio: 43000,
-    notas: {
-      salida: ["Bergamota", "pimienta"],
-      corazon: ["Lavanda", "cardamomo"],
-      fondo: ["Vetiver", "pachulí"],
-    },
-    genero: "Hombre",
-    fragancia_referencia: "",
-    descripcion: "Una fragancia masculina audaz y sofisticada, ideal para ocasiones especiales.",
-    rating: 4.7,
-    sinDescuento: false,
-  },
+ 
   {
     id: 71,
     marca: "Maison Alhambra",
@@ -413,23 +364,7 @@ const perfumes: Perfume[] = [
     rating: 4.6,
     sinDescuento: false,
   },
-  {
-    id: 73,
-    marca: "Maison Alhambra",
-    nombre: "Year Man 30ml EDP",
-    imagen: "https://i.imgur.com/IR8GtTh.png", 
-    precio: 15000,
-    notas: {
-      salida: ["Cítricos", "bergamota"],
-      corazon: ["Especias", "lavanda"],
-      fondo: ["Madera", "almizcle"],
-    },
-    genero: "Hombre",
-    fragancia_referencia: "",
-    descripcion: "Una fragancia masculina elegante con notas cítricas y amaderadas en formato 30ml.",
-    rating: 4.7,
-    sinDescuento: false,
-  },
+
   {
     id: 74,
     marca: "Maison Alhambra",
