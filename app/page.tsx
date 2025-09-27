@@ -467,40 +467,8 @@ const perfumes: Perfume[] = [
     rating: 4.7,
     sinDescuento: false,
   },
-  {
-    id: 81,
-    marca: "Maison Alhambra",
-    nombre: "Cassius 30ml EDP",
-    imagen: "https://i.imgur.com/52coxHA.png", 
-    precio: 15000,
-    notas: {
-      salida: ["Limón", "bergamota"],
-      corazon: ["Lavanda", "geranio"],
-      fondo: ["Cedro", "almizcle"],
-    },
-    genero: "Hombre",
-    fragancia_referencia: "",
-    descripcion: "Una fragancia masculina fresca y elegante en formato 30ml, perfecta para el uso diario.",
-    rating: 4.6,
-    sinDescuento: false,
-  },
-  {
-    id: 82,
-    marca: "Maison Alhambra",
-    nombre: "Jorge di Profumo 30ml EDP",
-    imagen: "https://i.imgur.com/eDMWQiM.png", 
-    precio: 15000,
-    notas: {
-      salida: ["Bergamota", "limón siciliano", "pimienta negra"],
-      corazon: ["Lavanda", "tabaco", "geranio"],
-      fondo: ["Sándalo", "vetiver", "almizcle"],
-    },
-    genero: "Hombre",
-    fragancia_referencia: "Acqua di Gio Profumo – Giorgio Armani",
-    descripcion: "Un perfume intenso, moderno y sofisticado en formato 30ml, pensado para el hombre que deja su marca.",
-    rating: 4.8,
-    sinDescuento: false,
-  },
+
+
   {
     id: 83,
     marca: "Calvin Klein",
