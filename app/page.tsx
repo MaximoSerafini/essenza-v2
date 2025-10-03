@@ -35,7 +35,23 @@ interface Perfume {
 }
 
 const perfumes: Perfume[] = [
-
+    {
+    id: 82,
+    marca: "Maison Alhambra",
+    nombre: "Jorge di Profumo 30ml EDP",
+    imagen: "https://i.imgur.com/eDMWQiM.png", 
+    precio: 15000,
+    notas: {
+      salida: ["Bergamota", "limón siciliano", "pimienta negra"],
+      corazon: ["Lavanda", "tabaco", "geranio"],
+      fondo: ["Sándalo", "vetiver", "almizcle"],
+    },
+    genero: "Hombre",
+    fragancia_referencia: "Acqua di Gio Profumo – Giorgio Armani",
+    descripcion: "Un perfume intenso, moderno y sofisticado en formato 30ml, pensado para el hombre que deja su marca.",
+    rating: 4.8,
+    sinDescuento: false,
+  },
   {
     id: 17,
     marca: "Perfumeros",
@@ -397,23 +413,6 @@ const perfumes: Perfume[] = [
     fragancia_referencia: "",
     descripcion: "Una fragancia floral elegante centrada en la rosa, sofisticada y femenina.",
     rating: 4.7,
-    sinDescuento: false,
-  },
-  {
-    id: 78,
-    marca: "Maison Alhambra",
-    nombre: "Jean Lowe Immortal 30ml EDP",
-    imagen: "https://i.imgur.com/FamIL9b.png", 
-    precio: 15000,
-    notas: {
-      salida: ["Cítricos", "bergamota"],
-      corazon: ["Lavanda", "geranio"],
-      fondo: ["Vetiver", "sándalo"],
-    },
-    genero: "Hombre",
-    fragancia_referencia: "",
-    descripcion: "Una fragancia masculina intensa y duradera en formato 30ml, para el hombre seguro de sí mismo.",
-    rating: 4.8,
     sinDescuento: false,
   },
   {
