@@ -35,23 +35,7 @@ interface Perfume {
 }
 
 const perfumes: Perfume[] = [
-    {
-    id: 82,
-    marca: "Maison Alhambra",
-    nombre: "Jorge di Profumo 30ml EDP",
-    imagen: "https://i.imgur.com/eDMWQiM.png", 
-    precio: 15000,
-    notas: {
-      salida: ["Bergamota", "limón siciliano", "pimienta negra"],
-      corazon: ["Lavanda", "tabaco", "geranio"],
-      fondo: ["Sándalo", "vetiver", "almizcle"],
-    },
-    genero: "Hombre",
-    fragancia_referencia: "Acqua di Gio Profumo – Giorgio Armani",
-    descripcion: "Un perfume intenso, moderno y sofisticado en formato 30ml, pensado para el hombre que deja su marca.",
-    rating: 4.8,
-    sinDescuento: false,
-  },
+
   {
     id: 17,
     marca: "Perfumeros",
@@ -68,25 +52,7 @@ const perfumes: Perfume[] = [
     descripcion: "Disfruta de llevar tus perfume favorito a todos lados",
     sinDescuento: true,
     rating: 4.2,
-  },
-    {
-    id: 42,
-    marca: "Maison Alhambra",
-    nombre: "Vogue Party 100ml EDP",
-    imagen: "https://i.imgur.com/o0c6Czi.png", 
-    precio: 34200, 
-    notas: {
-      salida: ["Almendra", "cereza"],
-      corazon: ["Agua de rosas", "azucena", "almizcle ambreta"],
-      fondo: ["Haba tonka", "vainilla", "musgo de roble", "vetiver"],
-    },
-    genero: "Mujer",
-    fragancia_referencia: "Carolina Herrera Very Good Girl Glam",
-    descripcion:
-      "Una fragancia atrevida, sofisticada y adictiva… como una noche de gala que no querés que termine. Perfecta para salidas nocturnas, fiestas o cualquier momento en el que quieras dejar una impresión elegante y misteriosa. Es una fragancia que abraza la piel y despierta los sentidos. Dulce, floral, con un fondo cálido y envolvente… Vogue Party es tu mejor accesorio de noche. Dupe de Carolina Herrera Very Good Girl Glam.",
-    rating: 4.8,
-    sinDescuento: false,
-  },
+
   {
     id: 25,
     marca: "Maison Alhambra",
@@ -191,23 +157,7 @@ const perfumes: Perfume[] = [
     sinDescuento: false,
   },
   
-  {
-    id: 52,
-    marca: "Maison Alhambra",
-    nombre: "Alive Now 30ml EDP",
-    imagen: "https://i.imgur.com/HayfLR8.png", 
-    precio: 15000, 
-    notas: {
-      salida: ["Ciruela", "manzana", "canela"],
-      corazon: ["Jazmín", "vainilla"],
-      fondo: ["Cedro", "sándalo", "almizcle"],
-    },
-    genero: "Mujer",
-    fragancia_referencia: "Angel Nova de Mugler",
-    descripcion: "Versátil y moderna, ideal para el uso diario o para una salida especial. Funciona muy bien en otoño e invierno gracias a sus notas cálidas y envolventes. Su mezcla frutal y dulce con un fondo amaderado le da un carácter elegante y seductor, perfecto para mujeres seguras y auténticas. Imitación del Angel Nova de Mugler.",
-    rating: 4.8,
-    sinDescuento: false,
-  },
+
   {
     id: 55,
     marca: "Maison Alhambra",
@@ -364,23 +314,6 @@ const perfumes: Perfume[] = [
     sinDescuento: false,
   },
 
-  {
-    id: 74,
-    marca: "Maison Alhambra",
-    nombre: "Rose Seduction VIP Pour Femme 30ml EDP",
-    imagen: "https://i.imgur.com/MTG4UJ3.png", 
-    precio: 15000,
-    notas: {
-      salida: ["Rosa", "bergamota", "lichi"],
-      corazon: ["Jazmín", "peonía", "orquídea"],
-      fondo: ["Almizcle", "sándalo", "vainilla"],
-    },
-    genero: "Mujer",
-    fragancia_referencia: "",
-    descripcion: "Una fragancia floral VIP seductora centrada en la rosa, elegante y femenina en formato 30ml.",
-    rating: 4.8,
-    sinDescuento: false,
-  },
   {
     id: 75,
     marca: "Maison Alhambra",
