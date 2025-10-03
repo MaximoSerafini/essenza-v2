@@ -349,23 +349,6 @@ const perfumes: Perfume[] = [
     sinDescuento: false,
   },
   {
-    id: 79,
-    marca: "Maison Alhambra",
-    nombre: "B.A.D Femme 30ml EDP",
-    imagen: "https://i.imgur.com/ipHctqW.png", 
-    precio: 15000,
-    notas: {
-      salida: ["Bergamota", "rosa"],
-      corazon: ["Jazmín", "peonía"],
-      fondo: ["Vainilla", "almizcle"],
-    },
-    genero: "Mujer",
-    fragancia_referencia: "",
-    descripcion: "Una fragancia femenina audaz y sofisticada en formato 30ml, ideal para ocasiones especiales.",
-    rating: 4.7,
-    sinDescuento: false,
-  },
-  {
     id: 80,
     marca: "Maison Alhambra",
     nombre: "B.A.D Homme 30ml EDP",
