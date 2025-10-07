@@ -54,24 +54,6 @@ const perfumes: Perfume[] = [
     rating: 4.2,
 
   {
-    id: 25,
-    marca: "Maison Alhambra",
-    nombre: "Avant 100ml EDP",
-    imagen: "https://i.imgur.com/w6gIGwg.png",
-    precio: 27000,
-    notas: {
-      salida: ["Notas verdes", "Bergamota", "Limón"],
-      corazon: ["Pimienta negra", "Jazmín", "Lavanda"],
-      fondo: ["Vetiver", "Pachulí", "Almizcle"],
-    },
-    genero: "Hombre",
-    fragancia_referencia: "Creed Aventus",
-    descripcion:
-      "Versátil. Ideal para el día, salidas o eventos. Aroma masculino, elegante y seguro. Deja huella sin exagerar.",
-    sinDescuento: true,
-    rating: 4.9,
-  },
-  {
     id: 35,
     marca: "Lattafa Perfumes",
     nombre: "Mayar 100ml EDP",
@@ -315,23 +297,6 @@ const perfumes: Perfume[] = [
   },
 
   {
-    id: 75,
-    marca: "Maison Alhambra",
-    nombre: "Olivia 80ml EDP",
-    imagen: "https://i.imgur.com/0ea1b1U.png", 
-    precio: 32000,
-    notas: {
-      salida: ["Frutas", "cítricos"],
-      corazon: ["Flores blancas", "jazmín"],
-      fondo: ["Vainilla", "almizcle"],
-    },
-    genero: "Mujer",
-    fragancia_referencia: "",
-    descripcion: "Una fragancia femenina dulce y floral en formato 80ml, perfecta para el uso diario.",
-    rating: 4.6,
-    sinDescuento: false,
-  },
-  {
     id: 77,
     marca: "Maison Alhambra",
     nombre: "La Voie Rosa 100ml EDP",
@@ -348,23 +313,7 @@ const perfumes: Perfume[] = [
     rating: 4.7,
     sinDescuento: false,
   },
-  {
-    id: 80,
-    marca: "Maison Alhambra",
-    nombre: "B.A.D Homme 30ml EDP",
-    imagen: "https://i.imgur.com/3lDJQ3i.png", 
-    precio: 15000,
-    notas: {
-      salida: ["Bergamota", "pimienta"],
-      corazon: ["Lavanda", "cardamomo"],
-      fondo: ["Vetiver", "pachulí"],
-    },
-    genero: "Hombre",
-    fragancia_referencia: "",
-    descripcion: "Una fragancia masculina audaz y sofisticada en formato 30ml, ideal para ocasiones especiales.",
-    rating: 4.7,
-    sinDescuento: false,
-  },
+
 
 
   {
@@ -384,23 +333,7 @@ const perfumes: Perfume[] = [
     rating: 4.5,
     sinDescuento: false,
   },
-  {
-    id: 84,
-    marca: "Salvo",
-    nombre: "Salvo Elixir 60ml EDP",
-    imagen: "https://i.imgur.com/gcNNgi6.png", 
-    precio: 37800,
-    notas: {
-      salida: ["Bergamota", "limón", "pimienta"],
-      corazon: ["Lavanda", "geranio", "especias"],
-      fondo: ["Sándalo", "pachulí", "almizcle"],
-    },
-    genero: "Hombre",
-    fragancia_referencia: "Sauvage Elixir - Dior", //que pasa
-    descripcion: "Una fragancia masculina intensa y duradera, con notas frescas y especiadas. Perfecta para el hombre moderno que busca un aroma distintivo y elegante.",
-    rating: 4.7,
-    sinDescuento: false,
-  },
+
 ]
 
 // Hook personalizado para debounce
