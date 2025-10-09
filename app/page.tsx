@@ -34,13 +34,21 @@ interface Perfume {
   quantity?: number; // solo para el carrito
 }
 
+// Función para agregar cache busting a las imágenes en desarrollo
+const addCacheBusting = (url: string) => {
+  if (process.env.NODE_ENV === 'development') {
+    return `${url}?v=${Date.now()}`
+  }
+  return url
+}
+
 const perfumes: Perfume[] = [
 
   {
     id: 17,
     marca: "Perfumeros",
     nombre: "Perfumeros",
-    imagen: "https://i.imgur.com/yMxitsz.png",
+    imagen: addCacheBusting("https://i.imgur.com/yMxitsz.png"),
     precio: 3500,
     notas: {
       salida: [""],
@@ -57,7 +65,7 @@ const perfumes: Perfume[] = [
     id: 35,
     marca: "Lattafa Perfumes",
     nombre: "Mayar 100ml EDP",
-    imagen: "https://i.imgur.com/QOyJ3Fy.png",
+    imagen: addCacheBusting("https://i.imgur.com/QOyJ3Fy.png"),
     precio: 39000,
     notas: {
       salida: ["Lichi", "frambuesa", "hojas de violeta"],
@@ -74,7 +82,7 @@ const perfumes: Perfume[] = [
     id: 36,
     marca: "Britney Spears",
     nombre: "Fantasy 100ml EDP",
-    imagen: "https://i.imgur.com/RMxS2Is.png",
+    imagen: addCacheBusting("https://i.imgur.com/RMxS2Is.png"),
     precio: 50000,
     notas: {
       salida: ["Kiwi", "lichi rojo", "membrillo"],
@@ -91,7 +99,7 @@ const perfumes: Perfume[] = [
     id: 37,
     marca: "Maison Alhambra",
     nombre: "Jorge di Profumo 100ml EDP",
-    imagen: "https://i.imgur.com/U48EYDK.png",
+    imagen: addCacheBusting("https://i.imgur.com/U48EYDK.png",
     precio: 40000,
     notas: {
       salida: ["Bergamota", "limón siciliano", "pimienta negra"],
@@ -108,7 +116,7 @@ const perfumes: Perfume[] = [
     id: 43,
     marca: "Victorioso",
     nombre: "Fearless 100ml EDP",
-    imagen: "https://i.imgur.com/EnagqZ9.png",
+    imagen: addCacheBusting("https://i.imgur.com/EnagqZ9.png",
     precio: 36400,
     notas: {
       salida: ["piña", "manzana"],
@@ -125,7 +133,7 @@ const perfumes: Perfume[] = [
     id: 31,
     marca: "Maison Alhambra",
     nombre: "Céleste 100ml EDP",
-    imagen: "https://i.imgur.com/tte0WD0.png",
+    imagen: addCacheBusting("https://i.imgur.com/tte0WD0.png",
     precio: 36400,
     notas: {
       salida: ["Bergamota", "limón"],
@@ -144,7 +152,7 @@ const perfumes: Perfume[] = [
     id: 55,
     marca: "Maison Alhambra",
     nombre: "Mia Dolcezza Verde 100ml EDP",
-    imagen: "https://i.imgur.com/ZH6ukYM.png", 
+    imagen: addCacheBusting("https://i.imgur.com/ZH6ukYM.png", 
     precio: 40000, 
     notas: {
       salida: ["Grosella negra", "pimienta rosa", "bergamota"],
@@ -161,7 +169,7 @@ const perfumes: Perfume[] = [
     id: 56,
     marca: "Maison Alhambra",
     nombre: "Narissa Ambre 100ml EDP",
-    imagen: "https://i.imgur.com/lBa6Yeu.png", 
+    imagen: addCacheBusting("https://i.imgur.com/lBa6Yeu.png", 
     precio: 35000, 
     notas: {
       salida: ["Frangipani", "ylang-ylang", "flores blancas"],
@@ -178,7 +186,7 @@ const perfumes: Perfume[] = [
     id: 57,
     marca: "Maison Alhambra",
     nombre: "Narissa Rouge 100ml EDP",
-    imagen: "https://i.imgur.com/EEWFvUp.png", 
+    imagen: addCacheBusting("https://i.imgur.com/EEWFvUp.png", 
     precio: 40000, 
     notas: {
       salida: ["Iris", "rosa de Bulgaria"],
@@ -195,7 +203,7 @@ const perfumes: Perfume[] = [
     id: 58,
     marca: "Maison Alhambra",
     nombre: "No. 2 Men 80ml EDP",
-    imagen: "https://i.imgur.com/9Mhufms.png", 
+    imagen: addCacheBusting("https://i.imgur.com/9Mhufms.png", 
     precio: 44000, 
     notas: {
       salida: ["Bergamota", "lavanda"],
@@ -212,7 +220,7 @@ const perfumes: Perfume[] = [
     id: 59,
     marca: "Maison Alhambra",
     nombre: "Philos Opus Noir 100ml EDP",
-    imagen: "https://i.imgur.com/v2v8Icy.png", 
+    imagen: addCacheBusting("https://i.imgur.com/v2v8Icy.png", 
     precio: 34800, 
     notas: {
       salida: ["Frutas", "rosa turca"],
@@ -229,7 +237,7 @@ const perfumes: Perfume[] = [
     id: 60,
     marca: "Maison Alhambra",
     nombre: "Philos Shine 100ml EDP",
-    imagen: "https://i.imgur.com/tsvgJGy.png", 
+    imagen: addCacheBusting("https://i.imgur.com/tsvgJGy.png", 
     precio: 50000, 
     notas: {
       salida: ["Hojas de higuera", "bergamota"],
@@ -246,7 +254,7 @@ const perfumes: Perfume[] = [
     id: 63,
     marca: "Maison Alhambra",
     nombre: "Opera Rouge 100ml EDP",
-    imagen: "https://i.imgur.com/GmkcNdO.png", 
+    imagen: addCacheBusting("https://i.imgur.com/GmkcNdO.png", 
     precio: 47000,
     notas: {
       salida: ["Notas de salida"],
@@ -265,7 +273,7 @@ const perfumes: Perfume[] = [
     id: 71,
     marca: "Maison Alhambra",
     nombre: "Panther Pour Homme 100ml EDP",
-    imagen: "https://i.imgur.com/pu3CaeR.png", 
+    imagen: addCacheBusting("https://i.imgur.com/pu3CaeR.png", 
     precio: 40000,
     notas: {
       salida: ["Cítricos", "bergamota"],
@@ -282,7 +290,7 @@ const perfumes: Perfume[] = [
     id: 72,
     marca: "Maison Alhambra",
     nombre: "Candid Pour Homme 100ml EDP",
-    imagen: "https://i.imgur.com/B4sX9kB.png", 
+    imagen: addCacheBusting("https://i.imgur.com/B4sX9kB.png", 
     precio: 45300,
     notas: {
       salida: ["Limón", "bergamota"],
@@ -300,7 +308,7 @@ const perfumes: Perfume[] = [
     id: 77,
     marca: "Maison Alhambra",
     nombre: "La Voie Rosa 100ml EDP",
-    imagen: "https://i.imgur.com/eNFvc9h.png", 
+    imagen: addCacheBusting("https://i.imgur.com/eNFvc9h.png", 
     precio: 40000,
     notas: {
       salida: ["Rosa", "bergamota", "pera"],
@@ -320,7 +328,7 @@ const perfumes: Perfume[] = [
     id: 83,
     marca: "Calvin Klein",
     nombre: "CK IN2U 100ml EDT",
-    imagen: "https://i.imgur.com/WEIdKAP.png", 
+    imagen: addCacheBusting("https://i.imgur.com/WEIdKAP.png", 
     precio: 58500,
     notas: {
       salida: ["Lima", "hojas de tomate", "bergamota"],
