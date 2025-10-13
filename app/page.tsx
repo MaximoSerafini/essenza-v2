@@ -352,7 +352,7 @@ const perfumes: Perfume[] = [
     descripcion: "Disfruta de llevar tus perfume favorito a todos lados",
     sinDescuento: true,
     rating: 4.2,
-    sellado: false, // abierto
+    sellado: true, // abierto
   },
   {
     id: 35,
