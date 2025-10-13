@@ -15,7 +15,7 @@ import { Toaster } from "@/components/ui/toaster"
 // para el commit
 
 // Costo adicional para envoltorio de regalo
-const COSTO_ENVOLTORIO_REGALO = 2000;
+const COSTO_ENVOLTORIO_REGALO = 0;
 
 // Definición de la interfaz Perfume para tipado estricto
 interface Perfume {
@@ -65,6 +65,7 @@ const perfumes: Perfume[] = [
       descripcion: "Gourmand cremoso y adictivo, huele a postre recién hecho y momentos felices.",
       rating: 4.8,
       sinDescuento: false,
+      sellado: false, // abierto
     },
     {
       id: 85,
@@ -99,6 +100,7 @@ const perfumes: Perfume[] = [
       descripcion: "Dulce, divertida y nostálgica; una nube azucarada con toque cremoso.",
       rating: 4.6,
       sinDescuento: false,
+      sellado: false, // abierto
     },
     {
       id: 87,
@@ -116,6 +118,7 @@ const perfumes: Perfume[] = [
       descripcion: "Chicloso, juguetón y adictivo con frescura cítrica y fondo avainillado.",
       rating: 4.6,
       sinDescuento: false,
+      sellado: false, // abierto
     },
     {
       id: 89,
@@ -133,7 +136,7 @@ const perfumes: Perfume[] = [
       descripcion: "Fresca y energética; perfecta para el día, entrenar o climas cálidos.",
       rating: 4.6,
       sinDescuento: false,
-      sellado: false, // abierto
+      sellado: true, // abierto
     },
     {
       id: 90,
@@ -151,6 +154,7 @@ const perfumes: Perfume[] = [
       descripcion: "Seductor, cálido y envolvente, con fondo avainillado y amaderado.",
       rating: 4.8,
       sinDescuento: false,
+      sellado: true, // abierto
     },
     {
       id: 91,
@@ -168,6 +172,7 @@ const perfumes: Perfume[] = [
       descripcion: "Potente, elegante y sensual, con frescura floral y dulzura cremosa.",
       rating: 4.8,
       sinDescuento: false,
+      sellado: true, // abierto
     },
     {
       id: 92,
@@ -185,6 +190,7 @@ const perfumes: Perfume[] = [
       descripcion: "Femenina, intensa y adictiva; flores blancas con toques dulces y amaderados.",
       rating: 4.8,
       sinDescuento: false,
+      sellado: true, // abierto
     },
     {
       id: 93,
@@ -202,6 +208,7 @@ const perfumes: Perfume[] = [
       descripcion: "Fresca, limpia y profesional; ideal para el día, oficina o clima cálido.",
       rating: 4.7,
       sinDescuento: false,
+      sellado: true, // abierto
     },
     {
       id: 94,
@@ -219,6 +226,7 @@ const perfumes: Perfume[] = [
       descripcion: "Fresca y energizante al inicio, con fondo cálido y poderoso.",
       rating: 4.7,
       sinDescuento: false,
+      sellado: true, // abierto
     },
     {
       id: 95,
@@ -236,6 +244,7 @@ const perfumes: Perfume[] = [
       descripcion: "Frescura aromática con fondo dulce envolvente; magnético y moderno.",
       rating: 4.8,
       sinDescuento: false,
+      sellado: true, // abierto
     },
     {
       id: 96,
@@ -253,6 +262,7 @@ const perfumes: Perfume[] = [
       descripcion: "Elegante, femenina y romántica con fondo cremoso y cálido.",
       rating: 4.6,
       sinDescuento: false,
+      sellado: true, // abierto
     },
     {
       id: 97,
@@ -270,6 +280,7 @@ const perfumes: Perfume[] = [
       descripcion: "Versátil, masculino y elegante; deja huella sin exagerar.",
       rating: 4.7,
       sinDescuento: false,
+      sellado: true, // abierto
     },
     {
       id: 105,
@@ -287,7 +298,8 @@ const perfumes: Perfume[] = [
       descripcion: "Equilibrio de dulzura y frescura con gran elegancia y duración.",
       rating: 4.8,
       sinDescuento: false,
-    },
+      sellado: true, // abierto
+      },
     {
       id: 107,
       marca: "Maison Alhambra",
@@ -304,6 +316,7 @@ const perfumes: Perfume[] = [
       descripcion: "Aroma femenino moderno con toque fresco y envolvente.",
       rating: 4.6,
       sinDescuento: false,
+      sellado: true, // abierto
     },
     {
       id: 108,
@@ -321,6 +334,7 @@ const perfumes: Perfume[] = [
       descripcion: "Intensa y envolvente, ideal para la noche, salidas especiales o estaciones frías como otoño e invierno. Su combinación de especias, lavanda y vainilla le da un toque seductor y elegante, perfecto para quienes buscan dejar una impresión duradera.",
       rating: 4.8,
       sinDescuento: false,
+      sellado: true, // abierto
     },
   {
     id: 17,
@@ -356,6 +370,7 @@ const perfumes: Perfume[] = [
     descripcion: "Dulce y femenina, ideal para el día y ocasiones casuales en primavera y verano. Perfecta para salidas diarias, encuentros informales o eventos donde se busque un aroma fresco y romántico.",
     rating: 4.7,
     sinDescuento: false,
+    sellado: false, // abierto
   },
   {
     id: 36,
@@ -373,11 +388,12 @@ const perfumes: Perfume[] = [
     descripcion: "Una fragancia icónica, dulce y encantadora, que invita a soñar. Ideal para quienes aman los aromas golosos, románticos y juveniles. Perfecta para el día o la noche, citas, salidas con amigas o cuando simplemente querés sentirte única y coqueta. ¡Una fragancia que deja huella, tan inolvidable como vos!",
     rating: 4.8,
     sinDescuento: false,
+    sellado: true, // abierto
   },
   {
     id: 37,
     marca: "Maison Alhambra",
-    nombre: "Jorge di Profumo 100ml EDP",
+    nombre: "Jorge di Profumo Aqua 100ml EDP",
     imagen: addCacheBusting("https://i.imgur.com/U48EYDK.png"),
     precio: 40000,
     notas: {
@@ -390,6 +406,7 @@ const perfumes: Perfume[] = [
     descripcion: "Un perfume intenso, moderno y sofisticado, pensado para el hombre que deja su marca. Perfecto para el día o la noche, reuniones importantes, cenas elegantes o cualquier momento donde se busque presencia, carácter y estilo. Elegante, varonil y con un toque misterioso… ideal para quienes disfrutan de fragancias con personalidad y profundidad.",
     rating: 4.8,
     sinDescuento: false,
+    sellado: true, // abierto
   },
   {
     id: 43,
@@ -407,6 +424,7 @@ const perfumes: Perfume[] = [
     descripcion: "Cotidiano, moderno y audaz. Inspirado en Liquid Brun de French Avenue.",
     rating: 4.7,
     sinDescuento: false,
+    sellado: false, // abierto
   },
   {
     id: 31,
@@ -424,6 +442,7 @@ const perfumes: Perfume[] = [
     descripcion: "Fresca y luminosa, ideal para el día, especialmente en primavera y verano. Perfecta para usar en la oficina, reuniones o salidas al aire libre. Su aroma elegante y limpio la hace muy versátil y fácil de llevar a diario.",
     rating: 4.7,
     sinDescuento: false,
+    sellado: true, // abierto
   },
   
 
@@ -443,6 +462,7 @@ const perfumes: Perfume[] = [
     descripcion: "La versión más fresca, vibrante y sofisticada de un clásico femenino. Perfecta para el día a día, reuniones, eventos o cuando querés un aroma elegante pero con frescura. Es versátil, moderna y con muy buena duración. Mia Dolcezza Verde combina la dulzura envolvente del original con un giro verde y especiado que la hace refinada, luminosa y con carácter. Imita a Valentino Donna Born in Roma Green Stravaganza.",
     rating: 4.8,
     sinDescuento: false,
+    sellado: false, // abierto
   },
   {
     id: 56,
@@ -460,6 +480,7 @@ const perfumes: Perfume[] = [
     descripcion: "Un perfume cálido, floral y empolvado, inspirado en la elegancia minimalista de Narciso Ambrée – Narciso Rodriguez. Perfecta para días frescos, oficinas elegantes, eventos formales o cualquier momento en el que quieras destacar con una fragancia suave, cremosa y sofisticada. Con su fondo cálido y su corazón empolvado, Narissa Ambre es ideal para mujeres que aman lo sutil, lo sensual y lo duradero. Elegancia moderna en cada gota. Imita a Narciso Ambree de Narciso Rodriguez.",
     rating: 4.8,
     sinDescuento: false,
+    sellado: false, // abierto
   },
   {
     id: 57,
@@ -477,6 +498,7 @@ const perfumes: Perfume[] = [
     descripcion: "Un perfume intenso, sensual y magnético, inspirado en el icónico Narciso Rouge – Narciso Rodriguez. Ideal para noches especiales, citas, eventos elegantes o cuando querés que tu presencia se sienta con fuerza. Una fragancia envolvente, floral y misteriosa que deja huella. Narissa Rouge es poder femenino en forma de perfume: floral, cremoso y con mucha actitud. Inspirada en Narciso Rouge de Narciso Rodriguez.",
     rating: 4.8,
     sinDescuento: false,
+    sellado: false, // abierto
   },
   {
     id: 58,
@@ -494,6 +516,7 @@ const perfumes: Perfume[] = [
     descripcion: "Elegante, moderno y con carácter. Una fragancia que combina frescura aromática con un fondo cálido y misterioso. Perfecto para noches elegantes, oficina o cuando querés oler refinado sin ser invasivo. Una fragancia sobria, seductora y muy masculina, con un equilibrio entre frescura y profundidad. Para el hombre que aprecia los detalles y el estilo clásico con un giro moderno. Imita a 212 Men de Carolina Herrera.",
     rating: 4.7,
     sinDescuento: false,
+    sellado: false, // abierto
   },
   {
     id: 59,
@@ -511,6 +534,7 @@ const perfumes: Perfume[] = [
     descripcion: "Una fragancia opulenta, artística y poderosa, inspirada en la exclusividad de Opera – Xerjoff. Ideal para ocasiones especiales, noches sofisticadas o cuando querés un perfume que hable por vos. Es intenso, elegante y con sello de lujo árabe, dejando una estela memorable. Philos Opus Noir es para quienes buscan fragancias que destaquen por su carácter único y profundo, sin pagar el precio de una nicho. Lujo, arte y presencia en un solo perfume. Inspirado en Opera de Xerjoff.",
     rating: 4.9,
     sinDescuento: false,
+    sellado: false, // abierto
   },
   {
     id: 60,
@@ -528,6 +552,7 @@ const perfumes: Perfume[] = [
     descripcion: "Inspirado en la elegancia natural de Philosykos – Diptyque, este perfume te envuelve en un aroma verde, cremoso y atemporal. Ideal para quienes buscan una fragancia limpia, elegante y relajada, con vibra mediterránea. Perfecto para uso diario, días de sol o cuando querés un perfume que te haga sentir sofisticada sin esfuerzo. Philos Shine es como llevar un paseo entre higueras en la piel.",
     rating: 4.8,
     sinDescuento: false,
+    sellado: false, // abierto
   },
   {
     id: 63,
@@ -545,6 +570,7 @@ const perfumes: Perfume[] = [
     descripcion: "Una fragancia oscura, vibrante y seductora, inspirada en el icónico Black Opium – Yves Saint Laurent. Perfecta para salidas nocturnas, eventos especiales o momentos donde querés dejar una huella inolvidable. Un perfume con carácter, dulce y con un toque de misterio.",
     rating: 4.8,
     sinDescuento: false,
+    sellado: false, // abierto
   },
 
  
@@ -564,6 +590,7 @@ const perfumes: Perfume[] = [
     descripcion: "Una fragancia masculina poderosa y elegante, como la fuerza de una pantera.",
     rating: 4.7,
     sinDescuento: false,
+    sellado: true, // abierto
   },
   {
     id: 72,
@@ -581,6 +608,7 @@ const perfumes: Perfume[] = [
     descripcion: "Una fragancia fresca y honesta, perfecta para el hombre moderno y auténtico.",
     rating: 4.6,
     sinDescuento: false,
+    sellado: false, // abierto
   },
 
   {
@@ -599,6 +627,7 @@ const perfumes: Perfume[] = [
     descripcion: "Una fragancia floral elegante centrada en la rosa, sofisticada y femenina.",
     rating: 4.7,
     sinDescuento: false,
+    sellado: true, // abierto
   },
 
 
@@ -619,6 +648,7 @@ const perfumes: Perfume[] = [
     descripcion: "Una fragancia unisex moderna y juvenil, fresca y energética. Perfecta para el día a día, con una mezcla única de notas frescas y cálidas que la hacen versátil para cualquier ocasión.",
     rating: 4.5,
     sinDescuento: false,
+    sellado: true, // abierto
   },
 
 
