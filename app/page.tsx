@@ -752,6 +752,14 @@ const ProductCard = memo(function ProductCard({
               Abierto (no sellado)
             </Badge>
           )}
+          {perfume.sellado === true && (
+            <Badge
+              variant="secondary"
+              className="absolute bottom-2 left-2 bg-violet-100 text-violet-800 hover:bg-violet-200 transition-all duration-300 hover:scale-105"
+            >
+              Sellado
+            </Badge>
+          )}
         </div>
       </CardHeader>
       <CardContent className="p-4">
