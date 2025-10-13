@@ -126,7 +126,7 @@ const perfumes: Perfume[] = [
       marca: "Maison Alhambra",
       nombre: "Dark Door Sport 100ml EDP",
       imagen: "https://i.imgur.com/ZGDNzNq.png",
-      precio: 36000,
+      precio: 37000,
       notas: {
         salida: ["Pomelo", "limón", "resina de elemí", "bergamota"],
         corazon: ["Jengibre", "cedro", "vetiver"],
@@ -288,7 +288,7 @@ const perfumes: Perfume[] = [
       marca: "Maison Alhambra",
       nombre: "Mia Dolcezza 100ml EDP",
       imagen: "https://i.imgur.com/jFTImHI.png",
-      precio: 39000,
+      precio: 40000,
       notas: {
         salida: ["Grosella negra", "pimienta rosa", "bergamota"],
         corazon: ["Jazmín", "ylang-ylang", "tuberosa", "flor de azahar"],
