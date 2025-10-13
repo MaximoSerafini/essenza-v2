@@ -167,7 +167,7 @@ const perfumes: Perfume[] = [
       id: 92,
       marca: "Maison Alhambra",
       nombre: "L’Intrude 30ml EDP",
-      imagen: "https://i.imgur.com/Ppo318Z.png",
+      imagen: "https://i.imgur.com/A3ocZsp.png",
       precio: 15000,
       notas: {
         salida: ["Pera", "bergamota"],
