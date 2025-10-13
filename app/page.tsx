@@ -83,6 +83,7 @@ const perfumes: Perfume[] = [
       descripcion: "Cremosa y envolvente: caramelo derretido con vainilla cálida y leche suave.",
       rating: 4.7,
       sinDescuento: false,
+      sellado: false, // abierto
     },
     {
       id: 86,
