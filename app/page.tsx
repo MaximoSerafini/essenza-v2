@@ -1481,9 +1481,15 @@ export default function EssenzaPerfumes() {
                     Abierto (no sellado)
                   </Badge>
                   <Badge variant="outline" className="text-green-600 border-green-600">
-                    Solo $3.500
+                    1x $3.500
+                  </Badge>
+                  <Badge variant="outline" className="text-orange-600 border-orange-600 bg-orange-50">
+                    3x $7.000
                   </Badge>
                 </div>
+                <p className="text-sm text-gray-600 mt-2">
+                  ¡Ahorra $3.500 llevando 3 perfumeros!
+                </p>
               </div>
             </div>
           </div>
