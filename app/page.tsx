@@ -412,28 +412,11 @@ const perfumes: Perfume[] = [
     sinDescuento: false,
   },
   {
-    id: 88,
-    marca: "Maison Alhambra",
-    nombre: "Perseus 100ml EDP",
-    imagen: "/placeholder.svg",
-    precio: 45000,
-    notas: {
-      salida: ["Heliotropo", "comino", "bergamota"],
-      corazon: ["Almendra", "lavanda", "jazmín"],
-      fondo: ["Vainilla", "ámbar", "sándalo"],
-    },
-    genero: "Hombre",
-    fragancia_referencia: "Pegasus – Parfums de Marly",
-    descripcion: "Aromática oriental intensa y elegante, ideal para la noche y climas fríos.",
-    rating: 4.8,
-    sinDescuento: false,
-  },
-  {
     id: 89,
     marca: "Maison Alhambra",
     nombre: "Dark Door Sport 100ml EDP",
-    imagen: "/placeholder.svg",
-    precio: 42000,
+    imagen: "https://i.imgur.com/ZGDNzNq.png",
+    precio: 36000,
     notas: {
       salida: ["Pomelo", "limón", "resina de elemí", "bergamota"],
       corazon: ["Jengibre", "cedro", "vetiver"],
@@ -448,9 +431,9 @@ const perfumes: Perfume[] = [
   {
     id: 90,
     marca: "Maison Alhambra",
-    nombre: "Your Touch 100ml EDP",
-    imagen: "/placeholder.svg",
-    precio: 47000,
+    nombre: "Your Touch 30ml EDP",
+    imagen: "https://i.imgur.com/rXLYO2w.png",
+    precio: 15000,
     notas: {
       salida: ["Cardamomo", "hojas de violeta", "pimienta rosa", "menta"],
       corazon: ["Canela", "lavanda", "salvia", "sandía", "piña"],
@@ -465,9 +448,9 @@ const perfumes: Perfume[] = [
   {
     id: 91,
     marca: "Maison Alhambra",
-    nombre: "Léonie Intense 100ml EDP",
-    imagen: "/placeholder.svg",
-    precio: 47000,
+    nombre: "Léonie Intense 30ml EDP",
+    imagen: "https://i.imgur.com/C4ftYm2.png",
+    precio: 15000,
     notas: {
       salida: ["Lavanda", "naranja tangerina", "grosellas negras", "petit grain"],
       corazon: ["Lavanda", "jazmín", "flor de azahar"],
@@ -482,9 +465,9 @@ const perfumes: Perfume[] = [
   {
     id: 92,
     marca: "Maison Alhambra",
-    nombre: "L’Intrude 100ml EDP",
-    imagen: "/placeholder.svg",
-    precio: 47000,
+    nombre: "L’Intrude 30ml EDP",
+    imagen: "https://i.imgur.com/Ppo318Z.png",
+    precio: 15000,
     notas: {
       salida: ["Pera", "bergamota"],
       corazon: ["Nardos", "flor de azahar", "jazmín sambac"],
