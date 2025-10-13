@@ -14,6 +14,9 @@ import { toast } from "@/hooks/use-toast"
 import { Toaster } from "@/components/ui/toaster"
 // para el commit
 
+// Costo adicional para envoltorio de regalo
+const COSTO_ENVOLTORIO_REGALO = 2000;
+
 // Definición de la interfaz Perfume para tipado estricto
 interface Perfume {
   id: number;
@@ -32,6 +35,8 @@ interface Perfume {
   rating: number;
   sinDescuento?: boolean;
   quantity?: number; // solo para el carrito
+  sellado?: boolean; // true = sellado, false = abierto
+  esRegalo?: boolean; // para envoltorio de regalo
 }
 
 // Función para agregar cache busting a las imágenes en desarrollo
@@ -128,6 +133,7 @@ const perfumes: Perfume[] = [
       descripcion: "Fresca y energética; perfecta para el día, entrenar o climas cálidos.",
       rating: 4.6,
       sinDescuento: false,
+      sellado: false, // abierto
     },
     {
       id: 90,
@@ -299,6 +305,23 @@ const perfumes: Perfume[] = [
       rating: 4.6,
       sinDescuento: false,
     },
+    {
+      id: 108,
+      marca: "Maison Alhambra",
+      nombre: "CASSIUS EDP 30ml",
+      imagen: "https://i.imgur.com/SFVy9jt.png",
+      precio: 15000,
+      notas: {
+        salida: ["Heliotropo", "comino", "bergamota"],
+        corazon: ["Almendra", "lavanda", "jazmín"],
+        fondo: ["Vainilla", "ámbar", "sándalo"],
+      },
+      genero: "Hombre",
+      fragancia_referencia: "Pegasus de Parfums De Marly",
+      descripcion: "Intensa y envolvente, ideal para la noche, salidas especiales o estaciones frías como otoño e invierno. Su combinación de especias, lavanda y vainilla le da un toque seductor y elegante, perfecto para quienes buscan dejar una impresión duradera.",
+      rating: 4.8,
+      sinDescuento: false,
+    },
   {
     id: 17,
     marca: "Perfumeros",
@@ -315,6 +338,7 @@ const perfumes: Perfume[] = [
     descripcion: "Disfruta de llevar tus perfume favorito a todos lados",
     sinDescuento: true,
     rating: 4.2,
+    sellado: false, // abierto
   },
   {
     id: 35,
@@ -689,6 +713,14 @@ const ProductCard = memo(function ProductCard({
           >
             {perfume.genero}
           </Badge>
+          {perfume.sellado === false && (
+            <Badge
+              variant="destructive"
+              className="absolute bottom-2 left-2 bg-orange-100 text-orange-800 hover:bg-orange-200 transition-all duration-300 hover:scale-105"
+            >
+              Abierto (no sellado)
+            </Badge>
+          )}
         </div>
       </CardHeader>
       <CardContent className="p-4">
@@ -893,6 +925,7 @@ export default function EssenzaPerfumes() {
   const [discountApplied, setDiscountApplied] = useState<boolean>(false);
   const [discountError, setDiscountError] = useState<string>("");
   const [itemsToShow, setItemsToShow] = useState<number>(16)
+  const [giftWrapping, setGiftWrapping] = useState<boolean>(false)
 
   const debouncedSearchTerm = useDebounce(searchTerm, 300)
 
@@ -1043,12 +1076,15 @@ export default function EssenzaPerfumes() {
   }, [cart])
 
   const getTotalPrice = useCallback(() => {
-    return cart.reduce((total, item) => total + item.precio * (item.quantity ?? 1), 0)
-  }, [cart])
+    const subtotal = cart.reduce((total, item) => total + item.precio * (item.quantity ?? 1), 0)
+    const giftWrappingCost = giftWrapping ? COSTO_ENVOLTORIO_REGALO : 0
+    return subtotal + giftWrappingCost
+  }, [cart, giftWrapping])
 
   const getDiscountAmount = useCallback(() => {
-    return (getTotalPrice() * discountPercent) / 100;
-  }, [getTotalPrice, discountPercent]);
+    const subtotal = cart.reduce((total, item) => total + item.precio * (item.quantity ?? 1), 0)
+    return (subtotal * discountPercent) / 100;
+  }, [cart, discountPercent]);
 
   const getTotalWithDiscount = useCallback(() => {
     return getTotalPrice() - getDiscountAmount();
@@ -1086,16 +1122,28 @@ export default function EssenzaPerfumes() {
       message += `   Subtotal: ${formatPrice(item.precio * (item.quantity ?? 1))}\n\n`
     })
 
+    const subtotal = cart.reduce((total, item) => total + item.precio * (item.quantity ?? 1), 0)
+    message += `Subtotal: ${formatPrice(subtotal)}\n`
+
+    if (giftWrapping) {
+      message += `Envoltorio de regalo: +${formatPrice(COSTO_ENVOLTORIO_REGALO)}\n`
+    }
+
     if (discountPercent > 0) {
       message += `Descuento aplicado: -${discountPercent}% (${formatPrice(getDiscountAmount())})\n`
       message += `*TOTAL CON DESCUENTO: ${formatPrice(getTotalWithDiscount())}*\n\n`
     } else {
       message += `*TOTAL: ${formatPrice(getTotalPrice())}*\n\n`
     }
+
+    if (giftWrapping) {
+      message += "🎁 *ENVOLTORIO DE REGALO INCLUIDO*\n\n"
+    }
+
     message += "¿Podrías confirmarme la disponibilidad y el método de pago? ¡Gracias! "
 
     return encodeURIComponent(message)
-  }, [cart, formatPrice, getTotalPrice, discountPercent, getDiscountAmount, getTotalWithDiscount])
+  }, [cart, formatPrice, getTotalPrice, discountPercent, getDiscountAmount, getTotalWithDiscount, giftWrapping])
 
   const sendToWhatsApp = useCallback(() => {
     const phoneNumber = "5493794800282"
@@ -1287,10 +1335,28 @@ export default function EssenzaPerfumes() {
                               <span className="text-xs text-green-600">¡Descuento aplicado!</span>
                             )}
                           </div>
+                          <div className="flex items-center space-x-2 p-3 bg-pink-50 rounded-lg border border-pink-200">
+                            <input
+                              type="checkbox"
+                              id="giftWrapping"
+                              checked={giftWrapping}
+                              onChange={(e) => setGiftWrapping(e.target.checked)}
+                              className="h-4 w-4 text-pink-600 focus:ring-pink-500 border-gray-300 rounded"
+                            />
+                            <label htmlFor="giftWrapping" className="text-sm font-medium text-gray-700 cursor-pointer">
+                              ¿Es para regalo? (+{formatPrice(COSTO_ENVOLTORIO_REGALO)})
+                            </label>
+                          </div>
                           <div className="flex justify-between items-center text-base">
                             <span>Subtotal:</span>
-                            <span>{formatPrice(getTotalPrice())}</span>
+                            <span>{formatPrice(cart.reduce((total, item) => total + item.precio * (item.quantity ?? 1), 0))}</span>
                           </div>
+                          {giftWrapping && (
+                            <div className="flex justify-between items-center text-base text-pink-700">
+                              <span>Envoltorio de regalo:</span>
+                              <span>+{formatPrice(COSTO_ENVOLTORIO_REGALO)}</span>
+                            </div>
+                          )}
                           {discountPercent > 0 && (
                             <div className="flex justify-between items-center text-base text-green-700">
                               <span>Descuento ({discountPercent}%):</span>
@@ -1356,6 +1422,40 @@ export default function EssenzaPerfumes() {
             <Sparkles className="h-6 w-6 text-[#5D2A71]" />
             <Sparkles className="h-4 w-4 text-[#5D2A71]" />
             <Sparkles className="h-6 w-6 text-[#5D2A71]" />
+          </div>
+        </div>
+      </section>
+
+      {/* Promo Section - Perfumeros */}
+      <section className="py-8 px-4 bg-gradient-to-r from-purple-100 to-pink-100">
+        <div className="container mx-auto">
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-purple-200">
+            <div className="flex flex-col md:flex-row items-center gap-6">
+              <div className="w-24 h-24 relative flex-shrink-0">
+                <Image
+                  src={addCacheBusting("https://i.imgur.com/yMxitsz.png")}
+                  alt="Perfumeros"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div className="flex-1 text-center md:text-left">
+                <h3 className="text-2xl font-bold text-[#5D2A71] mb-2">
+                  🎯 Promo Perfumeros
+                </h3>
+                <p className="text-gray-700 mb-3">
+                  Lleva tus perfumes favoritos a todos lados con nuestros perfumeros prácticos y elegantes
+                </p>
+                <div className="flex flex-col sm:flex-row gap-2 justify-center md:justify-start">
+                  <Badge variant="secondary" className="bg-purple-100 text-purple-800">
+                    Abierto (no sellado)
+                  </Badge>
+                  <Badge variant="outline" className="text-green-600 border-green-600">
+                    Solo $3.500
+                  </Badge>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
