@@ -1551,7 +1551,7 @@ export default function EssenzaPerfumes() {
                   </Badge>
                 </div>
                 <p className="text-sm text-gray-600 mt-2">
-                  ¡Ahorra $3.500 llevando 3 perfumeros!
+                  ¡Ahorra $7.000 llevando 3 perfumeros!
                 </p>
               </div>
             </div>
