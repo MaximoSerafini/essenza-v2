@@ -520,24 +520,6 @@ const perfumes: Perfume[] = [
     sellado: false, // abierto
   },
   {
-    id: 56,
-    marca: "Maison Alhambra",
-    nombre: "Narissa Ambre 100ml EDP",
-    imagen: addCacheBusting("https://i.imgur.com/lBa6Yeu.png"), 
-    precio: 35000, 
-    notas: {
-      salida: ["Frangipani", "ylang-ylang", "flores blancas"],
-      corazon: ["Almizcle", "ámbar"],
-      fondo: ["Cachemira", "vainilla", "cedro"],
-    },
-    genero: "Mujer",
-    fragancia_referencia: "Narciso Ambree de Narciso Rodriguez",
-    descripcion: "Un perfume cálido, floral y empolvado, inspirado en la elegancia minimalista de Narciso Ambrée – Narciso Rodriguez. Perfecta para días frescos, oficinas elegantes, eventos formales o cualquier momento en el que quieras destacar con una fragancia suave, cremosa y sofisticada. Con su fondo cálido y su corazón empolvado, Narissa Ambre es ideal para mujeres que aman lo sutil, lo sensual y lo duradero. Elegancia moderna en cada gota. Imita a Narciso Ambree de Narciso Rodriguez.",
-    rating: 4.8,
-    sinDescuento: false,
-    sellado: false, // abierto
-  },
-  {
     id: 57,
     marca: "Maison Alhambra",
     nombre: "Narissa Rouge 100ml EDP",
