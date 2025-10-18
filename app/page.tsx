@@ -193,24 +193,7 @@ const perfumes: Perfume[] = [
       sinDescuento: false,
       sellado: true, // abierto
     },
-    {
-      id: 93,
-      marca: "Maison Alhambra",
-      nombre: "Jorge di Profondo 30ml EDP",
-      imagen: "https://i.imgur.com/aeFygED.png",
-      precio: 15000,
-      notas: {
-        salida: ["Aquozone", "notas marinas", "bergamota", "mandarina verde"],
-        corazon: ["Romero", "lavanda", "ciprés", "lentisco"],
-        fondo: ["Notas minerales", "almizcle", "ámbar", "pachulí"],
-      },
-      genero: "Hombre",
-      fragancia_referencia: "Acqua di Giò Profondo – Armani",
-      descripcion: "Fresca, limpia y profesional; ideal para el día, oficina o clima cálido.",
-      rating: 4.7,
-      sinDescuento: false,
-      sellado: true, // abierto
-    },
+
     {
       id: 94,
       marca: "Maison Alhambra",
@@ -534,24 +517,6 @@ const perfumes: Perfume[] = [
     fragancia_referencia: "Narciso Rouge de Narciso Rodriguez",
     descripcion: "Un perfume intenso, sensual y magnético, inspirado en el icónico Narciso Rouge – Narciso Rodriguez. Ideal para noches especiales, citas, eventos elegantes o cuando querés que tu presencia se sienta con fuerza. Una fragancia envolvente, floral y misteriosa que deja huella. Narissa Rouge es poder femenino en forma de perfume: floral, cremoso y con mucha actitud. Inspirada en Narciso Rouge de Narciso Rodriguez.",
     rating: 4.8,
-    sinDescuento: false,
-    sellado: false, // abierto
-  },
-  {
-    id: 58,
-    marca: "Maison Alhambra",
-    nombre: "No. 2 Men 80ml EDP",
-    imagen: addCacheBusting("https://i.imgur.com/9Mhufms.png"), 
-    precio: 44000, 
-    notas: {
-      salida: ["Bergamota", "lavanda"],
-      corazon: ["Jengibre", "cardamomo"],
-      fondo: ["Vetiver", "incienso", "almizcle", "sándalo", "ládano", "madera de gaiac"],
-    },
-    genero: "Hombre",
-    fragancia_referencia: "212 Men de Carolina Herrera",
-    descripcion: "Elegante, moderno y con carácter. Una fragancia que combina frescura aromática con un fondo cálido y misterioso. Perfecto para noches elegantes, oficina o cuando querés oler refinado sin ser invasivo. Una fragancia sobria, seductora y muy masculina, con un equilibrio entre frescura y profundidad. Para el hombre que aprecia los detalles y el estilo clásico con un giro moderno. Imita a 212 Men de Carolina Herrera.",
-    rating: 4.7,
     sinDescuento: false,
     sellado: false, // abierto
   },
