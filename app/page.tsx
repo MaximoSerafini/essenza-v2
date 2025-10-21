@@ -230,24 +230,7 @@ const perfumes: Perfume[] = [
       sinDescuento: false,
       sellado: true, // abierto
     },
-    {
-      id: 96,
-      marca: "Maison Alhambra",
-      nombre: "Florence 30ml EDP",
-      imagen: "https://i.imgur.com/XORvNNI.png",
-      precio: 15000,
-      notas: {
-        salida: ["Bergamota", "durazno", "frutas rojas"],
-        corazon: ["Jazmín", "azucena", "rosa"],
-        fondo: ["Almizcle", "vainilla", "pachulí"],
-      },
-      genero: "Mujer",
-      fragancia_referencia: "Valentino Donna (estilo)",
-      descripcion: "Elegante, femenina y romántica con fondo cremoso y cálido.",
-      rating: 4.6,
-      sinDescuento: false,
-      sellado: true, // abierto
-    },
+  
     {
       id: 97,
       marca: "Maison Alhambra",
