@@ -30,6 +30,12 @@ type Body = {
   contact_number?: string
 }
 
+
+function cleanUrl(url: string) {
+  // Reemplaza múltiples slashes por uno solo, excepto después de 'https://'
+  return url.replace(/([^:])\/+/g, '$1/').replace(':/', '://')
+}
+
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as Body
@@ -55,12 +61,13 @@ export async function POST(request: Request) {
           },
         ]
 
+    const baseUrl = (process.env.APP_BASE_URL || '').replace(/\/$/, '')
     const payload: any = {
       items,
       back_urls: {
-        success: `${process.env.APP_BASE_URL || ''}/checkout/success`,
-        failure: `${process.env.APP_BASE_URL || ''}/checkout/failure`,
-        pending: `${process.env.APP_BASE_URL || ''}/checkout/pending`,
+        success: cleanUrl(`${baseUrl}/checkout/success`),
+        failure: cleanUrl(`${baseUrl}/checkout/failure`),
+        pending: cleanUrl(`${baseUrl}/checkout/pending`),
       },
       auto_return: 'approved',
       external_reference: body.external_reference || undefined,
