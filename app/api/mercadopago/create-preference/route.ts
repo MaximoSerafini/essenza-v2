@@ -74,44 +74,45 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'APP_BASE_URL debe ser HTTPS' }, { status: 500 })
     }
 
-    // No usar back_urls porque iremos directo a WhatsApp después del pago
-    console.log('Configuración sin redirección a página de éxito - irá directo a WhatsApp')
-
+    // Construir payload simple y válido para MercadoPago
     const payload: any = {
-      items,
-      auto_return: 'approved',
-      external_reference: body.external_reference || undefined,
+      items: items,
     }
-    
-    console.log('Payload a enviar a MercadoPago:', JSON.stringify(payload, null, 2))
 
-    // Agregar payer si fue enviado
-    if (body.payer) {
+    // Agregar payer si fue enviado - SOLO con datos válidos
+    if (body.payer && body.payer.email) {
       payload.payer = {
-        name: body.payer.name || 'Cliente',
-        surname: body.payer.surname || undefined,
-        email: body.payer.email || undefined,
-        phone: body.payer.phone && (body.payer.phone.number ? { area_code: body.payer.phone.area_code || '', number: body.payer.phone.number } : undefined),
+        email: body.payer.email,
+      }
+      if (body.payer.name) payload.payer.name = body.payer.name
+      if (body.payer.surname) payload.payer.surname = body.payer.surname
+      if (body.payer.phone && body.payer.phone.number) {
+        payload.payer.phone = {
+          area_code: body.payer.phone.area_code || '54',
+          number: body.payer.phone.number,
+        }
       }
     }
 
     // Agregar shipments si el usuario eligió envío y hay dirección
-    if (body.shipping_option === 'shipping' && body.address) {
+    if (body.shipping_option === 'shipping' && body.address && body.address.street_name) {
       payload.shipments = {
         receiver_address: {
-          street_name: body.address.street_name || '',
+          street_name: body.address.street_name,
           street_number: body.address.street_number || 0,
-          zip_code: body.address.zip_code || '',
-          city: body.address.city || undefined,
-          state: body.address.state || undefined,
+          zip_code: body.address.zip_code || '0000',
+          city: body.address.city || 'Argentina',
+          state: body.address.state || 'Argentina',
         },
       }
     }
 
-    // Añadimos metadata opcional (por ejemplo, número de contacto adicional)
+    // Añadimos metadata opcional
     if (body.contact_number) {
       payload.metadata = { contact_number: body.contact_number }
     }
+
+    console.log('Payload a enviar a MercadoPago:', JSON.stringify(payload, null, 2))
 
     const res = await fetch('https://api.mercadopago.com/checkout/preferences', {
       method: 'POST',
