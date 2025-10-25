@@ -74,19 +74,11 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'APP_BASE_URL debe ser HTTPS' }, { status: 500 })
     }
 
-    const successUrl = cleanUrl(`${baseUrl}/checkout/success`)
-    const failureUrl = cleanUrl(`${baseUrl}/checkout/failure`)
-    const pendingUrl = cleanUrl(`${baseUrl}/checkout/pending`)
-    
-    console.log('URLs configuradas:', { successUrl, failureUrl, pendingUrl })
+    // No usar back_urls porque iremos directo a WhatsApp después del pago
+    console.log('Configuración sin redirección a página de éxito - irá directo a WhatsApp')
 
     const payload: any = {
       items,
-      back_urls: {
-        success: successUrl,
-        failure: failureUrl,
-        pending: pendingUrl,
-      },
       auto_return: 'approved',
       external_reference: body.external_reference || undefined,
     }
