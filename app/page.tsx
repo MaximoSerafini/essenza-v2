@@ -275,12 +275,12 @@ const perfumes: Perfume[] = [
       imagen: "https://i.imgur.com/iNAD9AI.png",
       precio: 15000,
       notas: {
-        salida: [],
-        corazon: [],
-        fondo: [],
+        salida: ["Pera", "Bergamota"],
+        corazon: ["Notas florales", "Cuero"],
+        fondo: ["Vainilla", "Vetiver", "Ámbar", "Almizcle"]
       },
       genero: "Mujer",
-      fragancia_referencia: "",
+      fragancia_referencia: "La Belle de Jean Paul Gaultier",
       descripcion: "Aroma femenino moderno con toque fresco y envolvente.",
       rating: 4.6,
       sinDescuento: false,
@@ -329,12 +329,12 @@ const perfumes: Perfume[] = [
       imagen: addCacheBusting("https://i.imgur.com/R8XeiYG.png"),
       precio: 40000,
       notas: {
-        salida: [],
-        corazon: [],
-        fondo: [],
+        salida: ["Lichi", "Ruibarbo", "Bergamota"],
+        corazon: ["Rosa turca", "Peonía", "Lirio de los valles"],
+        fondo: ["Vainilla", "Almizcle blanco", "Cachemira"]
       },
       genero: "Mujer",
-      fragancia_referencia: "",
+      fragancia_referencia: "Delina de Parfums de Marly",
       descripcion: "Fragancia femenina elegante y versátil en concentración EDP.",
       rating: 4.7,
       sinDescuento: false,
