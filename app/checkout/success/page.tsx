@@ -5,19 +5,22 @@ import { useSearchParams } from 'next/navigation'
 
 function SuccessContent() {
   const searchParams = useSearchParams()
-  const collectionId = searchParams.get('collection_id')
-  const collectionStatus = searchParams.get('collection_status')
+  const collectionId = searchParams.get('collection_id') || searchParams.get('payment_id') || 'N/A'
+  const collectionStatus = searchParams.get('collection_status') || 'aprobado'
 
   React.useEffect(() => {
     // Cuando la página carga, abrir WhatsApp automáticamente
     const phoneNumber = '549' + '3794222701'
-    const message = `Hola! 👋 He completado mi pago en Essenza.%0A%0ADetalles de la compra:%0AID de transacción: ${collectionId || 'N/A'}%0AEstado: ${collectionStatus || 'aprobado'}%0A%0APor favor, confirmar la compra y coordinar los detalles del envío/retiro. ¡Gracias!`
+    const message = `Hola! 👋 He completado mi pago en Essenza.%0A%0ADetalles de la compra:%0AID de transacción: ${collectionId}%0AEstado: ${collectionStatus}%0A%0APor favor, confirmar la compra y coordinar los detalles del envío/retiro. ¡Gracias!`
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`
     
-    // Abrir WhatsApp después de 1 segundo
+    console.log('Parámetros recibidos:', { collectionId, collectionStatus })
+    console.log('URL de WhatsApp:', whatsappUrl)
+    
+    // Abrir WhatsApp después de 500ms
     const timer = setTimeout(() => {
       window.open(whatsappUrl, '_blank')
-    }, 1000)
+    }, 500)
     
     return () => clearTimeout(timer)
   }, [collectionId, collectionStatus])

@@ -75,9 +75,19 @@ export async function POST(request: Request) {
     }
 
     // Construir payload simple y válido para MercadoPago
+    const successUrl = `${baseUrl}/checkout/success`
+    
     const payload: any = {
       items: items,
+      back_urls: {
+        success: successUrl,
+        pending: successUrl,
+        failure: successUrl,
+      },
+      auto_return: 'approved',
     }
+
+    console.log('URLs de redirección:', { success: successUrl })
 
     // Agregar payer si fue enviado - SOLO con datos válidos
     if (body.payer && body.payer.email) {
