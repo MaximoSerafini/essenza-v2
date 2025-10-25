@@ -1,9 +1,9 @@
 "use client"
 
-import React from 'react'
+import React, { Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 
-export default function PendingPage() {
+function PendingContent() {
   const searchParams = useSearchParams()
   const preferenceId = searchParams.get('preference_id')
 
@@ -57,5 +57,20 @@ export default function PendingPage() {
         )}
       </div>
     </div>
+  )
+}
+
+export default function PendingPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gradient-to-br from-yellow-50 to-amber-50 flex items-center justify-center p-4">
+        <div className="text-center">
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-600 mb-4"></div>
+          <p className="text-xl text-gray-600">Cargando...</p>
+        </div>
+      </div>
+    }>
+      <PendingContent />
+    </Suspense>
   )
 }
