@@ -97,7 +97,11 @@ export default function CheckoutPage() {
       })
 
       const data = await res.json()
-      if (!res.ok) throw new Error(data?.error || 'Error creando preferencia')
+      if (!res.ok) {
+        // Mostrar detalle de error de MercadoPago si existe
+        const details = data?.details ? `\nDetalles: ${data.details}` : ''
+        throw new Error((data?.error || 'Error creando preferencia') + details)
+      }
 
       if (data.init_point) {
         // redirigir al checkout de MercadoPago
