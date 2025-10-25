@@ -50,24 +50,6 @@ const addCacheBusting = (url: string) => {
 
 const perfumes: Perfume[] = [
     // Nuevos perfumes agregados
-     {
-      id: 888,
-      marca: "Tubbees",
-      nombre: "prueba",
-      imagen: "https://i.imgur.com/BvmtiJ5.png",
-      precio: 100,
-      notas: {
-        salida: ["Mantequilla", "azúcar"],
-        corazon: ["Leche", "chocolate con leche"],
-        fondo: ["Vainilla", "almizcle blanco"],
-      },
-      genero: "Unisex",
-      fragancia_referencia: "",
-      descripcion: "Gourmand cremoso y adictivo, huele a postre recién hecho y momentos felices.",
-      rating: 4.8,
-      sinDescuento: false,
-      sellado: false, // abierto
-    },
     {
       id: 84,
       marca: "Tubbees",
