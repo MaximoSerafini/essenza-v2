@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useMemo, useEffect, useCallback, memo } from "react"
+import { useRouter } from 'next/navigation'
 import Image from "next/image"
 import { Search, Heart, ShoppingCart, Star, Plus, Minus, X, Send, Filter, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -49,6 +50,24 @@ const addCacheBusting = (url: string) => {
 
 const perfumes: Perfume[] = [
     // Nuevos perfumes agregados
+     {
+      id: 888,
+      marca: "Tubbees",
+      nombre: "prueba",
+      imagen: "https://i.imgur.com/BvmtiJ5.png",
+      precio: 100,
+      notas: {
+        salida: ["Mantequilla", "azúcar"],
+        corazon: ["Leche", "chocolate con leche"],
+        fondo: ["Vainilla", "almizcle blanco"],
+      },
+      genero: "Unisex",
+      fragancia_referencia: "",
+      descripcion: "Gourmand cremoso y adictivo, huele a postre recién hecho y momentos felices.",
+      rating: 4.8,
+      sinDescuento: false,
+      sellado: false, // abierto
+    },
     {
       id: 84,
       marca: "Tubbees",
@@ -1134,51 +1153,17 @@ export default function EssenzaPerfumes() {
     }
   };
 
-  const generateWhatsAppMessage = useCallback(() => {
-    let message = "🌸 ¡Hola! Me interesa comprar los siguientes perfumes de ESSENZA:\n\n"
+  const router = useRouter()
 
-    cart.forEach((item, index) => {
-      message += `${index + 1}. ${item.nombre}\n`
-      message += `   Marca: ${item.marca}\n`
-      message += `   Cantidad: ${item.quantity ?? 1}\n`
-      message += `   Precio unitario: ${formatPrice(item.precio)}\n`
-      message += `   Subtotal: ${formatPrice(item.precio * (item.quantity ?? 1))}\n\n`
-    })
-
-    const subtotal = cart.reduce((total, item) => total + item.precio * (item.quantity ?? 1), 0)
-    message += `Subtotal: ${formatPrice(subtotal)}\n`
-
-    if (giftWrapping) {
-      message += `Envoltorio de regalo: +${formatPrice(COSTO_ENVOLTORIO_REGALO)}\n`
-    }
-
-    if (discountPercent > 0) {
-      message += `Descuento aplicado: -${discountPercent}% (${formatPrice(getDiscountAmount())})\n`
-      message += `*TOTAL CON DESCUENTO: ${formatPrice(getTotalWithDiscount())}*\n\n`
-    } else {
-      message += `*TOTAL: ${formatPrice(getTotalPrice())}*\n\n`
-    }
-
-    if (giftWrapping) {
-      message += "🎁 *ENVOLTORIO DE REGALO INCLUIDO*\n\n"
-    }
-
-    message += "¿Podrías confirmarme la disponibilidad y el método de pago? ¡Gracias! "
-
-    return encodeURIComponent(message)
-  }, [cart, formatPrice, getTotalPrice, discountPercent, getDiscountAmount, getTotalWithDiscount, giftWrapping])
-
-  const sendToWhatsApp = useCallback(() => {
-    const phoneNumber = "5493794800282"
-    const message = generateWhatsAppMessage()
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`
-    window.open(whatsappUrl, "_blank")
+  const goToCheckout = useCallback(() => {
+    // Cerramos el carrito y navegamos al formulario de checkout
     setIsCartOpen(false)
+    router.push('/checkout')
     toast({
-      title: "Redirigiendo a WhatsApp 📱",
-      description: "Te estamos llevando a WhatsApp para finalizar tu compra",
+      title: 'Abriendo checkout',
+      description: 'Te llevamos al formulario para completar el pago con MercadoPago',
     })
-  }, [generateWhatsAppMessage])
+  }, [router])
 
   const clearFilters = () => {
     setSearchTerm("")
@@ -1393,12 +1378,12 @@ export default function EssenzaPerfumes() {
                             </span>
                           </div>
                           <Button
-                            onClick={sendToWhatsApp}
-                            className="w-full bg-green-600 hover:bg-green-700 text-white hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+                            onClick={goToCheckout}
+                            className="w-full bg-emerald-600 hover:bg-emerald-700 text-white hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
                             size="lg"
                           >
                             <Send className="h-4 w-4 mr-2" />
-                            Finalizar compra por WhatsApp
+                            Finalizar compra
                           </Button>
                         </div>
                       </>
