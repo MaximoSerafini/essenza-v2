@@ -62,16 +62,36 @@ export async function POST(request: Request) {
         ]
 
     const baseUrl = (process.env.APP_BASE_URL || '').replace(/\/$/, '')
+    
+    // Validar que APP_BASE_URL existe y es válido
+    if (!baseUrl || baseUrl.length === 0) {
+      console.error('APP_BASE_URL no configurado o vacío:', process.env.APP_BASE_URL)
+      return NextResponse.json({ error: 'APP_BASE_URL no configurado' }, { status: 500 })
+    }
+    
+    if (!baseUrl.startsWith('https://')) {
+      console.error('APP_BASE_URL debe ser HTTPS:', baseUrl)
+      return NextResponse.json({ error: 'APP_BASE_URL debe ser HTTPS' }, { status: 500 })
+    }
+
+    const successUrl = cleanUrl(`${baseUrl}/checkout/success`)
+    const failureUrl = cleanUrl(`${baseUrl}/checkout/failure`)
+    const pendingUrl = cleanUrl(`${baseUrl}/checkout/pending`)
+    
+    console.log('URLs configuradas:', { successUrl, failureUrl, pendingUrl })
+
     const payload: any = {
       items,
       back_urls: {
-        success: cleanUrl(`${baseUrl}/checkout/success`),
-        failure: cleanUrl(`${baseUrl}/checkout/failure`),
-        pending: cleanUrl(`${baseUrl}/checkout/pending`),
+        success: successUrl,
+        failure: failureUrl,
+        pending: pendingUrl,
       },
       auto_return: 'approved',
       external_reference: body.external_reference || undefined,
     }
+    
+    console.log('Payload a enviar a MercadoPago:', JSON.stringify(payload, null, 2))
 
     // Agregar payer si fue enviado
     if (body.payer) {
@@ -112,6 +132,7 @@ export async function POST(request: Request) {
 
     if (!res.ok) {
       const text = await res.text()
+      console.error('Error de MercadoPago (status ' + res.status + '):', text)
       return NextResponse.json({ error: 'MP error', details: text }, { status: res.status })
     }
 
