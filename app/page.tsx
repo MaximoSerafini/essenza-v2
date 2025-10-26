@@ -176,24 +176,7 @@ const perfumes: Perfume[] = [
       sinDescuento: false,
       sellado: true, // abierto
     },
-    {
-      id: 92,
-      marca: "Maison Alhambra",
-      nombre: "L’Intrude 30ml EDP",
-      imagen: "https://i.imgur.com/A3ocZsp.png",
-      precio: 15000,
-      notas: {
-        salida: ["Pera", "bergamota"],
-        corazon: ["Nardos", "flor de azahar", "jazmín sambac"],
-        fondo: ["Pachulí", "ambroxan", "vainilla", "vetiver"],
-      },
-      genero: "Mujer",
-      fragancia_referencia: "L’Interdit – Givenchy",
-      descripcion: "Femenina, intensa y adictiva; flores blancas con toques dulces y amaderados.",
-      rating: 4.8,
-      sinDescuento: false,
-      sellado: true, // abierto
-    },
+
 
     {
       id: 94,
