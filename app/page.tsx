@@ -86,24 +86,7 @@ const perfumes: Perfume[] = [
       sinDescuento: false,
       sellado: false, // abierto
     },
-    {
-      id: 86,
-      marca: "Tubbees",
-      nombre: "Cotton Candy 50ml EDP",
-      imagen: "https://i.imgur.com/KCBlyQB.png",
-      precio: 27000,
-      notas: {
-        salida: ["Leche de coco"],
-        corazon: ["Algodón de azúcar", "caramelo"],
-        fondo: ["Almizcle", "vainilla"],
-      },
-      genero: "Unisex",
-      fragancia_referencia: "",
-      descripcion: "Dulce, divertida y nostálgica; una nube azucarada con toque cremoso.",
-      rating: 4.6,
-      sinDescuento: false,
-      sellado: false, // abierto
-    },
+   
     {
       id: 87,
       marca: "Tubbees",
@@ -122,6 +105,24 @@ const perfumes: Perfume[] = [
       sinDescuento: false,
       sellado: false, // abierto
     },
+    {
+  id: 85,
+  marca: "Maison Alhambra",
+  nombre: "Glacier Gold 30 ml",
+  imagen: "https://louparfum.com/cdn/shop/files/output_49d3c94c-d65f-4dd0-be19-658ac8ead009.png?v=1753478616",
+  precio: 15000,
+  notas: {
+    salida: ["Bergamota", "limón", "pimienta rosa"],
+    corazon: ["Lavanda", "salvia", "notas verdes"],
+    fondo: ["Vetiver", "ámbar", "almizcle"],
+  },
+  genero: "Masculino",
+  fragancia_referencia: "Jean Paul Gaultier Le Male Elixir",
+  descripcion: "Fragancia masculina sofisticada, fresca y vibrante, inspirada en el espíritu moderno y aventurero del hombre actual. Diseñada para hombres seguros de sí mismos que buscan una fragancia versátil para destacar en cualquier ocasión. Compacto y elegante, su formato de 30 ml es ideal para llevar a todos lados.",
+  rating: 4.8, // No se proporcionó rating
+  sinDescuento: false,
+  sellado: true, // Asumiendo que es nuevo/sellado
+},
     {
       id: 89,
       marca: "Maison Alhambra",
