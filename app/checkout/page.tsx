@@ -29,6 +29,7 @@ export default function CheckoutPage() {
   const [state, setState] = React.useState('')
 
   const [loading, setLoading] = React.useState(false)
+  const [paymentMethod, setPaymentMethod] = React.useState<'mercadopago' | 'cash'>('mercadopago')
 
   React.useEffect(() => {
     try {
@@ -58,6 +59,13 @@ export default function CheckoutPage() {
       return
     }
 
+    // Si eligió efectivo, enviar directo a WhatsApp
+    if (paymentMethod === 'cash') {
+      handleCashPayment()
+      return
+    }
+
+    // Si eligió MercadoPago, procesar con la API
     setLoading(true)
     try {
       const payload: any = {
@@ -115,6 +123,14 @@ export default function CheckoutPage() {
     } finally {
       setLoading(false)
     }
+  }
+
+  function handleCashPayment() {
+    const cartSummary = cart.map(it => `- ${it.nombre} x${it.quantity ?? 1}: $${(it.precio * (it.quantity ?? 1)).toLocaleString()}`).join('%0A')
+    const phoneNumber = '549' + '3794222701'
+    const message = `Hola! 👋 Quiero hacer una compra en Essenza.%0A%0A*Comprador:* ${name} ${surname}%0A*Email:* ${email}%0A*Teléfono:* ${phone}%0A%0A*Productos:*%0A${cartSummary}%0A%0A*Subtotal:* $${subtotal.toLocaleString()}%0A%0A*Modalidad de entrega:* ${shippingOption === 'shipping' ? 'Envío a domicilio' : 'Retiro (a coordinar)'}${shippingOption === 'shipping' ? `%0A*Dirección:* ${streetName} ${streetNumber}, ${zipCode} ${city}, ${state}` : ''}%0A%0APor favor, confirmá la disponibilidad y coordina los detalles. ¡Gracias!`
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`
+    window.open(whatsappUrl, '_blank')
   }
 
   return (
@@ -310,6 +326,43 @@ export default function CheckoutPage() {
                   )}
                 </div>
 
+                {/* Método de pago */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-[#5D2A71] mb-6">Método de pago</h2>
+                  
+                  <div className="space-y-4">
+                    <label className="flex items-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-[#5D2A71] hover:bg-purple-50 transition-all" onClick={() => setPaymentMethod('mercadopago')}>
+                      <input
+                        type="radio"
+                        checked={paymentMethod === 'mercadopago'}
+                        onChange={() => setPaymentMethod('mercadopago')}
+                        className="w-5 h-5 accent-[#5D2A71]"
+                      />
+                      <Lock className="h-5 w-5 text-blue-600 ml-3" />
+                      <div className="ml-3">
+                        <p className="font-semibold text-gray-900">Pago online (MercadoPago)</p>
+                        <p className="text-sm text-gray-500">Tarjeta, débito, transferencia, efectivo</p>
+                      </div>
+                    </label>
+
+                    <label className="flex items-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-[#5D2A71] hover:bg-purple-50 transition-all" onClick={() => setPaymentMethod('cash')}>
+                      <input
+                        type="radio"
+                        checked={paymentMethod === 'cash'}
+                        onChange={() => setPaymentMethod('cash')}
+                        className="w-5 h-5 accent-[#5D2A71]"
+                      />
+                      <svg className="h-5 w-5 text-green-600 ml-3" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                      </svg>
+                      <div className="ml-3">
+                        <p className="font-semibold text-gray-900">Efectivo / WhatsApp</p>
+                        <p className="text-sm text-gray-500">Coordinar pago directo por WhatsApp</p>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+
                 {/* Botón de pago */}
                 <button
                   type="submit"
@@ -317,7 +370,7 @@ export default function CheckoutPage() {
                   className="w-full bg-gradient-to-r from-[#5D2A71] to-[#8B4A99] hover:from-[#4A2259] hover:to-[#6B3A79] text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 disabled:opacity-60 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
                 >
                   <Lock className="h-5 w-5" />
-                  {loading ? 'Procesando...' : 'Pagar con MercadoPago'}
+                  {loading ? 'Procesando...' : paymentMethod === 'mercadopago' ? 'Pagar con MercadoPago' : 'Enviar a WhatsApp'}
                 </button>
 
                 <a
