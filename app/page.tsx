@@ -177,24 +177,7 @@ const perfumes: Perfume[] = [
       sinDescuento: false,
       sellado: true, // abierto
     },
-    {
-      id: 90,
-      marca: "Maison Alhambra",
-      nombre: "Your Touch 30ml EDP",
-      imagen: "https://i.imgur.com/rXLYO2w.png",
-      precio: 15000,
-      notas: {
-        salida: ["Cardamomo", "hojas de violeta", "pimienta rosa", "menta"],
-        corazon: ["Canela", "lavanda", "salvia", "sandía", "piña"],
-        fondo: ["Vainilla", "castaña", "Amberwood", "cedro", "madera de gaiac"],
-      },
-      genero: "Hombre",
-      fragancia_referencia: "Stronger With You – Emporio Armani",
-      descripcion: "Seductor, cálido y envolvente, con fondo avainillado y amaderado.",
-      rating: 4.8,
-      sinDescuento: false,
-      sellado: true, // abierto
-    },
+    
     {
       id: 91,
       marca: "Maison Alhambra",
