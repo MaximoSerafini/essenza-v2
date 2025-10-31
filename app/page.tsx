@@ -581,25 +581,7 @@ const perfumes: Perfume[] = [
     sinDescuento: false,
     sellado: true, // abierto
   },
-  {
-    id: 72,
-    marca: "Maison Alhambra",
-    nombre: "Candid Pour Homme 100ml EDP",
-    imagen: addCacheBusting("https://i.imgur.com/B4sX9kB.png"), 
-    precio: 45300,
-    notas: {
-      salida: ["Limón", "bergamota"],
-      corazon: ["Lavanda", "romero"],
-      fondo: ["Cedro", "almizcle"],
-    },
-    genero: "Hombre",
-    fragancia_referencia: "Scandal Pour Homme de Jean Paul Gaultier.",
-    descripcion: "Una fragancia fresca y honesta, perfecta para el hombre moderno y auténtico.",
-    rating: 4.6,
-    sinDescuento: false,
-    sellado: false, // abierto
-  },
-
+  
   {
     id: 77,
     marca: "Maison Alhambra",
@@ -618,7 +600,78 @@ const perfumes: Perfume[] = [
     sinDescuento: false,
     sellado: true, // abierto
   },
-
+  {
+    id: 148,
+    marca: "Maison Alhambra",
+    nombre: "Bad Homme 30 ml",
+    imagen: "https://i.imgur.com/hFnPDUI.png",
+    precio: 15000 ,
+    notas: {
+      salida: ["Pimienta blanca", "Pimienta negra", "Bergamota"],
+      corazon: ["Salvia", "Cedro"],
+      fondo: ["Haba tonka", "Cacao", "Amberwood"],
+    },
+    genero: "Masculino",
+    fragancia_referencia: "Bad Boy de Carolina Herrera",
+    descripcion: "Una fragancia audaz y especiada que combina notas luminosas de bergamota con la oscuridad adictiva del cacao y la haba tonka. Para el hombre moderno y rebelde.",
+    rating: 4.7,
+    sinDescuento: false,
+    sellado: true,
+  },
+  {
+  id: 147,
+  marca: "Maison Alhambra",
+  nombre: "Glacier Pour Homme 30 ml",
+  imagen: "https://epicimportados.com/1074-home_default/perfume-miniatura-maison-alhambra-glacier-pour-homme-edp-30ml.jpg",
+  precio: 15000,
+  notas: {
+    salida: ["Lavanda", "menta", "cardamomo", "bergamota"],
+    corazon: ["Canela", "flor de azahar del naranjo", "alcaravea"],
+    fondo: ["Vainilla", "haba tonka", "sándalo", "ámbar"],
+  },
+  genero: "Masculino",
+  fragancia_referencia: "Le Male de Jean Paul Gaultier",
+  descripcion: "Un clásico Fougère oriental reinventado. Combina la frescura audaz de la menta y la lavanda con la calidez sensual de la vainilla y la canela, creando una fragancia icónica y reconocible.",
+  rating: 0,
+  sinDescuento: false,
+  sellado: true,
+},
+  {
+    id: 149,
+    marca: "Maison Alhambra",
+    nombre: "Bad Femme 30 ml",
+    imagen: "https://i.imgur.com/xIoHc4O.png",
+    precio: 15000,
+    notas: {
+      salida: ["Almendra", "Café", "Limón", "Bergamota"],
+      corazon: ["Nardos", "Jazmín Sambac", "Flor de Azahar"],
+      fondo: ["Haba tonka", "Cacao", "Vainilla", "Praliné", "Sándalo"],
+    },
+    genero: "Femenino",
+    fragancia_referencia: "Good Girl de Carolina Herrera",
+    descripcion: "Una fragancia sensual y sofisticada que juega con la dualidad femenina. Combina la luminosidad de las flores blancas (jazmín y nardos) con notas oscuras y golosas de cacao y haba tonka.",
+    rating: 4.8,
+    sinDescuento: false,
+    sellado: true,
+  },
+  {
+    id: 150,
+    marca: "Maison Alhambra",
+    nombre: "Jorge Di Profundo 30 ml",
+    imagen: "https://i.imgur.com/LHE0n2N.png",
+    precio: 15000,
+    notas: {
+      salida: ["Notas marinas", "Aquozone", "Bergamota", "Mandarina verde"],
+      corazon: ["Romero", "Ciprés", "Lavanda", "Lentisco"],
+      fondo: ["Notas minerales", "Almizcle", "Pachulí", "Ámbar"],
+    },
+    genero: "Masculino",
+    fragancia_referencia: "Acqua di Giò Profondo de Giorgio Armani",
+    descripcion: "Una intensa interpretación marina del clásico. Combina notas acuáticas profundas con un corazón aromático de ciprés y lavanda, sobre un fondo mineral y amaderado.",
+    rating: 4.9,
+    sinDescuento: false,
+    sellado: true,
+  },
 
 
   {
