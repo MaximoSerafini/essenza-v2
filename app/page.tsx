@@ -632,7 +632,7 @@ const perfumes: Perfume[] = [
   genero: "Masculino",
   fragancia_referencia: "Le Male de Jean Paul Gaultier",
   descripcion: "Un clásico Fougère oriental reinventado. Combina la frescura audaz de la menta y la lavanda con la calidez sensual de la vainilla y la canela, creando una fragancia icónica y reconocible.",
-  rating: 0,
+  rating: 4.8,
   sinDescuento: false,
   sellado: true,
 },
