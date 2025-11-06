@@ -123,24 +123,7 @@ const perfumes: Perfume[] = [
     sinDescuento: false,
     sellado: true,
   },
-  {
-    id: 121,
-    marca: "Maison Alhambra",
-    nombre: "Alive Now 30 ml",
-    imagen: "https://cdnx.jumpseller.com/good-boutiques/image/65881430/resize/1200/1200?1753736161",
-    precio: 15000,
-    notas: {
-      salida: ["Frambuesa", "lichi"],
-      corazon: ["Rosa damascena"],
-      fondo: ["Akigalawood", "benjuí"],
-    },
-    genero: "Femenino",
-    fragancia_referencia: "Angel Nova de Mugler",
-    descripcion: "Vibrante, moderna y absolutamente femenina, una fragancia que irradia energía y confianza. Diseñada para mujeres decididas que creen en sus sueños.",
-    rating: 4.7,
-    sinDescuento: false,
-    sellado: true,
-  },
+
     {
   id: 85,
   marca: "Maison Alhambra",
