@@ -218,24 +218,7 @@ const perfumes: Perfume[] = [
       sellado: true, // abierto
     },
   
-    {
-      id: 97,
-      marca: "Maison Alhambra",
-      nombre: "Avant 30ml EDP",
-      imagen: "https://i.imgur.com/ohSgv4Y.png",
-      precio: 15000,
-      notas: {
-        salida: ["Notas verdes", "bergamota", "limón"],
-        corazon: ["Pimienta negra", "jazmín", "lavanda"],
-        fondo: ["Vetiver", "pachulí", "almizcle"],
-      },
-      genero: "Hombre",
-      fragancia_referencia: "Creed Aventus",
-      descripcion: "Versátil, masculino y elegante; deja huella sin exagerar.",
-      rating: 4.7,
-      sinDescuento: false,
-      sellado: true, // abierto
-    },
+   
     {
       id: 105,
       marca: "Maison Alhambra",
