@@ -180,25 +180,6 @@ const perfumes: Perfume[] = [
       sellado: true, // abierto
     },
 
-
-    {
-      id: 94,
-      marca: "Maison Alhambra",
-      nombre: "Jean Lowe Immortal 30ml EDP",
-      imagen: "https://i.imgur.com/i2O6pRz.png",
-      precio: 15000,
-      notas: {
-        salida: [],
-        corazon: [],
-        fondo: [],
-      },
-      genero: "Hombre",
-      fragancia_referencia: "Louis Vuitton L'Immensité",
-      descripcion: "Fresca y energizante al inicio, con fondo cálido y poderoso.",
-      rating: 4.7,
-      sinDescuento: false,
-      sellado: true, // abierto
-    },
     {
       id: 95,
       marca: "Maison Alhambra",
