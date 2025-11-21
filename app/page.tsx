@@ -327,24 +327,6 @@ const perfumes: Perfume[] = [
     sellado: true, // abierto
   },
   {
-    id: 35,
-    marca: "Lattafa Perfumes",
-    nombre: "Mayar 100ml EDP",
-    imagen: addCacheBusting("https://i.imgur.com/QOyJ3Fy.png"),
-    precio: 39000,
-    notas: {
-      salida: ["Lichi", "frambuesa", "hojas de violeta"],
-      corazon: ["Rosa blanca", "peonía", "jazmín"],
-      fondo: ["Almizcle", "vainilla"],
-    },
-    genero: "Mujer",
-    fragancia_referencia: "Angel Nova de Mugler",
-    descripcion: "Dulce y femenina, ideal para el día y ocasiones casuales en primavera y verano. Perfecta para salidas diarias, encuentros informales o eventos donde se busque un aroma fresco y romántico.",
-    rating: 4.7,
-    sinDescuento: false,
-    sellado: false, // abierto
-  },
-  {
     id: 36,
     marca: "Britney Spears",
     nombre: "Fantasy 100ml EDP",
