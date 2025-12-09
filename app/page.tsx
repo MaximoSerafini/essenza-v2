@@ -201,24 +201,6 @@ const perfumes: Perfume[] = [
   
    
     {
-      id: 105,
-      marca: "Maison Alhambra",
-      nombre: "Mia Dolcezza 100ml EDP",
-      imagen: "https://i.imgur.com/jFTImHI.png",
-      precio: 40000,
-      notas: {
-        salida: ["Grosella negra", "pimienta rosa", "bergamota"],
-        corazon: ["Jazmín", "ylang-ylang", "tuberosa", "flor de azahar"],
-        fondo: ["Vainilla", "cashmere", "madera de guayaco", "ámbar"],
-      },
-      genero: "Mujer",
-      fragancia_referencia: "Valentino Donna Born in Roma (femenino)",
-      descripcion: "Equilibrio de dulzura y frescura con gran elegancia y duración.",
-      rating: 4.8,
-      sinDescuento: false,
-      sellado: true, // abierto
-      },
-    {
       id: 107,
       marca: "Maison Alhambra",
       nombre: "Glacier Bella 30ml EDP",
