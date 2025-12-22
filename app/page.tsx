@@ -126,7 +126,7 @@ const perfumes: Perfume[] = [
   },
 
   {
-    id: 85,
+    id: 121,
     marca: "Maison Alhambra",
     nombre: "Glacier Gold 30 ml",
     imagen: "https://louparfum.com/cdn/shop/files/output_49d3c94c-d65f-4dd0-be19-658ac8ead009.png?v=1753478616",
@@ -654,223 +654,300 @@ const ProductCard = memo(function ProductCard({
   setSelectedPerfume,
 }: ProductCardProps) {
   return (
-    <Card
-      key={perfume.id}
-      className="group hover:shadow-2xl transition-all duration-500 bg-white/80 backdrop-blur-sm border-0 shadow-lg hover:-translate-y-2 animate-fade-in"
-      style={{ animationDelay: `${index * 100}ms` }}
+    <div
+      className="group relative animate-fade-in"
+      style={{ animationDelay: `${index * 50}ms` }}
     >
-      <CardHeader className="p-0 relative overflow-hidden">
-        <div className="aspect-square relative bg-gradient-to-br from-purple-100 to-pink-100 group-hover:from-purple-200 group-hover:to-pink-200 transition-all duration-500">
-          <Image
-            src={perfume.imagen || "/placeholder.svg"}
-            alt={perfume.nombre}
-            fill
-            className="object-contain p-4 group-hover:scale-110 transition-transform duration-500"
-            loading="lazy"
-            placeholder="blur"
-            blurDataURL={BLUR_DATA_URL}
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1536px) 25vw, 300px"
-          />
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute top-2 right-2 bg-white/80 hover:bg-white hover:scale-110 transition-all duration-300"
-            onClick={() => toggleFavorite(perfume.id)}
-          >
-            <Heart
-              className={`h-4 w-4 transition-all duration-300 ${favorites.has(perfume.id)
-                ? "fill-red-500 text-red-500 scale-125"
-                : "text-gray-600 hover:text-red-500"
-                }`}
+      {/* Glow effect on hover */}
+      <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl opacity-0 group-hover:opacity-20 blur transition-all duration-500" />
+
+      <Card className="relative overflow-hidden rounded-2xl bg-white border-0 shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-1">
+        {/* Image Section */}
+        <CardHeader className="p-0 relative overflow-hidden">
+          <div className="aspect-square relative bg-gradient-to-br from-gray-50 via-purple-50/30 to-pink-50/30">
+            {/* Decorative circles */}
+            <div className="absolute top-4 right-4 w-24 h-24 bg-purple-200/20 rounded-full blur-2xl" />
+            <div className="absolute bottom-4 left-4 w-20 h-20 bg-pink-200/20 rounded-full blur-2xl" />
+
+            <Image
+              src={perfume.imagen || "/placeholder.svg"}
+              alt={perfume.nombre}
+              fill
+              className="object-contain p-6 group-hover:scale-110 transition-transform duration-700 ease-out"
+              loading="lazy"
+              placeholder="blur"
+              blurDataURL={BLUR_DATA_URL}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1536px) 25vw, 300px"
             />
-          </Button>
-          <Badge
-            variant="secondary"
-            className={`absolute top-2 left-2 transition-all duration-300 hover:scale-105 ${perfume.genero === "Mujer"
-              ? "bg-pink-100 text-pink-800 hover:bg-pink-200"
-              : perfume.genero === "Hombre"
-                ? "bg-blue-100 text-blue-800 hover:bg-blue-200"
-                : "bg-purple-100 text-purple-800 hover:bg-purple-200"
-              }`}
-          >
-            {perfume.genero}
-          </Badge>
-          {perfume.sellado === false && (
-            <Badge
-              variant="destructive"
-              className="absolute bottom-2 left-2 bg-orange-100 text-orange-800 hover:bg-orange-200 transition-all duration-300 hover:scale-105"
+
+            {/* Favorite Button */}
+            <button
+              className="absolute top-3 right-3 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm shadow-lg flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-200"
+              onClick={() => toggleFavorite(perfume.id)}
             >
-              Abierto (no sellado)
-            </Badge>
-          )}
-          {perfume.sellado === true && (
-            <Badge
-              variant="secondary"
-              className="absolute bottom-2 left-2 bg-violet-100 text-violet-800 hover:bg-violet-200 transition-all duration-300 hover:scale-105"
-            >
-              Sellado
-            </Badge>
-          )}
-        </div>
-      </CardHeader>
-      <CardContent className="p-4">
-        <div className="space-y-2">
-          <Badge variant="outline" className="text-xs hover:bg-purple-50 transition-colors duration-200">
-            {perfume.marca}
-          </Badge>
-          <h3 className="font-semibold text-sm line-clamp-2 min-h-[2.5rem] group-hover:text-[#5D2A71] transition-colors duration-300">
-            {perfume.nombre}
-          </h3>
-          {perfume.fragancia_referencia && (
-            <p className="text-xs text-gray-600 line-clamp-1">Inspirado en {perfume.fragancia_referencia}</p>
-          )}
-          <div className="flex items-center justify-between">
-            <span className="text-lg font-bold text-[#5D2A71] group-hover:scale-105 transition-transform duration-300">
-              {formatPrice(perfume.precio)}
-            </span>
-            <div className="flex items-center space-x-1">
-              <div className="flex">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star
-                    key={i}
-                    className={`h-3 w-3 ${i < Math.floor(perfume.rating) ? "fill-yellow-400 text-yellow-400" : "text-gray-300"}`}
-                  />
-                ))}
-              </div>
-              <span className="text-xs text-gray-600">{perfume.rating}</span>
+              <Heart
+                className={`h-5 w-5 transition-all duration-300 ${favorites.has(perfume.id)
+                  ? "fill-red-500 text-red-500"
+                  : "text-gray-400 hover:text-red-400"
+                  }`}
+              />
+            </button>
+
+            {/* Gender Badge */}
+            <div className="absolute top-3 left-3">
+              <span className={`px-3 py-1.5 rounded-full text-xs font-semibold backdrop-blur-sm shadow-sm ${perfume.genero === "Mujer"
+                ? "bg-pink-500/90 text-white"
+                : perfume.genero === "Hombre"
+                  ? "bg-blue-500/90 text-white"
+                  : "bg-purple-500/90 text-white"
+                }`}>
+                {perfume.genero}
+              </span>
+            </div>
+
+            {/* Sellado/Abierto Badge */}
+            <div className="absolute bottom-3 left-3">
+              {perfume.sellado === false && (
+                <span className="px-3 py-1.5 rounded-full text-xs font-medium bg-amber-500/90 text-white backdrop-blur-sm shadow-sm">
+                  Abierto
+                </span>
+              )}
+              {perfume.sellado === true && (
+                <span className="px-3 py-1.5 rounded-full text-xs font-medium bg-emerald-500/90 text-white backdrop-blur-sm shadow-sm flex items-center gap-1">
+                  <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  Sellado
+                </span>
+              )}
             </div>
           </div>
-          <div className="flex gap-2">
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="flex-1 hover:bg-purple-50 hover:border-[#5D2A71] transition-all duration-300"
-                  onClick={() => setSelectedPerfume(perfume)}
-                >
-                  Ver detalles
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-                {selectedPerfume && selectedPerfume.id === perfume.id && (
-                  <>
-                    <DialogHeader>
-                      <DialogTitle className="text-xl text-[#5D2A71]">{selectedPerfume.nombre}</DialogTitle>
-                    </DialogHeader>
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div className="aspect-square relative bg-gradient-to-br from-purple-100 to-pink-100 rounded-lg overflow-hidden">
-                        <Image
-                          src={selectedPerfume.imagen || "/placeholder.svg"}
-                          alt={selectedPerfume.nombre}
-                          fill
-                          className="object-contain p-4 hover:scale-110 transition-transform duration-500"
-                          placeholder="blur"
-                          blurDataURL={BLUR_DATA_URL}
-                          sizes="(max-width: 640px) 100vw, 50vw"
-                        />
-                      </div>
-                      <div className="space-y-4">
-                        <div className="flex flex-wrap gap-2">
-                          <Badge variant="outline">{selectedPerfume.marca}</Badge>
-                          <Badge
-                            variant="secondary"
-                            className={`${selectedPerfume.genero === "Mujer"
-                              ? "bg-pink-100 text-pink-800"
-                              : selectedPerfume.genero === "Hombre"
-                                ? "bg-blue-100 text-blue-800"
-                                : "bg-purple-100 text-purple-800"
-                              }`}
-                          >
-                            {selectedPerfume.genero}
-                          </Badge>
-                        </div>
-                        <div className="text-2xl font-bold text-[#5D2A71]">
-                          {formatPrice(selectedPerfume.precio)}
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <div className="flex">
-                            {Array.from({ length: 5 }).map((_, i) => (
-                              <Star
-                                key={i}
-                                className={`h-4 w-4 ${i < Math.floor(selectedPerfume.rating)
-                                  ? "fill-yellow-400 text-yellow-400"
-                                  : "text-gray-300"
-                                  }`}
-                              />
-                            ))}
+        </CardHeader>
+
+        {/* Content Section */}
+        <CardContent className="p-5">
+          <div className="space-y-3">
+            {/* Brand */}
+            <span className="inline-block px-2.5 py-1 rounded-md bg-gray-100 text-xs font-medium text-gray-600">
+              {perfume.marca}
+            </span>
+
+            {/* Name */}
+            <h3 className="font-bold text-gray-900 line-clamp-2 min-h-[3rem] text-base leading-snug group-hover:text-[#5D2A71] transition-colors duration-300">
+              {perfume.nombre}
+            </h3>
+
+            {/* Reference */}
+            <div className="min-h-[1.25rem]">
+              {perfume.fragancia_referencia ? (
+                <p className="text-xs text-gray-500 line-clamp-1 flex items-center gap-1">
+                  <span className="text-purple-400">✦</span>
+                  Inspirado en {perfume.fragancia_referencia}
+                </p>
+              ) : (
+                <p className="text-xs text-gray-400 italic">Fragancia original</p>
+              )}
+            </div>
+
+            {/* Price & Rating */}
+            <div className="flex items-end justify-between pt-2 border-t border-gray-100">
+              <div>
+                <p className="text-2xl font-bold bg-gradient-to-r from-[#5D2A71] to-purple-600 bg-clip-text text-transparent">
+                  {formatPrice(perfume.precio)}
+                </p>
+              </div>
+              <div className="flex items-center gap-1 px-2 py-1 rounded-lg bg-amber-50">
+                <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
+                <span className="text-sm font-semibold text-amber-700">{perfume.rating}</span>
+              </div>
+            </div>
+
+            {/* Buttons */}
+            <div className="flex gap-2 pt-2">
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="flex-1 rounded-xl border-2 border-gray-200 hover:border-[#5D2A71] hover:bg-purple-50 font-medium transition-all duration-300"
+                    onClick={() => setSelectedPerfume(perfume)}
+                  >
+                    Ver detalles
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto p-0 gap-0">
+                  {selectedPerfume && selectedPerfume.id === perfume.id && (
+                    <div className="relative">
+                      {/* Header con gradiente */}
+                      <div className="sticky top-0 z-10 bg-gradient-to-r from-[#5D2A71] to-purple-600 p-6 text-white">
+                        <div className="flex items-start justify-between">
+                          <div>
+                            <div className="flex items-center gap-2 mb-2">
+                              <span className="px-2 py-0.5 bg-white/20 rounded-full text-xs font-medium backdrop-blur-sm">
+                                {selectedPerfume.marca}
+                              </span>
+                              <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${selectedPerfume.genero === "Mujer"
+                                ? "bg-pink-400/30"
+                                : selectedPerfume.genero === "Hombre"
+                                  ? "bg-blue-400/30"
+                                  : "bg-purple-400/30"
+                                }`}>
+                                {selectedPerfume.genero}
+                              </span>
+                              {selectedPerfume.sellado ? (
+                                <span className="px-2 py-0.5 bg-emerald-400/30 rounded-full text-xs font-medium flex items-center gap-1">
+                                  <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                  </svg>
+                                  Sellado
+                                </span>
+                              ) : (
+                                <span className="px-2 py-0.5 bg-amber-400/30 rounded-full text-xs font-medium">
+                                  Abierto
+                                </span>
+                              )}
+                            </div>
+                            <h2 className="text-2xl font-bold">{selectedPerfume.nombre}</h2>
                           </div>
-                          <span className="text-sm text-gray-600">{selectedPerfume.rating} estrellas</span>
                         </div>
-                        {selectedPerfume.fragancia_referencia && (
-                          <p className="text-sm text-gray-600 bg-purple-50 p-3 rounded-lg">
-                            <strong>Inspirado en:</strong> {selectedPerfume.fragancia_referencia}
-                          </p>
-                        )}
-                        <p className="text-sm text-gray-700 leading-relaxed">{selectedPerfume.descripcion}</p>
-                        <div className="space-y-3 bg-gradient-to-r from-purple-50 to-pink-50 p-4 rounded-lg">
-                          <h4 className="font-semibold flex items-center gap-2">
-                            <Sparkles className="h-4 w-4 text-[#5D2A71]" />
-                            Notas olfativas:
-                          </h4>
-                          {selectedPerfume.notas.salida.length > 0 && (
-                            <div>
-                              <span className="text-sm font-medium text-[#5D2A71]">Salida: </span>
-                              <span className="text-sm">{selectedPerfume.notas.salida.join(", ")}</span>
-                            </div>
-                          )}
-                          {selectedPerfume.notas.corazon.length > 0 && (
-                            <div>
-                              <span className="text-sm font-medium text-[#5D2A71]">Corazón: </span>
-                              <span className="text-sm">{selectedPerfume.notas.corazon.join(", ")}</span>
-                            </div>
-                          )}
-                          {selectedPerfume.notas.fondo.length > 0 && (
-                            <div>
-                              <span className="text-sm font-medium text-[#5D2A71]">Fondo: </span>
-                              <span className="text-sm">{selectedPerfume.notas.fondo.join(", ")}</span>
-                            </div>
-                          )}
+                      </div>
+
+                      {/* Contenido principal */}
+                      <div className="grid md:grid-cols-2 gap-0">
+                        {/* Imagen */}
+                        <div className="relative bg-gradient-to-br from-gray-50 via-purple-50/30 to-pink-50/30 p-8">
+                          <div className="absolute top-4 right-4 w-32 h-32 bg-purple-200/30 rounded-full blur-3xl" />
+                          <div className="absolute bottom-4 left-4 w-24 h-24 bg-pink-200/30 rounded-full blur-3xl" />
+                          <div className="aspect-square relative">
+                            <Image
+                              src={selectedPerfume.imagen || "/placeholder.svg"}
+                              alt={selectedPerfume.nombre}
+                              fill
+                              className="object-contain hover:scale-105 transition-transform duration-500"
+                              placeholder="blur"
+                              blurDataURL={BLUR_DATA_URL}
+                              sizes="(max-width: 640px) 100vw, 50vw"
+                            />
+                          </div>
                         </div>
-                        <Button
-                          className="w-full bg-[#5D2A71] hover:bg-[#4A2259] hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
-                          onClick={() => addToCart(selectedPerfume)}
-                          disabled={addingToCart.has(selectedPerfume.id)}
-                        >
-                          {addingToCart.has(selectedPerfume.id) ? (
-                            <>
-                              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                              Agregando...
-                            </>
-                          ) : (
-                            <>
-                              <ShoppingCart className="h-4 w-4 mr-2" />
-                              Agregar al carrito
-                            </>
+
+                        {/* Info */}
+                        <div className="p-6 space-y-5">
+                          {/* Precio y rating */}
+                          <div className="flex items-center justify-between pb-4 border-b border-gray-100">
+                            <div>
+                              <p className="text-sm text-gray-500 mb-1">Precio</p>
+                              <p className="text-3xl font-bold bg-gradient-to-r from-[#5D2A71] to-purple-600 bg-clip-text text-transparent">
+                                {formatPrice(selectedPerfume.precio)}
+                              </p>
+                            </div>
+                            <div className="text-right">
+                              <p className="text-sm text-gray-500 mb-1">Valoración</p>
+                              <div className="flex items-center gap-2">
+                                <div className="flex">
+                                  {Array.from({ length: 5 }).map((_, i) => (
+                                    <Star
+                                      key={i}
+                                      className={`h-5 w-5 ${i < Math.floor(selectedPerfume.rating)
+                                        ? "fill-amber-400 text-amber-400"
+                                        : "text-gray-200"
+                                        }`}
+                                    />
+                                  ))}
+                                </div>
+                                <span className="text-lg font-bold text-amber-600">{selectedPerfume.rating}</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Inspirado en */}
+                          {selectedPerfume.fragancia_referencia && (
+                            <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl border border-purple-100">
+                              <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center">
+                                <Sparkles className="h-5 w-5 text-[#5D2A71]" />
+                              </div>
+                              <div>
+                                <p className="text-xs text-gray-500">Inspirado en</p>
+                                <p className="font-semibold text-[#5D2A71]">{selectedPerfume.fragancia_referencia}</p>
+                              </div>
+                            </div>
                           )}
-                        </Button>
+
+                          {/* Descripción */}
+                          <div>
+                            <h4 className="text-sm font-semibold text-gray-900 mb-2">Descripción</h4>
+                            <p className="text-sm text-gray-600 leading-relaxed">{selectedPerfume.descripcion}</p>
+                          </div>
+
+                          {/* Notas olfativas */}
+                          <div className="bg-gray-50 rounded-xl p-4 space-y-3">
+                            <h4 className="font-semibold text-gray-900 flex items-center gap-2">
+                              <span className="text-lg">🌸</span>
+                              Pirámide olfativa
+                            </h4>
+                            <div className="space-y-2">
+                              {selectedPerfume.notas.salida.length > 0 && (
+                                <div className="flex items-start gap-3">
+                                  <span className="px-2 py-1 bg-yellow-100 text-yellow-700 text-xs font-medium rounded-lg whitespace-nowrap">Salida</span>
+                                  <p className="text-sm text-gray-600">{selectedPerfume.notas.salida.join(", ")}</p>
+                                </div>
+                              )}
+                              {selectedPerfume.notas.corazon.length > 0 && (
+                                <div className="flex items-start gap-3">
+                                  <span className="px-2 py-1 bg-pink-100 text-pink-700 text-xs font-medium rounded-lg whitespace-nowrap">Corazón</span>
+                                  <p className="text-sm text-gray-600">{selectedPerfume.notas.corazon.join(", ")}</p>
+                                </div>
+                              )}
+                              {selectedPerfume.notas.fondo.length > 0 && (
+                                <div className="flex items-start gap-3">
+                                  <span className="px-2 py-1 bg-purple-100 text-purple-700 text-xs font-medium rounded-lg whitespace-nowrap">Fondo</span>
+                                  <p className="text-sm text-gray-600">{selectedPerfume.notas.fondo.join(", ")}</p>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+
+                          {/* Botón agregar */}
+                          <Button
+                            className="w-full h-12 rounded-xl bg-gradient-to-r from-[#5D2A71] to-purple-600 hover:from-[#4A2259] hover:to-purple-700 text-white font-semibold shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
+                            onClick={() => addToCart(selectedPerfume)}
+                            disabled={addingToCart.has(selectedPerfume.id)}
+                          >
+                            {addingToCart.has(selectedPerfume.id) ? (
+                              <>
+                                <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent mr-2"></div>
+                                Agregando...
+                              </>
+                            ) : (
+                              <>
+                                <ShoppingCart className="h-5 w-5 mr-2" />
+                                Agregar al carrito
+                              </>
+                            )}
+                          </Button>
+                        </div>
                       </div>
                     </div>
-                  </>
+                  )}
+                </DialogContent>
+              </Dialog>
+              <Button
+                size="sm"
+                className="rounded-xl bg-gradient-to-r from-[#5D2A71] to-purple-600 hover:from-[#4A2259] hover:to-purple-700 shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 hover:scale-105 active:scale-95 transition-all duration-300 px-4"
+                onClick={() => addToCart(perfume)}
+                disabled={addingToCart.has(perfume.id)}
+              >
+                {addingToCart.has(perfume.id) ? (
+                  <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
+                ) : (
+                  <ShoppingCart className="h-4 w-4" />
                 )}
-              </DialogContent>
-            </Dialog>
-            <Button
-              size="sm"
-              className="bg-[#5D2A71] hover:bg-[#4A2259] hover:scale-110 transition-all duration-300 shadow-md hover:shadow-lg"
-              onClick={() => addToCart(perfume)}
-              disabled={addingToCart.has(perfume.id)}
-            >
-              {addingToCart.has(perfume.id) ? (
-                <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-white"></div>
-              ) : (
-                <ShoppingCart className="h-3 w-3" />
-              )}
-            </Button>
+              </Button>
+            </div>
           </div>
-        </div>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+    </div>
   )
 })
 
@@ -911,6 +988,7 @@ export default function EssenzaPerfumes() {
   const [discountCode, setDiscountCode] = useState<string>("");
   const [discountPercent, setDiscountPercent] = useState<number>(0);
   const [discountApplied, setDiscountApplied] = useState<boolean>(false);
+  const [sortBy, setSortBy] = useState<string>("marca");
   const [discountError, setDiscountError] = useState<string>("");
   const [itemsToShow, setItemsToShow] = useState<number>(16)
   const [giftWrapping, setGiftWrapping] = useState<boolean>(false)
@@ -951,7 +1029,7 @@ export default function EssenzaPerfumes() {
   const genders = useMemo(() => ["Todos", "Mujer", "Hombre", "Unisex"], [])
 
   const filteredPerfumes = useMemo(() => {
-    return perfumes.filter((perfume) => {
+    const filtered = perfumes.filter((perfume) => {
       const matchesSearch =
         perfume.nombre.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
         perfume.marca.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
@@ -961,7 +1039,25 @@ export default function EssenzaPerfumes() {
 
       return matchesSearch && matchesGender && matchesBrand
     })
-  }, [debouncedSearchTerm, selectedGender, selectedBrand])
+
+    // Ordenar según el criterio seleccionado
+    return [...filtered].sort((a, b) => {
+      switch (sortBy) {
+        case "marca":
+          return a.marca.localeCompare(b.marca)
+        case "precio-asc":
+          return a.precio - b.precio
+        case "precio-desc":
+          return b.precio - a.precio
+        case "rating":
+          return b.rating - a.rating
+        case "nombre":
+          return a.nombre.localeCompare(b.nombre)
+        default:
+          return 0
+      }
+    })
+  }, [debouncedSearchTerm, selectedGender, selectedBrand, sortBy])
 
   const formatPrice = useCallback((price: number) => {
     return new Intl.NumberFormat("es-AR", {
@@ -1543,6 +1639,18 @@ export default function EssenzaPerfumes() {
                       {brand}
                     </SelectItem>
                   ))}
+                </SelectContent>
+              </Select>
+              <Select value={sortBy} onValueChange={setSortBy}>
+                <SelectTrigger className="w-44 hover:border-[#5D2A71] transition-colors duration-200">
+                  <SelectValue placeholder="Ordenar por" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="marca">Ordenar: Marca</SelectItem>
+                  <SelectItem value="nombre">Ordenar: Nombre</SelectItem>
+                  <SelectItem value="precio-asc">Precio: Menor a mayor</SelectItem>
+                  <SelectItem value="precio-desc">Precio: Mayor a menor</SelectItem>
+                  <SelectItem value="rating">Mejor valorados</SelectItem>
                 </SelectContent>
               </Select>
               {(searchTerm || selectedGender !== "Todos" || selectedBrand !== "Todas") && (
