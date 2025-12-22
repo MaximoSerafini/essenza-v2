@@ -69,10 +69,10 @@ export default function CheckoutPage() {
     setLoading(true)
     try {
       const payload: any = {
-        items: cart.map((it) => ({ 
-          title: it.nombre, 
-          quantity: it.quantity ?? 1, 
-          unit_price: it.precio 
+        items: cart.map((it) => ({
+          title: it.nombre,
+          quantity: it.quantity ?? 1,
+          unit_price: it.precio
         })),
         external_reference: undefined,
         payer: {
@@ -112,6 +112,32 @@ export default function CheckoutPage() {
       }
 
       if (data.init_point) {
+        // ENVIAR NOTIFICACIÓN AL VENDEDOR POR WHATSAPP
+        // Guardamos los datos del pedido en localStorage para recuperarlos después
+        const orderData = {
+          date: new Date().toISOString(),
+          customer: { name, surname, email, phone, contactNumber },
+          items: cart,
+          subtotal,
+          shippingOption,
+          address: shippingOption === 'shipping' ? { streetName, streetNumber, zipCode, city, state } : null,
+          paymentMethod: 'mercadopago',
+          preferenceId: data.preference_id
+        }
+        localStorage.setItem('essenza-pending-order', JSON.stringify(orderData))
+
+        // Enviar notificación SMS-style al vendedor (abrir en ventana nueva para no interrumpir)
+        const cartSummary = cart.map(it => `• ${it.nombre} x${it.quantity ?? 1}: $${(it.precio * (it.quantity ?? 1)).toLocaleString()}`).join('%0A')
+        const vendorPhone = '5493794222701'
+        const vendorMessage = `🛒 *NUEVO PEDIDO MERCADOPAGO*%0A%0A📅 ${new Date().toLocaleString('es-AR')}%0A%0A👤 *Cliente:*%0A${name} ${surname}%0A📧 ${email}%0A📱 ${phone}${contactNumber ? ` / ${contactNumber}` : ''}%0A%0A📦 *Productos:*%0A${cartSummary}%0A%0A💰 *Total:* $${subtotal.toLocaleString()}%0A%0A🚚 *Entrega:* ${shippingOption === 'shipping' ? `Envío a: ${streetName} ${streetNumber}, ${zipCode} ${city}, ${state}` : 'Retiro en local'}%0A%0A⏳ Pago pendiente en MercadoPago`
+
+        // Abrir WhatsApp en nueva pestaña para notificar (no bloquea al usuario)
+        const notifyUrl = `https://wa.me/${vendorPhone}?text=${vendorMessage}`
+        window.open(notifyUrl, '_blank', 'noopener,noreferrer')
+
+        // Pequeña espera para que se abra la notificación
+        await new Promise(resolve => setTimeout(resolve, 500))
+
         // redirigir al checkout de MercadoPago
         window.location.assign(data.init_point)
       } else {
@@ -174,7 +200,7 @@ export default function CheckoutPage() {
                 {/* Datos del comprador */}
                 <div className="bg-white rounded-2xl shadow-lg p-8">
                   <h2 className="text-2xl font-bold text-[#5D2A71] mb-6">Datos personales</h2>
-                  
+
                   <div className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div>
@@ -238,7 +264,7 @@ export default function CheckoutPage() {
                 {/* Envío o retiro */}
                 <div className="bg-white rounded-2xl shadow-lg p-8">
                   <h2 className="text-2xl font-bold text-[#5D2A71] mb-6">Modalidad de entrega</h2>
-                  
+
                   <div className="space-y-4">
                     <label className="flex items-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-[#5D2A71] hover:bg-purple-50 transition-all" onClick={() => setShippingOption('shipping')}>
                       <input
@@ -273,7 +299,7 @@ export default function CheckoutPage() {
                   {shippingOption === 'shipping' && (
                     <div className="mt-6 space-y-4 pt-6 border-t-2 border-gray-200">
                       <h3 className="font-semibold text-gray-900 text-lg">Dirección de envío</h3>
-                      
+
                       <div className="grid grid-cols-2 gap-4">
                         <div className="col-span-2">
                           <label className="block text-sm font-semibold text-gray-700 mb-2">Calle</label>
@@ -329,7 +355,7 @@ export default function CheckoutPage() {
                 {/* Método de pago */}
                 <div className="bg-white rounded-2xl shadow-lg p-8">
                   <h2 className="text-2xl font-bold text-[#5D2A71] mb-6">Método de pago</h2>
-                  
+
                   <div className="space-y-4">
                     <label className="flex items-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-[#5D2A71] hover:bg-purple-50 transition-all" onClick={() => setPaymentMethod('mercadopago')}>
                       <input
@@ -386,7 +412,7 @@ export default function CheckoutPage() {
             <div className="lg:col-span-1">
               <div className="bg-white rounded-2xl shadow-lg p-8 sticky top-24">
                 <h3 className="text-2xl font-bold text-[#5D2A71] mb-6">Resumen</h3>
-                
+
                 <div className="space-y-4 mb-6 max-h-72 overflow-y-auto">
                   {cart.map((it) => (
                     <div key={it.id} className="flex justify-between items-start pb-4 border-b border-gray-200">
@@ -407,7 +433,7 @@ export default function CheckoutPage() {
                     <span>Subtotal</span>
                     <span className="font-semibold">${subtotal.toLocaleString()}</span>
                   </div>
-                  
+
                   <div className="flex justify-between items-center py-3 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg px-4">
                     <span className="font-bold text-gray-900">Total</span>
                     <span className="text-2xl font-bold text-[#5D2A71]">${subtotal.toLocaleString()}</span>
