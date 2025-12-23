@@ -345,24 +345,7 @@ const perfumes: Perfume[] = [
     sinDescuento: false,
     sellado: true, // abierto
   },
-  {
-    id: 43,
-    marca: "Victorioso",
-    nombre: "Fearless 100ml EDP",
-    imagen: addCacheBusting("https://i.imgur.com/EnagqZ9.png"),
-    precio: 36400,
-    notas: {
-      salida: ["piña", "manzana"],
-      corazon: ["lavanda"],
-      fondo: ["vainilla", "ámbar"],
-    },
-    genero: "Hombre",
-    fragancia_referencia: "Liquid Brun de French Avenue",
-    descripcion: "Cotidiano, moderno y audaz. Inspirado en Liquid Brun de French Avenue.",
-    rating: 4.7,
-    sinDescuento: false,
-    sellado: false, // abierto
-  },
+  
   {
     id: 31,
     marca: "Maison Alhambra",
