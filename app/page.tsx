@@ -253,7 +253,7 @@ const perfumes: Perfume[] = [
     descripcion: "Fragancia de la familia olfativa Oriental Vainilla para Hombres y Mujeres. Nueva fragancia lanzada en 2024, combina la frescura cítrica con la dulzura del praliné y cacao, creando una experiencia olfativa única y moderna.",
     rating: 4.9,
     sinDescuento: false,
-    sellado: true,
+    sellado: false,
   },
   {
     id: 110,
