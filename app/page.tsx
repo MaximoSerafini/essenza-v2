@@ -495,42 +495,8 @@ const perfumes: Perfume[] = [
     sinDescuento: false,
     sellado: true, // abierto
   },
-  {
-    id: 148,
-    marca: "Maison Alhambra",
-    nombre: "Bad Homme 30 ml",
-    imagen: "https://i.imgur.com/hFnPDUI.png",
-    precio: 15000,
-    notas: {
-      salida: ["Pimienta blanca", "Pimienta negra", "Bergamota"],
-      corazon: ["Salvia", "Cedro"],
-      fondo: ["Haba tonka", "Cacao", "Amberwood"],
-    },
-    genero: "Masculino",
-    fragancia_referencia: "Bad Boy de Carolina Herrera",
-    descripcion: "Una fragancia audaz y especiada que combina notas luminosas de bergamota con la oscuridad adictiva del cacao y la haba tonka. Para el hombre moderno y rebelde.",
-    rating: 4.7,
-    sinDescuento: false,
-    sellado: true,
-  },
-  {
-    id: 147,
-    marca: "Maison Alhambra",
-    nombre: "Glacier Pour Homme 30 ml",
-    imagen: "https://epicimportados.com/1074-home_default/perfume-miniatura-maison-alhambra-glacier-pour-homme-edp-30ml.jpg",
-    precio: 15000,
-    notas: {
-      salida: ["Lavanda", "menta", "cardamomo", "bergamota"],
-      corazon: ["Canela", "flor de azahar del naranjo", "alcaravea"],
-      fondo: ["Vainilla", "haba tonka", "sándalo", "ámbar"],
-    },
-    genero: "Masculino",
-    fragancia_referencia: "Le Male de Jean Paul Gaultier",
-    descripcion: "Un clásico Fougère oriental reinventado. Combina la frescura audaz de la menta y la lavanda con la calidez sensual de la vainilla y la canela, creando una fragancia icónica y reconocible.",
-    rating: 4.8,
-    sinDescuento: false,
-    sellado: true,
-  },
+
+
   {
     id: 149,
     marca: "Maison Alhambra",
