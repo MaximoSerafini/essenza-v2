@@ -420,24 +420,7 @@ const perfumes: Perfume[] = [
     sinDescuento: false,
     sellado: false, // abierto
   },
-  {
-    id: 60,
-    marca: "Maison Alhambra",
-    nombre: "Philos Shine 100ml EDP",
-    imagen: addCacheBusting("https://i.imgur.com/tsvgJGy.png"),
-    precio: 50000,
-    notas: {
-      salida: ["Hojas de higuera", "bergamota"],
-      corazon: ["Notas florales", "violeta", "almizcle"],
-      fondo: ["Acordes amaderados", "ámbar"],
-    },
-    genero: "Unisex",
-    fragancia_referencia: "Philosykos – Diptyque",
-    descripcion: "Inspirado en la elegancia natural de Philosykos – Diptyque, este perfume te envuelve en un aroma verde, cremoso y atemporal. Ideal para quienes buscan una fragancia limpia, elegante y relajada, con vibra mediterránea. Perfecto para uso diario, días de sol o cuando querés un perfume que te haga sentir sofisticada sin esfuerzo. Philos Shine es como llevar un paseo entre higueras en la piel.",
-    rating: 4.8,
-    sinDescuento: false,
-    sellado: false, // abierto
-  },
+  
   {
     id: 63,
     marca: "Maison Alhambra",
