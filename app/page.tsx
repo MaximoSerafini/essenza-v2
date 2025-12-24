@@ -549,24 +549,6 @@ const perfumes: Perfume[] = [
     sinDescuento: false,
     sellado: true,
   },
-  {
-    id: 146,
-    marca: "Maison Alhambra",
-    nombre: "Jorge Di Profumo Deep Blue 30 ml",
-    imagen: "https://i.imgur.com/LcjGWAC.png",
-    precio: 15000,
-    notas: {
-      salida: ["Notas marinas", "Aquozone", "Bergamota", "Mandarina verde"],
-      corazon: ["Romero", "Ciprés", "Lavanda", "Lentisco"],
-      fondo: ["Notas minerales", "Almizcle", "Pachulí", "Ámbar"],
-    },
-    genero: "Masculino",
-    fragancia_referencia: "Acqua di Giò Profondo de Giorgio Armani",
-    descripcion: "Una intensa interpretación marina del clásico. Combina notas acuáticas profundas con un corazón aromático de ciprés y lavanda, sobre un fondo mineral y amaderado.",
-    rating: 4.7,
-    sinDescuento: false,
-    sellado: true,
-  },
 
 
   {
