@@ -460,24 +460,7 @@ const perfumes: Perfume[] = [
     sellado: true, // abierto
   },
 
-  {
-    id: 77,
-    marca: "Maison Alhambra",
-    nombre: "La Voie Rosa 100ml EDP",
-    imagen: addCacheBusting("https://i.imgur.com/eNFvc9h.png"),
-    precio: 40000,
-    notas: {
-      salida: ["Rosa", "bergamota", "pera"],
-      corazon: ["Jazmín", "peonía", "lirio"],
-      fondo: ["Almizcle", "sándalo", "cedro"],
-    },
-    genero: "Mujer",
-    fragancia_referencia: "My Way de Giorgio Armani",
-    descripcion: "Una fragancia floral elegante centrada en la rosa, sofisticada y femenina.",
-    rating: 4.7,
-    sinDescuento: false,
-    sellado: true, // abierto
-  },
+
 
 
   {
