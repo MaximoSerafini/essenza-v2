@@ -255,42 +255,7 @@ const perfumes: Perfume[] = [
     sinDescuento: false,
     sellado: false,
   },
-  {
-    id: 110,
-    marca: "Maison Alhambra",
-    nombre: "Delilah Pour Femme 100ml EDP",
-    imagen: addCacheBusting("https://i.imgur.com/R8XeiYG.png"),
-    precio: 40000,
-    notas: {
-      salida: ["Lichi", "Ruibarbo", "Bergamota"],
-      corazon: ["Rosa turca", "Peonía", "Lirio de los valles"],
-      fondo: ["Vainilla", "Almizcle blanco", "Cachemira"]
-    },
-    genero: "Mujer",
-    fragancia_referencia: "Delina de Parfums de Marly",
-    descripcion: "Fragancia femenina elegante y versátil en concentración EDP.",
-    rating: 4.7,
-    sinDescuento: false,
-    sellado: true,
-  },
-  {
-    id: 111,
-    marca: "Maison Alhambra",
-    nombre: "Reyna Pour Femme 100ml EDP",
-    imagen: addCacheBusting("https://i.imgur.com/RTOILfy.png"),
-    precio: 32000,
-    notas: {
-      salida: [],
-      corazon: [],
-      fondo: [],
-    },
-    genero: "Mujer",
-    fragancia_referencia: "",
-    descripcion: "Una EDP femenina de 100ml con carácter moderno y delicado.",
-    rating: 4.6,
-    sinDescuento: false,
-    sellado: true,
-  },
+
   {
     id: 17,
     marca: "Perfumeros",
@@ -346,25 +311,6 @@ const perfumes: Perfume[] = [
     sellado: true, // abierto
   },
   
-  {
-    id: 31,
-    marca: "Maison Alhambra",
-    nombre: "Céleste 100ml EDP",
-    imagen: addCacheBusting("https://i.imgur.com/tte0WD0.png"),
-    precio: 36400,
-    notas: {
-      salida: ["Bergamota", "limón"],
-      corazon: ["Jazmín", "lirio de los valles", "rosa"],
-      fondo: ["Ylang-ylang", "sándalo", "almizcle", "musgo"],
-    },
-    genero: "Mujer",
-    fragancia_referencia: "Divine de JPG",
-    descripcion: "Fresca y luminosa, ideal para el día, especialmente en primavera y verano. Perfecta para usar en la oficina, reuniones o salidas al aire libre. Su aroma elegante y limpio la hace muy versátil y fácil de llevar a diario.",
-    rating: 4.7,
-    sinDescuento: false,
-    sellado: true, // abierto
-  },
-
 
   {
     id: 55,
