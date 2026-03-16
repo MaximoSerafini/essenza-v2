@@ -74,23 +74,23 @@ export function TikTokSection() {
     <section className="py-12 px-4 bg-gradient-to-br from-purple-50/80 to-pink-50/80 backdrop-blur-sm overflow-hidden">
       <div className="container mx-auto">
         {/* Header */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 mb-3">
-            <svg viewBox="0 0 24 24" className="w-8 h-8" fill="currentColor">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-3 mb-4 px-6 py-2 bg-white/50 rounded-full border border-purple-100 shadow-sm">
+            <svg viewBox="0 0 24 24" className="w-6 h-6 text-[#5D2A71]" fill="currentColor">
               <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
             </svg>
-            <h2 className="text-3xl font-bold bg-gradient-to-r from-[#5D2A71] to-pink-600 bg-clip-text text-transparent">
-              Reseñas en TikTok
+            <h2 className="text-3xl md:text-4xl font-black bg-gradient-to-r from-purple-900 via-purple-600 to-pink-600 bg-clip-text text-transparent tracking-tight">
+              TikTok Reviews
             </h2>
           </div>
-          <p className="text-gray-600 max-w-2xl mx-auto mb-2">
-            Mira las reseñas y comparativas de nuestros perfumes favoritos
+          <p className="text-gray-600 max-w-2xl mx-auto mb-4 font-light text-lg">
+            Descubrí reseñas exclusivas y comparativas de nuestras <span className="font-bold text-purple-900">mejores fragancias</span>
           </p>
           <a
             href="https://www.tiktok.com/@agustinaa_nieto"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-[#5D2A71] hover:text-pink-600 transition-colors duration-300 text-sm font-medium"
+            className="inline-flex items-center gap-2 text-purple-900/60 hover:text-purple-600 transition-all duration-300 text-sm font-semibold tracking-widest uppercase bg-white/40 px-4 py-2 rounded-xl border border-transparent hover:border-purple-200"
           >
             @agustinaa_nieto
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

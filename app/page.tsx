@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { toast } from "@/hooks/use-toast"
@@ -16,30 +16,10 @@ import { Toaster } from "@/components/ui/toaster"
 import { TikTokSection } from "@/components/TikTokSection"
 // para el commit
 
+import { Perfume, perfumes as basePerfumes } from "@/lib/data"
+
 // Costo adicional para envoltorio de regalo
 const COSTO_ENVOLTORIO_REGALO = 0;
-
-// Definición de la interfaz Perfume para tipado estricto
-interface Perfume {
-  id: number;
-  marca: string;
-  nombre: string;
-  imagen: string;
-  precio: number;
-  notas: {
-    salida: string[];
-    corazon: string[];
-    fondo: string[];
-  };
-  genero: string;
-  fragancia_referencia: string;
-  descripcion: string;
-  rating: number;
-  sinDescuento?: boolean;
-  quantity?: number; // solo para el carrito
-  sellado?: boolean; // true = sellado, false = abierto
-  esRegalo?: boolean; // para envoltorio de regalo
-}
 
 // Función para agregar cache busting a las imágenes en desarrollo
 const addCacheBusting = (url: string) => {
@@ -49,408 +29,11 @@ const addCacheBusting = (url: string) => {
   return url
 }
 
-const perfumes: Perfume[] = [
-  // Nuevos perfumes agregados
-  {
-    id: 84,
-    marca: "Tubbees",
-    nombre: "Cookies & Cream 50ml EDP",
-    imagen: "https://i.imgur.com/BvmtiJ5.png",
-    precio: 27000,
-    notas: {
-      salida: ["Mantequilla", "azúcar"],
-      corazon: ["Leche", "chocolate con leche"],
-      fondo: ["Vainilla", "almizcle blanco"],
-    },
-    genero: "Unisex",
-    fragancia_referencia: "",
-    descripcion: "Gourmand cremoso y adictivo, huele a postre recién hecho y momentos felices.",
-    rating: 4.8,
-    sinDescuento: false,
-    sellado: false, // abierto
-  },
-  {
-    id: 85,
-    marca: "Tubbees",
-    nombre: "Sweet Caramel 50ml EDP",
-    imagen: "https://i.imgur.com/vwhDMd8.png",
-    precio: 27000,
-    notas: {
-      salida: [],
-      corazon: ["Vainilla", "leche"],
-      fondo: ["Vainilla", "haba tonka"],
-    },
-    genero: "Unisex",
-    fragancia_referencia: "",
-    descripcion: "Cremosa y envolvente: caramelo derretido con vainilla cálida y leche suave.",
-    rating: 4.7,
-    sinDescuento: false,
-    sellado: false, // abierto
-  },
 
-  {
-    id: 87,
-    marca: "Tubbees",
-    nombre: "Bubble Gum 50ml EDP",
-    imagen: "https://i.imgur.com/A1Ty93q.png",
-    precio: 27000,
-    notas: {
-      salida: ["Frutas", "clavo de olor"],
-      corazon: ["Goma de mascar", "aceite de naranja"],
-      fondo: ["Vainilla", "pachulí", "cachemira"],
-    },
-    genero: "Unisex",
-    fragancia_referencia: "",
-    descripcion: "Chicloso, juguetón y adictivo con frescura cítrica y fondo avainillado.",
-    rating: 4.6,
-    sinDescuento: false,
-    sellado: false, // abierto
-  },
-  {
-    id: 120,
-    marca: "Maison Alhambra",
-    nombre: "Panther Pour Homme 30 ml",
-    imagen: "https://i.imgur.com/5soLGLi.png",
-    precio: 15000,
-    notas: {
-      salida: ["Limón de Amalfi", "Entusiasmo de limón", "lavanda"],
-      corazon: ["Lavanda", "manzana", "humo", "notas terrosas", "pachulí"],
-      fondo: ["Vainilla", "lavanda", "vetiver"],
-    },
-    genero: "Masculino",
-    fragancia_referencia: "Phantom de Paco Rabanne",
-    descripcion: "Una fragancia masculina de la familia olfativa Aromática. Ideal para hombres que buscan una esencia fresca y sofisticada, con un equilibrio entre notas cítricas, florales y amaderadas.",
-    rating: 4.9,
-    sinDescuento: false,
-    sellado: true,
-  },
-
-  {
-    id: 121,
-    marca: "Maison Alhambra",
-    nombre: "Glacier Gold 30 ml",
-    imagen: "https://louparfum.com/cdn/shop/files/output_49d3c94c-d65f-4dd0-be19-658ac8ead009.png?v=1753478616",
-    precio: 15000,
-    notas: {
-      salida: ["Bergamota", "limón", "pimienta rosa"],
-      corazon: ["Lavanda", "salvia", "notas verdes"],
-      fondo: ["Vetiver", "ámbar", "almizcle"],
-    },
-    genero: "Masculino",
-    fragancia_referencia: "Jean Paul Gaultier Le Male Elixir",
-    descripcion: "Fragancia masculina sofisticada, fresca y vibrante, inspirada en el espíritu moderno y aventurero del hombre actual. Diseñada para hombres seguros de sí mismos que buscan una fragancia versátil para destacar en cualquier ocasión. Compacto y elegante, su formato de 30 ml es ideal para llevar a todos lados.",
-    rating: 4.8, // No se proporcionó rating
-    sinDescuento: false,
-    sellado: true, // Asumiendo que es nuevo/sellado
-  },
-  {
-    id: 89,
-    marca: "Maison Alhambra",
-    nombre: "Dark Door Sport 100ml EDP",
-    imagen: "https://i.imgur.com/ZGDNzNq.png",
-    precio: 37000,
-    notas: {
-      salida: ["Pomelo", "limón", "resina de elemí", "bergamota"],
-      corazon: ["Jengibre", "cedro", "vetiver"],
-      fondo: ["Lavanda", "romero", "sándalo"],
-    },
-    genero: "Hombre",
-    fragancia_referencia: "Dior Homme Sport",
-    descripcion: "Fresca y energética; perfecta para el día, entrenar o climas cálidos.",
-    rating: 4.6,
-    sinDescuento: false,
-    sellado: true, // abierto
-  },
-
-  {
-    id: 91,
-    marca: "Maison Alhambra",
-    nombre: "Léonie Intense 30ml EDP",
-    imagen: "https://i.imgur.com/C4ftYm2.png",
-    precio: 15000,
-    notas: {
-      salida: ["Lavanda", "naranja tangerina", "grosellas negras", "petit grain"],
-      corazon: ["Lavanda", "jazmín", "flor de azahar"],
-      fondo: ["Vainilla de Madagascar", "ámbar", "cedro", "almizcle"],
-    },
-    genero: "Mujer",
-    fragancia_referencia: "Libre Intense – YSL",
-    descripcion: "Potente, elegante y sensual, con frescura floral y dulzura cremosa.",
-    rating: 4.8,
-    sinDescuento: false,
-    sellado: true, // abierto
-  },
-
-  {
-    id: 95,
-    marca: "Maison Alhambra",
-    nombre: "Glacier Pour Homme 30ml EDP",
-    imagen: "https://i.imgur.com/qZAhYu5.png",
-    precio: 15000,
-    notas: {
-      salida: ["Lavanda", "menta", "cardamomo", "bergamota"],
-      corazon: ["Canela", "flor de azahar del naranjo", "alcaravea"],
-      fondo: ["Vainilla", "haba tonka", "sándalo", "ámbar"],
-    },
-    genero: "Hombre",
-    fragancia_referencia: "Le Male – Jean Paul Gaultier",
-    descripcion: "Frescura aromática con fondo dulce envolvente; magnético y moderno.",
-    rating: 4.8,
-    sinDescuento: false,
-    sellado: true, // abierto
-  },
-
-
-  {
-    id: 107,
-    marca: "Maison Alhambra",
-    nombre: "Glacier Bella 30ml EDP",
-    imagen: "https://i.imgur.com/iNAD9AI.png",
-    precio: 15000,
-    notas: {
-      salida: ["Pera", "Bergamota"],
-      corazon: ["Notas florales", "Cuero"],
-      fondo: ["Vainilla", "Vetiver", "Ámbar", "Almizcle"]
-    },
-    genero: "Mujer",
-    fragancia_referencia: "La Belle de Jean Paul Gaultier",
-    descripcion: "Aroma femenino moderno con toque fresco y envolvente.",
-    rating: 4.6,
-    sinDescuento: false,
-    sellado: true, // abierto
-  },
-  {
-    id: 108,
-    marca: "Maison Alhambra",
-    nombre: "CASSIUS EDP 30ml",
-    imagen: "https://i.imgur.com/SFVy9jt.png",
-    precio: 15000,
-    notas: {
-      salida: ["Heliotropo", "comino", "bergamota"],
-      corazon: ["Almendra", "lavanda", "jazmín"],
-      fondo: ["Vainilla", "ámbar", "sándalo"],
-    },
-    genero: "Hombre",
-    fragancia_referencia: "Pegasus de Parfums De Marly",
-    descripcion: "Intensa y envolvente, ideal para la noche, salidas especiales o estaciones frías como otoño e invierno. Su combinación de especias, lavanda y vainilla le da un toque seductor y elegante, perfecto para quienes buscan dejar una impresión duradera.",
-    rating: 4.8,
-    sinDescuento: false,
-    sellado: true, // abierto
-  },
-  {
-    id: 109,
-    marca: "Lattafa Perfumes",
-    nombre: "Angham EDP",
-    imagen: "https://i.imgur.com/bB5TfGP.png",
-    precio: 64000,
-    notas: {
-      salida: ["Jengibre", "mandarina", "pimienta rosa"],
-      corazon: ["Lavanda", "praliné", "cacao", "jazmín"],
-      fondo: ["Vainilla", "ámbar", "almizcle"],
-    },
-    genero: "Unisex",
-    fragancia_referencia: "Burberry Goddess - Burberry",
-    descripcion: "Fragancia de la familia olfativa Oriental Vainilla para Hombres y Mujeres. Nueva fragancia lanzada en 2024, combina la frescura cítrica con la dulzura del praliné y cacao, creando una experiencia olfativa única y moderna.",
-    rating: 4.9,
-    sinDescuento: false,
-    sellado: false,
-  },
-
-  {
-    id: 17,
-    marca: "Perfumeros",
-    nombre: "Perfumeros",
-    imagen: addCacheBusting("https://i.imgur.com/yMxitsz.png"),
-    precio: 3500,
-    notas: {
-      salida: [""],
-      corazon: [""],
-      fondo: [""],
-    },
-    genero: "Unisex",
-    fragancia_referencia: "",
-    descripcion: "Disfruta de llevar tus perfume favorito a todos lados",
-    sinDescuento: true,
-    rating: 4.2,
-    sellado: true, // abierto
-  },
-  {
-    id: 36,
-    marca: "Britney Spears",
-    nombre: "Fantasy 100ml EDP",
-    imagen: addCacheBusting("https://i.imgur.com/RMxS2Is.png"),
-    precio: 50000,
-    notas: {
-      salida: ["Kiwi", "lichi rojo", "membrillo"],
-      corazon: ["Chocolate blanco", "quequito", "orquídea", "jazmín"],
-      fondo: ["Almizcle", "raíz de lirio", "notas amaderadas"],
-    },
-    genero: "Mujer",
-    fragancia_referencia: "",
-    descripcion: "Una fragancia icónica, dulce y encantadora, que invita a soñar. Ideal para quienes aman los aromas golosos, románticos y juveniles. Perfecta para el día o la noche, citas, salidas con amigas o cuando simplemente querés sentirte única y coqueta. ¡Una fragancia que deja huella, tan inolvidable como vos!",
-    rating: 4.8,
-    sinDescuento: false,
-    sellado: true, // abierto
-  },
-  {
-    id: 37,
-    marca: "Maison Alhambra",
-    nombre: "Jorge di Profumo Aqua 100ml EDP",
-    imagen: addCacheBusting("https://i.imgur.com/U48EYDK.png"),
-    precio: 40000,
-    notas: {
-      salida: ["Bergamota", "limón siciliano", "pimienta negra"],
-      corazon: ["Lavanda", "tabaco", "geranio"],
-      fondo: ["Sándalo", "vetiver", "almizcle"],
-    },
-    genero: "Hombre",
-    fragancia_referencia: "Acqua di Gio Profumo – Giorgio Armani",
-    descripcion: "Un perfume intenso, moderno y sofisticado, pensado para el hombre que deja su marca. Perfecto para el día o la noche, reuniones importantes, cenas elegantes o cualquier momento donde se busque presencia, carácter y estilo. Elegante, varonil y con un toque misterioso… ideal para quienes disfrutan de fragancias con personalidad y profundidad.",
-    rating: 4.8,
-    sinDescuento: false,
-    sellado: true, // abierto
-  },
-  
-
-  {
-    id: 55,
-    marca: "Maison Alhambra",
-    nombre: "Mia Dolcezza Verde 100ml EDP",
-    imagen: addCacheBusting("https://i.imgur.com/ZH6ukYM.png"),
-    precio: 40000,
-    notas: {
-      salida: ["Grosella negra", "pimienta rosa", "bergamota"],
-      corazon: ["Jazmín", "ylang-ylang", "nardo", "flor de azahar"],
-      fondo: ["Vainilla", "cachemira", "madera de gaiac", "ámbar"],
-    },
-    genero: "Mujer",
-    fragancia_referencia: "Valentino Donna Born in Roma Green Stravaganza",
-    descripcion: "La versión más fresca, vibrante y sofisticada de un clásico femenino. Perfecta para el día a día, reuniones, eventos o cuando querés un aroma elegante pero con frescura. Es versátil, moderna y con muy buena duración. Mia Dolcezza Verde combina la dulzura envolvente del original con un giro verde y especiado que la hace refinada, luminosa y con carácter. Imita a Valentino Donna Born in Roma Green Stravaganza.",
-    rating: 4.8,
-    sinDescuento: false,
-    sellado: false, // abierto
-  },
-  {
-    id: 57,
-    marca: "Maison Alhambra",
-    nombre: "Narissa Rouge 100ml EDP",
-    imagen: addCacheBusting("https://i.imgur.com/EEWFvUp.png"),
-    precio: 40000,
-    notas: {
-      salida: ["Iris", "rosa de Bulgaria"],
-      corazon: ["Almizcle", "nardos", "flor de azahar"],
-      fondo: ["Haba tonka", "vainilla", "vetiver", "sándalo", "cedro"],
-    },
-    genero: "Mujer",
-    fragancia_referencia: "Narciso Rouge de Narciso Rodriguez",
-    descripcion: "Un perfume intenso, sensual y magnético, inspirado en el icónico Narciso Rouge – Narciso Rodriguez. Ideal para noches especiales, citas, eventos elegantes o cuando querés que tu presencia se sienta con fuerza. Una fragancia envolvente, floral y misteriosa que deja huella. Narissa Rouge es poder femenino en forma de perfume: floral, cremoso y con mucha actitud. Inspirada en Narciso Rouge de Narciso Rodriguez.",
-    rating: 4.8,
-    sinDescuento: false,
-    sellado: false, // abierto
-  },
-  {
-    id: 59,
-    marca: "Maison Alhambra",
-    nombre: "Philos Opus Noir 100ml EDP",
-    imagen: addCacheBusting("https://i.imgur.com/v2v8Icy.png"),
-    precio: 34800,
-    notas: {
-      salida: ["Frutas", "rosa turca"],
-      corazon: ["Ylang-ylang", "cuero", "nuez moscada", "ámbar"],
-      fondo: ["Pachulí", "vainilla", "vetiver", "almizcle", "cedro"],
-    },
-    genero: "Unisex",
-    fragancia_referencia: "Opera de Xerjoff",
-    descripcion: "Una fragancia opulenta, artística y poderosa, inspirada en la exclusividad de Opera – Xerjoff. Ideal para ocasiones especiales, noches sofisticadas o cuando querés un perfume que hable por vos. Es intenso, elegante y con sello de lujo árabe, dejando una estela memorable. Philos Opus Noir es para quienes buscan fragancias que destaquen por su carácter único y profundo, sin pagar el precio de una nicho. Lujo, arte y presencia en un solo perfume. Inspirado en Opera de Xerjoff.",
-    rating: 4.9,
-    sinDescuento: false,
-    sellado: false, // abierto
-  },
-  
-  {
-    id: 63,
-    marca: "Maison Alhambra",
-    nombre: "Opera Rouge 100ml EDP",
-    imagen: addCacheBusting("https://i.imgur.com/GmkcNdO.png"),
-    precio: 47000,
-    notas: {
-      salida: ["Pimienta rosa", "pera"],
-      corazon: ["Jazmín", "café", "pimienta rosa"],
-      fondo: ["Vainilla", "cedro", "pachulí"],
-    },
-    genero: "Mujer",
-    fragancia_referencia: "Black Opium – YSL",
-    descripcion: "Una fragancia oscura, vibrante y seductora, inspirada en el icónico Black Opium – Yves Saint Laurent. Perfecta para salidas nocturnas, eventos especiales o momentos donde querés dejar una huella inolvidable. Un perfume con carácter, dulce y con un toque de misterio.",
-    rating: 4.8,
-    sinDescuento: false,
-    sellado: false, // abierto
-  },
-
-
-  {
-    id: 71,
-    marca: "Maison Alhambra",
-    nombre: "Panther Pour Homme 100ml EDP",
-    imagen: addCacheBusting("https://i.imgur.com/pu3CaeR.png"),
-    precio: 40000,
-    notas: {
-      salida: ["Cítricos", "bergamota"],
-      corazon: ["Especias", "lavanda"],
-      fondo: ["Ámbar", "almizcle"],
-    },
-    genero: "Hombre",
-    fragancia_referencia: "Phantom de Paco Rabanne",
-    descripcion: "Una fragancia masculina poderosa y elegante, como la fuerza de una pantera.",
-    rating: 4.7,
-    sinDescuento: false,
-    sellado: true, // abierto
-  },
-
-
-
-
-  {
-    id: 149,
-    marca: "Maison Alhambra",
-    nombre: "Bad Femme 30 ml",
-    imagen: "https://i.imgur.com/xIoHc4O.png",
-    precio: 15000,
-    notas: {
-      salida: ["Almendra", "Café", "Limón", "Bergamota"],
-      corazon: ["Nardos", "Jazmín Sambac", "Flor de Azahar"],
-      fondo: ["Haba tonka", "Cacao", "Vainilla", "Praliné", "Sándalo"],
-    },
-    genero: "Femenino",
-    fragancia_referencia: "Good Girl de Carolina Herrera",
-    descripcion: "Una fragancia sensual y sofisticada que juega con la dualidad femenina. Combina la luminosidad de las flores blancas (jazmín y nardos) con notas oscuras y golosas de cacao y haba tonka.",
-    rating: 4.8,
-    sinDescuento: false,
-    sellado: true,
-  },
-
-
-  {
-    id: 83,
-    marca: "Calvin Klein",
-    nombre: "CK IN2U 100ml EDT",
-    imagen: addCacheBusting("https://i.imgur.com/WEIdKAP.png"),
-    precio: 58500,
-    notas: {
-      salida: ["Lima", "hojas de tomate", "bergamota"],
-      corazon: ["Cacao", "orquídea", "especias"],
-      fondo: ["Cedro", "ámbar", "vainilla"],
-    },
-    genero: "Unisex",
-    fragancia_referencia: "",
-    descripcion: "Una fragancia unisex moderna y juvenil, fresca y energética. Perfecta para el día a día, con una mezcla única de notas frescas y cálidas que la hacen versátil para cualquier ocasión.",
-    rating: 4.5,
-    sinDescuento: false,
-    sellado: true, // abierto
-  },
-
-
-
-]
+const perfumes: Perfume[] = basePerfumes.map(p => ({
+  ...p,
+  imagen: p.imagen.includes('imgur.com') ? addCacheBusting(p.imagen) : p.imagen
+}))
 
 // Hook personalizado para debounce
 function useDebounce(value: string, delay: number) {
@@ -536,30 +119,37 @@ const ProductCard = memo(function ProductCard({
               />
             </button>
 
+            {/* New Badge */}
+            {perfume.esNuevo && (
+              <div className="absolute top-3 right-14">
+                <span className="px-3 py-1.5 rounded-xl text-[10px] font-black bg-gradient-to-r from-amber-200 via-amber-400 to-orange-500 text-purple-950 shadow-[0_4px_12px_rgba(251,191,36,0.3)] animate-pulse border border-white/40 backdrop-blur-md tracking-widest leading-none">
+                  NUEVO
+                </span>
+              </div>
+            )}
+
             {/* Gender Badge */}
             <div className="absolute top-3 left-3">
-              <span className={`px-3 py-1.5 rounded-full text-xs font-semibold backdrop-blur-sm shadow-sm ${perfume.genero === "Mujer"
-                ? "bg-pink-500/90 text-white"
+              <span className={`px-3 py-1.5 rounded-xl text-[10px] font-bold backdrop-blur-xl border border-white/30 shadow-sm tracking-widest ${perfume.genero === "Mujer"
+                ? "bg-pink-500/20 text-pink-700"
                 : perfume.genero === "Hombre"
-                  ? "bg-blue-500/90 text-white"
-                  : "bg-purple-500/90 text-white"
+                  ? "bg-blue-500/20 text-blue-700"
+                  : "bg-purple-500/20 text-purple-700"
                 }`}>
-                {perfume.genero}
+                {perfume.genero.toUpperCase()}
               </span>
             </div>
 
             {/* Sellado/Abierto Badge */}
             <div className="absolute bottom-3 left-3">
               {perfume.sellado === false && (
-                <span className="px-3 py-1.5 rounded-full text-xs font-medium bg-amber-500/90 text-white backdrop-blur-sm shadow-sm">
+                <span className="px-3 py-1.5 rounded-xl text-[10px] font-bold bg-amber-500/10 text-amber-700 backdrop-blur-xl border border-white/30 shadow-sm tracking-widest uppercase">
                   Abierto
                 </span>
               )}
               {perfume.sellado === true && (
-                <span className="px-3 py-1.5 rounded-full text-xs font-medium bg-emerald-500/90 text-white backdrop-blur-sm shadow-sm flex items-center gap-1">
-                  <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
+                <span className="px-3 py-1.5 rounded-xl text-[10px] font-bold bg-emerald-500/10 text-emerald-700 backdrop-blur-xl border border-white/30 shadow-sm flex items-center gap-1.5 tracking-widest uppercase">
+                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                   Sellado
                 </span>
               )}
@@ -593,15 +183,16 @@ const ProductCard = memo(function ProductCard({
             </div>
 
             {/* Price & Rating */}
-            <div className="flex items-end justify-between pt-2 border-t border-gray-100">
-              <div>
-                <p className="text-2xl font-bold bg-gradient-to-r from-[#5D2A71] to-purple-600 bg-clip-text text-transparent">
+            <div className="flex items-end justify-between pt-4 border-t border-gray-100/50">
+              <div className="group/price relative">
+                <p className="text-sm text-gray-400 font-medium mb-1">Precio</p>
+                <p className="text-2xl font-extrabold bg-gradient-to-r from-purple-900 via-purple-700 to-pink-600 bg-clip-text text-transparent">
                   {formatPrice(perfume.precio)}
                 </p>
               </div>
-              <div className="flex items-center gap-1 px-2 py-1 rounded-lg bg-amber-50">
+              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-50 border border-amber-100 shadow-sm animate-float">
                 <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
-                <span className="text-sm font-semibold text-amber-700">{perfume.rating}</span>
+                <span className="text-sm font-bold text-amber-700 tracking-tight">{perfume.rating}</span>
               </div>
             </div>
 
@@ -650,7 +241,10 @@ const ProductCard = memo(function ProductCard({
                                 </span>
                               )}
                             </div>
-                            <h2 className="text-2xl font-bold">{selectedPerfume.nombre}</h2>
+                            <DialogTitle className="text-2xl font-bold">{selectedPerfume.nombre}</DialogTitle>
+                            <DialogDescription className="sr-only">
+                              Detalles del perfume {selectedPerfume.nombre} de la marca {selectedPerfume.marca}
+                            </DialogDescription>
                           </div>
                         </div>
                       </div>
@@ -885,6 +479,10 @@ export default function EssenzaPerfumes() {
 
     // Ordenar según el criterio seleccionado
     return [...filtered].sort((a, b) => {
+      // Priorizar productos nuevos
+      if (a.esNuevo && !b.esNuevo) return -1;
+      if (!a.esNuevo && b.esNuevo) return 1;
+
       switch (sortBy) {
         case "marca":
           return a.marca.localeCompare(b.marca)
@@ -1102,11 +700,12 @@ export default function EssenzaPerfumes() {
       <Toaster />
 
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md shadow-lg sticky top-0 z-50 transition-all duration-300">
-        <div className="container mx-auto px-4 py-4">
+      <header className="premium-blur shadow-sm sticky top-0 z-50 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 via-transparent to-pink-500/5" />
+        <div className="container mx-auto px-4 py-3 relative">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className="relative w-32 h-12 hover:scale-105 transition-transform duration-300 cursor-pointer">
+            <div className="flex items-center space-x-6">
+              <div className="relative w-36 h-14 hover:scale-105 transition-transform duration-500 cursor-pointer drop-shadow-sm">
                 <Image
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Captura_de_pantalla_2025-06-10_210739-removebg-preview-u5U4MnjC9NBIef2Jym8Y8xXxKFGuoa.png"
                   alt="Essenza Logo"
@@ -1115,7 +714,10 @@ export default function EssenzaPerfumes() {
                   priority
                 />
               </div>
-              <p className="text-sm text-gray-600">Perfumes Corrientes</p>
+              <div className="hidden md:block">
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-purple-900/40">Premium Parfums</p>
+                <p className="text-sm font-medium text-purple-900/60 font-serif italic">Corrientes, Argentina</p>
+              </div>
             </div>
             <div className="flex items-center space-x-2">
               <Sheet open={isCartOpen} onOpenChange={setIsCartOpen}>
@@ -1323,29 +925,29 @@ export default function EssenzaPerfumes() {
           </div>
 
           {/* Main Title */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 animate-fade-in">
-            <span className="text-gray-900">Tu esencia,</span>
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-black mb-8 animate-fade-in tracking-tighter">
+            <span className="text-gray-900 drop-shadow-sm">Tu esencia,</span>
             <br />
-            <span className="bg-gradient-to-r from-[#5D2A71] via-purple-500 to-pink-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-purple-900 via-purple-600 to-pink-500 bg-clip-text text-transparent font-serif italic font-normal tracking-normal">
               nuestra pasión
             </span>
           </h1>
 
           {/* Subtitle */}
-          <p className="text-xl md:text-2xl text-gray-600 mb-10 max-w-2xl mx-auto animate-slide-up leading-relaxed">
-            Descubrí fragancias únicas que reflejan tu personalidad.
-            <span className="text-[#5D2A71] font-medium"> Calidad premium</span> a precios accesibles.
+          <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-2xl mx-auto animate-slide-up leading-relaxed font-light">
+            Descubrí fragancias exclusivas que definen tu historia.
+            <span className="text-purple-900 font-semibold block mt-2">Experiencias sensoriales de lujo.</span>
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up" style={{ animationDelay: '0.2s' }}>
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center animate-slide-up" style={{ animationDelay: '0.2s' }}>
             <Button
               size="lg"
-              className="bg-gradient-to-r from-[#5D2A71] to-purple-600 hover:from-[#4a2159] hover:to-purple-700 text-white px-8 py-6 text-lg rounded-full shadow-xl shadow-purple-500/25 transform hover:scale-105 transition-all duration-300"
+              className="bg-purple-900 hover:bg-black text-white px-10 py-8 text-xl rounded-2xl shadow-2xl shadow-purple-900/20 transform hover:scale-105 transition-all duration-500 border border-purple-800/50 group"
               onClick={() => document.getElementById('productos')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              Explorar Catálogo
-              <Sparkles className="ml-2 h-5 w-5" />
+              Explorar Colección
+              <Sparkles className="ml-3 h-6 w-6 group-hover:rotate-12 transition-transform" />
             </Button>
             <a
               href="https://wa.me/543794222701"
@@ -1446,74 +1048,83 @@ export default function EssenzaPerfumes() {
       {/* TikTok Section */}
       <TikTokSection />
 
-      {/* Filters */}
-      <section className="py-6 px-4 bg-white/50 backdrop-blur-sm">
+      {/* Filters Section */}
+      <section className="py-12 px-4 relative">
         <div className="container mx-auto">
-          <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-            <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-              <Input
-                placeholder="Buscar perfumes, marcas o referencias..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 transition-all duration-300 focus:ring-2 focus:ring-[#5D2A71]"
-              />
+          <div className="glass-card p-6 rounded-[2rem] border-purple-100/30">
+            <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
+              <div className="relative flex-1 w-full lg:max-w-xl group">
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-purple-900/30 h-5 w-5 group-focus-within:text-purple-600 transition-colors" />
+                <Input
+                  placeholder="Buscar por marca, nombre o referencia olfativa..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-12 h-14 bg-white/50 border-0 rounded-2xl shadow-inner focus-visible:ring-2 focus-visible:ring-purple-200 placeholder:text-purple-900/20 text-purple-900 font-medium transition-all"
+                />
+              </div>
+
+              <div className="flex flex-wrap gap-3 items-center justify-center lg:justify-end w-full lg:w-auto">
+                <div className="flex gap-2 p-1.5 bg-purple-50/50 rounded-2xl border border-purple-100/50">
+                  <Select value={selectedGender} onValueChange={setSelectedGender}>
+                    <SelectTrigger className="w-32 h-10 border-0 bg-transparent focus:ring-0 font-semibold text-purple-900/70">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent className="rounded-xl border-purple-50">
+                      {genders.map((gender) => (
+                        <SelectItem key={gender} value={gender} className="rounded-lg">{gender}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+
+                  <div className="w-px h-6 bg-purple-200/50 my-auto" />
+
+                  <Select value={selectedBrand} onValueChange={setSelectedBrand}>
+                    <SelectTrigger className="w-40 h-10 border-0 bg-transparent focus:ring-0 font-semibold text-purple-900/70">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent className="rounded-xl border-purple-50">
+                      {brands.map((brand) => (
+                        <SelectItem key={brand} value={brand} className="rounded-lg">{brand}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <Select value={sortBy} onValueChange={setSortBy}>
+                  <SelectTrigger className="w-48 h-12 bg-white rounded-2xl border-purple-100 shadow-sm font-semibold text-purple-900/70">
+                    <SelectValue placeholder="Ordenar por" />
+                  </SelectTrigger>
+                  <SelectContent className="rounded-xl border-purple-50">
+                    <SelectItem value="marca" className="rounded-lg">Marca (A-Z)</SelectItem>
+                    <SelectItem value="nombre" className="rounded-lg">Nombre (A-Z)</SelectItem>
+                    <SelectItem value="precio-asc" className="rounded-lg">Precio: Menor a mayor</SelectItem>
+                    <SelectItem value="precio-desc" className="rounded-lg">Precio: Mayor a menor</SelectItem>
+                    <SelectItem value="rating" className="rounded-lg">Mejor valorados</SelectItem>
+                  </SelectContent>
+                </Select>
+
+                {(searchTerm || selectedGender !== "Todos" || selectedBrand !== "Todas") && (
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={clearFilters}
+                    className="h-12 w-12 rounded-2xl bg-purple-100/50 text-purple-600 hover:bg-purple-200 transition-colors"
+                  >
+                    <X className="h-5 w-5" />
+                  </Button>
+                )}
+              </div>
             </div>
-            <div className="flex gap-4 items-center">
-              <Select value={selectedGender} onValueChange={setSelectedGender}>
-                <SelectTrigger className="w-32 hover:border-[#5D2A71] transition-colors duration-200">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {genders.map((gender) => (
-                    <SelectItem key={gender} value={gender}>
-                      {gender}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <Select value={selectedBrand} onValueChange={setSelectedBrand}>
-                <SelectTrigger className="w-40 hover:border-[#5D2A71] transition-colors duration-200">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {brands.map((brand) => (
-                    <SelectItem key={brand} value={brand}>
-                      {brand}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <Select value={sortBy} onValueChange={setSortBy}>
-                <SelectTrigger className="w-44 hover:border-[#5D2A71] transition-colors duration-200">
-                  <SelectValue placeholder="Ordenar por" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="marca">Ordenar: Marca</SelectItem>
-                  <SelectItem value="nombre">Ordenar: Nombre</SelectItem>
-                  <SelectItem value="precio-asc">Precio: Menor a mayor</SelectItem>
-                  <SelectItem value="precio-desc">Precio: Mayor a menor</SelectItem>
-                  <SelectItem value="rating">Mejor valorados</SelectItem>
-                </SelectContent>
-              </Select>
-              {(searchTerm || selectedGender !== "Todos" || selectedBrand !== "Todas") && (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={clearFilters}
-                  className="hover:bg-purple-50 transition-colors duration-200"
-                >
-                  <Filter className="h-4 w-4 mr-2" />
-                  Limpiar
-                </Button>
-              )}
-            </div>
+
+            {filteredPerfumes.length > 0 && (
+              <div className="mt-6 flex items-center gap-2 px-2">
+                <div className="h-1.5 w-1.5 rounded-full bg-purple-600 animate-pulse" />
+                <p className="text-xs font-bold text-purple-900/40 uppercase tracking-widest">
+                  Descubiertos: {displayedPerfumes.length} de {filteredPerfumes.length} Fragancias
+                </p>
+              </div>
+            )}
           </div>
-          {filteredPerfumes.length > 0 && (
-            <p className="text-sm text-gray-600 mt-2 animate-fade-in">
-              Mostrando {displayedPerfumes.length} de {filteredPerfumes.length} perfume{filteredPerfumes.length !== 1 ? "s" : ""}
-            </p>
-          )}
         </div>
       </section>
 
@@ -1538,13 +1149,14 @@ export default function EssenzaPerfumes() {
           </div>
 
           {canLoadMore && (
-            <div className="flex justify-center mt-8">
+            <div className="flex justify-center mt-16 group/load">
               <Button
                 variant="outline"
                 onClick={() => setItemsToShow((n) => n + 12)}
-                className="hover:bg-purple-50 hover:border-[#5D2A71]"
+                className="h-14 px-10 rounded-2xl bg-white/50 border-purple-100 text-purple-900 font-bold hover:bg-purple-900 hover:text-white hover:shadow-xl hover:shadow-purple-900/20 transition-all duration-500 group"
               >
-                Mostrar más
+                Cargar más fragancias
+                <Plus className="ml-2 h-5 w-5 group-hover:rotate-90 transition-transform duration-500" />
               </Button>
             </div>
           )}
@@ -1569,30 +1181,45 @@ export default function EssenzaPerfumes() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-white/80 backdrop-blur-md py-8 px-4 mt-12">
-        <div className="container mx-auto text-center">
-          <div className="flex items-center justify-center mb-4">
-            <div className="w-32 h-16 relative hover:scale-110 transition-transform duration-300">
-              <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Captura_de_pantalla_2025-06-10_210739-removebg-preview-u5U4MnjC9NBIef2Jym8Y8xXxKFGuoa.png"
-                alt="Essenza Logo"
-                fill
-                className="object-contain"
-                priority
-              />
+      <footer className="glass-card py-20 px-4 mt-20 border-t-0 rounded-t-[3rem]">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
+            <div>
+              <div className="relative w-40 h-16 mx-auto md:mx-0 mb-6 drop-shadow-sm">
+                <Image
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Captura_de_pantalla_2025-06-10_210739-removebg-preview-u5U4MnjC9NBIef2Jym8Y8xXxKFGuoa.png"
+                  alt="Essenza Logo"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+              <p className="text-purple-900/40 text-sm font-medium leading-relaxed max-w-xs mx-auto md:mx-0 italic font-serif">
+                "Tu esencia, nuestra pasión. Llevando el lujo de las fragancias internacionales a cada rincón de Corrientes."
+              </p>
             </div>
-          </div>
-          <p className="text-gray-600 mb-4">Perfumes Corrientes - Tu esencia, nuestra pasión</p>
-          <div className="flex justify-center space-x-6 text-sm text-gray-600">
-            <a href="#" className="hover:text-[#5D2A71] transition-colors duration-300 hover:scale-105 transform">
-              Contacto
-            </a>
-            <a href="#" className="hover:text-[#5D2A71] transition-colors duration-300 hover:scale-105 transform">
-              Instagram
-            </a>
-            <a href="#" className="hover:text-[#5D2A71] transition-colors duration-300 hover:scale-105 transform">
-              WhatsApp
-            </a>
+
+            <div className="space-y-4">
+              <h4 className="text-purple-900 font-bold tracking-widest uppercase text-xs">Explorar</h4>
+              <nav className="flex flex-col space-y-2">
+                <a href="#productos" className="text-purple-900/60 hover:text-purple-600 transition-colors text-sm font-medium">Catálogo Completo</a>
+                <a href="#" className="text-purple-900/60 hover:text-purple-600 transition-colors text-sm font-medium">Novedades</a>
+                <a href="#" className="text-purple-900/60 hover:text-purple-600 transition-colors text-sm font-medium">Favoritos</a>
+              </nav>
+            </div>
+
+            <div className="space-y-4">
+              <h4 className="text-purple-900 font-bold tracking-widest uppercase text-xs">Conectar</h4>
+              <div className="flex justify-center md:justify-start space-x-6">
+                <a href="#" className="w-10 h-10 rounded-xl bg-purple-50 flex items-center justify-center text-purple-900 hover:bg-purple-900 hover:text-white transition-all duration-300 transform hover:-translate-y-1">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.054 1.805.249 2.227.412.56.216.96.474 1.38.894.42.42.678.82.894 1.38.163.422.358 1.057.412 2.227.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.054 1.17-.249 1.805-.412 2.227-.216.56-.474.96-.894 1.38-.42.42-.82.678-1.38.894-.422.163-1.057.358-2.227.412-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.054-1.805-.249-2.227-.412-.56-.216-.96-.474-1.38-.894-.42-.42-.678-.82-.894-1.38-.163-.422-.358-1.057-.412-2.227-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.054-1.17.249-1.805.412-2.227.216-.56.474-.96.894-1.38.42-.42.82-.678 1.38-.894.422-.163 1.057-.358 2.227-.412 1.266-.058 1.646-.07 4.85-.07zM12 0C8.741 0 8.333.014 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.014 8.333 0 8.741 0 12s.014 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126s1.337 1.077 2.126 1.384c.766.296 1.636.499 2.913.558C8.333 23.986 8.741 24 12 24s3.667-.014 4.947-.072c1.277-.06 2.148-.261 2.913-.558.788-.306 1.459-.717 2.126-1.384s1.077-1.337 1.384-2.126c.296-.765.499-1.636.558-2.913.058-1.28.072-1.687.072-4.947s-.014-3.667-.072-4.947c-.06-1.277-.261-2.148-.558-2.913-.306-.788-.717-1.459-1.384-2.126s-1.337-1.077-2.126-1.384c-.766-.296-1.636-.499-2.913-.558C15.667.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" /></svg>
+                </a>
+                <a href="#" className="w-10 h-10 rounded-xl bg-purple-50 flex items-center justify-center text-purple-900 hover:bg-purple-900 hover:text-white transition-all duration-300 transform hover:-translate-y-1">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.01 2.01C6.48 2.01 2 6.48 2 12.01c0 5.53 4.48 10 10.01 10 5.53 0 10-4.47 10-10 0-5.53-4.47-10-10-10zm5.42 14.38c-.3.15-1.76.87-2.03.97-.27.1-.47.15-.67-.15-.2-.3-.77-.97-.94-1.16-.18-.2-.35-.23-.65-.08-.3.15-1.26.47-2.39 1.48-.89.79-1.48 1.76-1.65 2.06-.18.3-.02.46.13.61.13.13.3.35.45.52.15.17.2.3.3.5.1.2.05.37-.03.52-.08.15-.67 1.62-.92 2.21-.24.58-.49.5-.67.51-.18 0-.37 0-.57 0-.2 0-.52.07-.79.37-.28.3-1.04 1.02-1.04 2.48 0 1.46 1.06 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35z" /></svg>
+                </a>
+              </div>
+              <p className="text-[10px] text-purple-900/30 uppercase tracking-[0.3em] pt-4">© 2026 Essenza Perfumes</p>
+            </div>
           </div>
         </div>
       </footer>

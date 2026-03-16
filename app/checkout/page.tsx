@@ -2,7 +2,10 @@
 
 import React from 'react'
 import Image from 'next/image'
-import { Lock, Truck, Package } from 'lucide-react'
+import { MessageCircle, Package, ArrowLeft, ShieldCheck } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+
+import { perfumes } from '@/lib/data'
 
 type CartItem = {
   id: number
@@ -10,39 +13,36 @@ type CartItem = {
   marca?: string
   precio: number
   quantity?: number
+  imagen?: string
 }
 
 export default function CheckoutPage() {
   const [cart, setCart] = React.useState<CartItem[]>([])
-
-  const [name, setName] = React.useState('')
-  const [surname, setSurname] = React.useState('')
-  const [email, setEmail] = React.useState('')
-  const [phone, setPhone] = React.useState('')
-  const [contactNumber, setContactNumber] = React.useState('')
-
-  const [shippingOption, setShippingOption] = React.useState<'shipping' | 'pickup'>('shipping')
-  const [streetName, setStreetName] = React.useState('')
-  const [streetNumber, setStreetNumber] = React.useState<number | ''>('')
-  const [zipCode, setZipCode] = React.useState('')
-  const [city, setCity] = React.useState('')
-  const [state, setState] = React.useState('')
-
-  const [loading, setLoading] = React.useState(false)
-  const [paymentMethod, setPaymentMethod] = React.useState<'mercadopago' | 'cash'>('mercadopago')
 
   React.useEffect(() => {
     try {
       const saved = localStorage.getItem('essenza-cart')
       if (saved) {
         const parsed = JSON.parse(saved) as any[]
-        const items: CartItem[] = parsed.map((p) => ({
-          id: p.id,
-          nombre: p.nombre,
-          marca: p.marca,
-          precio: p.precio ?? p.precio,
-          quantity: p.quantity ?? 1,
-        }))
+        const items: CartItem[] = parsed.map((p) => {
+          // Si falta la imagen, buscamos en la base de datos maestra
+          let imagen = p.imagen
+          if (!imagen) {
+            const originalPerfume = perfumes.find(pf => pf.id === p.id)
+            if (originalPerfume) {
+              imagen = originalPerfume.imagen
+            }
+          }
+          
+          return {
+            id: p.id,
+            nombre: p.nombre,
+            marca: p.marca,
+            precio: p.precio,
+            quantity: p.quantity ?? 1,
+            imagen: imagen,
+          }
+        })
         setCart(items)
       }
     } catch (e) {
@@ -52,405 +52,138 @@ export default function CheckoutPage() {
 
   const subtotal = React.useMemo(() => cart.reduce((sum, it) => sum + it.precio * (it.quantity ?? 1), 0), [cart])
 
-  async function handleSubmit(e?: React.FormEvent) {
-    e?.preventDefault()
-    if (cart.length === 0) {
-      alert('El carrito está vacío')
-      return
-    }
-
-    // Si eligió efectivo, enviar directo a WhatsApp
-    if (paymentMethod === 'cash') {
-      handleCashPayment()
-      return
-    }
-
-    // Si eligió MercadoPago, procesar con la API
-    setLoading(true)
-    try {
-      const payload: any = {
-        items: cart.map((it) => ({
-          title: it.nombre,
-          quantity: it.quantity ?? 1,
-          unit_price: it.precio
-        })),
-        external_reference: undefined,
-        payer: {
-          name,
-          surname,
-          email,
-          phone: { area_code: '', number: phone },
-        },
-        shipping_option: shippingOption,
-        contact_number: contactNumber,
-      }
-
-      // Debug: mostrar lo que se va a enviar
-      console.log('Payload a enviar:', JSON.stringify(payload, null, 2))
-
-      if (shippingOption === 'shipping') {
-        payload.address = {
-          street_name: streetName,
-          street_number: Number(streetNumber) || 0,
-          zip_code: zipCode,
-          city,
-          state,
-        }
-      }
-
-      const res = await fetch('/api/mercadopago/create-preference', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      })
-
-      const data = await res.json()
-      if (!res.ok) {
-        // Mostrar detalle de error de MercadoPago si existe
-        const details = data?.details ? `\nDetalles: ${data.details}` : ''
-        throw new Error((data?.error || 'Error creando preferencia') + details)
-      }
-
-      if (data.init_point) {
-        // ENVIAR NOTIFICACIÓN AL VENDEDOR POR WHATSAPP
-        // Guardamos los datos del pedido en localStorage para recuperarlos después
-        const orderData = {
-          date: new Date().toISOString(),
-          customer: { name, surname, email, phone, contactNumber },
-          items: cart,
-          subtotal,
-          shippingOption,
-          address: shippingOption === 'shipping' ? { streetName, streetNumber, zipCode, city, state } : null,
-          paymentMethod: 'mercadopago',
-          preferenceId: data.preference_id
-        }
-        localStorage.setItem('essenza-pending-order', JSON.stringify(orderData))
-
-        // Enviar notificación SMS-style al vendedor (abrir en ventana nueva para no interrumpir)
-        const cartSummary = cart.map(it => `• ${it.nombre} x${it.quantity ?? 1}: $${(it.precio * (it.quantity ?? 1)).toLocaleString()}`).join('%0A')
-        const vendorPhone = '5493794222701'
-        const vendorMessage = `🛒 *NUEVO PEDIDO MERCADOPAGO*%0A%0A📅 ${new Date().toLocaleString('es-AR')}%0A%0A👤 *Cliente:*%0A${name} ${surname}%0A📧 ${email}%0A📱 ${phone}${contactNumber ? ` / ${contactNumber}` : ''}%0A%0A📦 *Productos:*%0A${cartSummary}%0A%0A💰 *Total:* $${subtotal.toLocaleString()}%0A%0A🚚 *Entrega:* ${shippingOption === 'shipping' ? `Envío a: ${streetName} ${streetNumber}, ${zipCode} ${city}, ${state}` : 'Retiro en local'}%0A%0A⏳ Pago pendiente en MercadoPago`
-
-        // Abrir WhatsApp en nueva pestaña para notificar (no bloquea al usuario)
-        const notifyUrl = `https://wa.me/${vendorPhone}?text=${vendorMessage}`
-        window.open(notifyUrl, '_blank', 'noopener,noreferrer')
-
-        // Pequeña espera para que se abra la notificación
-        await new Promise(resolve => setTimeout(resolve, 500))
-
-        // redirigir al checkout de MercadoPago
-        window.location.assign(data.init_point)
-      } else {
-        throw new Error('init_point no recibido')
-      }
-    } catch (err: any) {
-      console.error(err)
-      alert('Error: ' + (err.message || String(err)))
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  function handleCashPayment() {
-    const cartSummary = cart.map(it => `- ${it.nombre} x${it.quantity ?? 1}: $${(it.precio * (it.quantity ?? 1)).toLocaleString()}`).join('%0A')
-    const phoneNumber = '549' + '3794222701'
-    const message = `Hola! 👋 Quiero hacer una compra en Essenza.%0A%0A*Comprador:* ${name} ${surname}%0A*Email:* ${email}%0A*Teléfono:* ${phone}%0A%0A*Productos:*%0A${cartSummary}%0A%0A*Subtotal:* $${subtotal.toLocaleString()}%0A%0A*Modalidad de entrega:* ${shippingOption === 'shipping' ? 'Envío a domicilio' : 'Retiro (a coordinar)'}${shippingOption === 'shipping' ? `%0A*Dirección:* ${streetName} ${streetNumber}, ${zipCode} ${city}, ${state}` : ''}%0A%0APor favor, confirmá la disponibilidad y coordina los detalles. ¡Gracias!`
+  function handleWhatsAppOrder() {
+    const cartSummary = cart.map(it => `• *${it.nombre}* x${it.quantity ?? 1}: $${(it.precio * (it.quantity ?? 1)).toLocaleString('es-AR')}`).join('%0A')
+    const phoneNumber = '5493794222701'
+    const message = `¡Hola! 👋 Me gustaría confirmar mi pedido en *Essenza Perfumes*.%0A%0A*Detalles del pedido:*%0A${cartSummary}%0A%0A💰 *Total a coordinar:* $${subtotal.toLocaleString('es-AR')}%0A%0APor favor, confirmame la disponibilidad y coordinamos los detalles de pago y entrega. ¡Gracias!`
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`
     window.open(whatsappUrl, '_blank')
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-purple-100">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-purple-100 font-sans antialiased overflow-x-hidden">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-40">
+      <header className="bg-white/70 backdrop-blur-xl border-b border-purple-100 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="relative w-32 h-10">
-              <a href="/">
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Captura_de_pantalla_2025-06-10_210739-removebg-preview-u5U4MnjC9NBIef2Jym8Y8xXxKFGuoa.png"
-                  alt="Essenza Logo"
-                  fill
-                  className="object-contain"
-                />
-              </a>
+          <div className="flex items-center justify-between gap-4">
+            <a href="/" className="flex items-center gap-2 group transition-all shrink-0">
+              <div className="bg-purple-100 p-2 rounded-full group-hover:bg-purple-200 transition-colors">
+                <ArrowLeft className="h-4 w-4 text-[#5D2A71]" />
+              </div>
+              <span className="text-xs sm:text-sm font-semibold text-[#5D2A71] hidden xs:inline">Volver</span>
+            </a>
+            <div className="relative w-24 sm:w-32 h-8 sm:h-10">
+              <Image
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Captura_de_pantalla_2025-06-10_210739-removebg-preview-u5U4MnjC9NBIef2Jym8Y8xXxKFGuoa.png"
+                alt="Essenza Logo"
+                fill
+                className="object-contain"
+              />
             </div>
-            <span className="text-sm text-gray-600">Finalizar compra</span>
           </div>
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-8">
-        {cart.length === 0 ? (
-          <div className="max-w-2xl mx-auto">
-            <div className="bg-white rounded-2xl shadow-lg p-12 text-center">
-              <Package className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Tu carrito está vacío</h2>
-              <p className="text-gray-600 mb-6">Agrega productos antes de finalizar la compra</p>
-              <a href="/" className="inline-block bg-[#5D2A71] text-white px-6 py-3 rounded-lg hover:bg-[#4A2259] transition-colors">
-                Volver a tienda
-              </a>
+      <main className="container mx-auto px-4 py-8 sm:py-12">
+        <div className="max-w-4xl mx-auto">
+          {cart.length === 0 ? (
+            <div className="bg-white/80 backdrop-blur-md rounded-2xl sm:rounded-3xl p-8 sm:p-16 text-center shadow-2xl shadow-purple-900/10 border border-white">
+              <Package className="h-16 w-16 sm:h-20 sm:w-20 text-purple-200 mx-auto mb-6" />
+              <h2 className="text-2xl sm:text-3xl font-black text-gray-900 mb-4 tracking-tight">Tu carrito está vacío</h2>
+              <button className="bg-[#5D2A71] hover:bg-black text-white px-8 sm:px-10 py-4 sm:py-6 rounded-2xl text-base sm:text-lg font-bold shadow-xl shadow-purple-900/20 transform hover:scale-105 transition-all">
+                <a href="/">Explorar Catálogo</a>
+              </button>
             </div>
-          </div>
-        ) : (
-          <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Resumen de compra */}
-            <div className="lg:col-span-2">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Datos del comprador */}
-                <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-2xl font-bold text-[#5D2A71] mb-6">Datos personales</h2>
+          ) : (
+            <div className="flex flex-col lg:grid lg:grid-cols-5 gap-6 sm:gap-10">
+              {/* Order Details */}
+              <div className="lg:col-span-3 space-y-6 sm:space-y-8 order-2 lg:order-1">
+                <div className="bg-white/80 backdrop-blur-md rounded-2xl sm:rounded-3xl shadow-xl shadow-purple-900/5 border border-white overflow-hidden">
+                  <div className="p-6 sm:p-8 border-b border-gray-100 bg-gradient-to-r from-purple-50 to-transparent">
+                    <h2 className="text-xl sm:text-2xl font-black text-[#5D2A71] tracking-tight flex items-center gap-3">
+                      <Package className="h-5 w-5 sm:h-6 sm:w-6" />
+                      Resumen de tu pedido
+                    </h2>
+                  </div>
 
-                  <div className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">Nombre</label>
-                        <input
-                          placeholder="Juan"
-                          value={name}
-                          onChange={(e) => setName(e.target.value)}
-                          required
-                          className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#5D2A71] focus:outline-none transition-colors"
-                        />
+                  <div className="p-4 sm:p-8 space-y-4 sm:space-y-6 max-h-[60vh] overflow-y-auto custom-scrollbar">
+                    {cart.map((it) => (
+                      <div key={it.id} className="flex gap-4 sm:gap-6 items-center group transition-all">
+                        <div className="h-16 w-16 sm:h-20 sm:w-20 rounded-xl sm:rounded-2xl bg-gradient-to-br from-purple-100 to-pink-50 p-2 flex-shrink-0 border border-purple-50 group-hover:scale-105 transition-transform relative overflow-hidden">
+                          {it.imagen ? (
+                            <Image
+                              src={it.imagen}
+                              alt={it.nombre}
+                              fill
+                              className="object-contain p-1"
+                            />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center text-purple-300">
+                              <Package className="h-6 w-6 sm:h-8 sm:w-8" />
+                            </div>
+                          )}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="font-bold text-gray-900 leading-tight mb-0.5 group-hover:text-purple-700 transition-colors uppercase tracking-tighter text-[10px] sm:text-xs truncate">{it.marca}</p>
+                          <p className="text-xs sm:text-sm font-medium text-gray-600 line-clamp-1">{it.nombre}</p>
+                          <p className="inline-block mt-1 px-2 py-0.5 bg-gray-100 rounded-lg text-[10px] font-bold text-gray-500 uppercase tracking-widest">x{it.quantity ?? 1}</p>
+                        </div>
+                        <div className="text-right shrink-0">
+                          <p className="font-black text-purple-900 text-sm sm:text-lg">
+                            ${(it.precio * (it.quantity ?? 1)).toLocaleString('es-AR')}
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">Apellido</label>
-                        <input
-                          placeholder="Pérez"
-                          value={surname}
-                          onChange={(e) => setSurname(e.target.value)}
-                          required
-                          className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#5D2A71] focus:outline-none transition-colors"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">Email</label>
-                        <input
-                          type="email"
-                          placeholder="juan@ejemplo.com"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          required
-                          className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#5D2A71] focus:outline-none transition-colors"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">Teléfono</label>
-                        <input
-                          placeholder="+54 9 3794 123456"
-                          value={phone}
-                          onChange={(e) => setPhone(e.target.value)}
-                          required
-                          className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#5D2A71] focus:outline-none transition-colors"
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">Número de contacto adicional</label>
-                      <input
-                        placeholder="Otro número de teléfono"
-                        value={contactNumber}
-                        onChange={(e) => setContactNumber(e.target.value)}
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#5D2A71] focus:outline-none transition-colors"
-                      />
-                    </div>
+                    ))}
                   </div>
                 </div>
 
-                {/* Envío o retiro */}
-                <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-2xl font-bold text-[#5D2A71] mb-6">Modalidad de entrega</h2>
-
-                  <div className="space-y-4">
-                    <label className="flex items-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-[#5D2A71] hover:bg-purple-50 transition-all" onClick={() => setShippingOption('shipping')}>
-                      <input
-                        type="radio"
-                        checked={shippingOption === 'shipping'}
-                        onChange={() => setShippingOption('shipping')}
-                        className="w-5 h-5 accent-[#5D2A71]"
-                      />
-                      <Truck className="h-5 w-5 text-[#5D2A71] ml-3" />
-                      <div className="ml-3">
-                        <p className="font-semibold text-gray-900">Envío a domicilio</p>
-                        <p className="text-sm text-gray-500">Entrega en tu dirección</p>
-                      </div>
-                    </label>
-
-                    <label className="flex items-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-[#5D2A71] hover:bg-purple-50 transition-all" onClick={() => setShippingOption('pickup')}>
-                      <input
-                        type="radio"
-                        checked={shippingOption === 'pickup'}
-                        onChange={() => setShippingOption('pickup')}
-                        className="w-5 h-5 accent-[#5D2A71]"
-                      />
-                      <Package className="h-5 w-5 text-[#5D2A71] ml-3" />
-                      <div className="ml-3">
-                        <p className="font-semibold text-gray-900">Retiro (a coordinar)</p>
-                        <p className="text-sm text-gray-500">Coordina con nosotros el retiro</p>
-                      </div>
-                    </label>
+                <div className="bg-emerald-50/50 border border-emerald-100 rounded-2xl sm:rounded-3xl p-5 sm:p-6 flex items-start gap-3 sm:gap-4">
+                  <div className="bg-emerald-100 p-2 sm:p-3 rounded-xl sm:rounded-2xl shrink-0">
+                    <ShieldCheck className="h-5 w-5 sm:h-6 sm:w-6 text-emerald-600" />
                   </div>
+                  <div>
+                    <h4 className="font-bold text-emerald-900 tracking-tight text-sm sm:text-base">Atención personalizada</h4>
+                    <p className="text-[11px] sm:text-sm text-emerald-700 leading-relaxed">Al confirmar, coordinarás el envío y el método de pago directamente con nosotros por WhatsApp.</p>
+                  </div>
+                </div>
+              </div>
 
-                  {/* Dirección condicional */}
-                  {shippingOption === 'shipping' && (
-                    <div className="mt-6 space-y-4 pt-6 border-t-2 border-gray-200">
-                      <h3 className="font-semibold text-gray-900 text-lg">Dirección de envío</h3>
+              {/* Action Sidebar */}
+              <div className="lg:col-span-2 order-1 lg:order-2">
+                <div className="bg-[#5D2A71] text-white rounded-[1.5rem] sm:rounded-[2.5rem] shadow-2xl shadow-purple-900/30 p-6 sm:p-10 lg:sticky lg:top-32 border border-purple-400/20 overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2" />
+                  <div className="absolute bottom-0 left-0 w-24 h-24 bg-pink-500/10 blur-3xl rounded-full -translate-x-1/2 translate-y-1/2" />
 
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="col-span-2">
-                          <label className="block text-sm font-semibold text-gray-700 mb-2">Calle</label>
-                          <input
-                            placeholder="Avenida Principal"
-                            value={streetName}
-                            onChange={(e) => setStreetName(e.target.value)}
-                            className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#5D2A71] focus:outline-none transition-colors"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-sm font-semibold text-gray-700 mb-2">Número</label>
-                          <input
-                            placeholder="123"
-                            type="number"
-                            value={streetNumber as any}
-                            onChange={(e) => setStreetNumber(e.target.value === '' ? '' : Number(e.target.value))}
-                            className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#5D2A71] focus:outline-none transition-colors"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-sm font-semibold text-gray-700 mb-2">Código postal</label>
-                          <input
-                            placeholder="3400"
-                            value={zipCode}
-                            onChange={(e) => setZipCode(e.target.value)}
-                            className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#5D2A71] focus:outline-none transition-colors"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-sm font-semibold text-gray-700 mb-2">Localidad</label>
-                          <input
-                            placeholder="Corrientes"
-                            value={city}
-                            onChange={(e) => setCity(e.target.value)}
-                            className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#5D2A71] focus:outline-none transition-colors"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-sm font-semibold text-gray-700 mb-2">Provincia</label>
-                          <input
-                            placeholder="Corrientes"
-                            value={state}
-                            onChange={(e) => setState(e.target.value)}
-                            className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#5D2A71] focus:outline-none transition-colors"
-                          />
-                        </div>
-                      </div>
+                  <h3 className="text-sm sm:text-lg font-bold mb-6 sm:mb-8 uppercase tracking-[0.2em] text-purple-200">Total del pedido</h3>
+
+                  <div className="space-y-3 sm:space-y-4 mb-8 sm:mb-10 pt-4 sm:pt-6 border-t border-purple-100/10">
+                    <div className="flex justify-between items-center text-purple-200 uppercase tracking-widest text-[10px] font-bold">
+                      <span>Subtotal</span>
+                      <span>${subtotal.toLocaleString('es-AR')}</span>
                     </div>
-                  )}
-                </div>
-
-                {/* Método de pago */}
-                <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-2xl font-bold text-[#5D2A71] mb-6">Método de pago</h2>
-
-                  <div className="space-y-4">
-                    <label className="flex items-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-[#5D2A71] hover:bg-purple-50 transition-all" onClick={() => setPaymentMethod('mercadopago')}>
-                      <input
-                        type="radio"
-                        checked={paymentMethod === 'mercadopago'}
-                        onChange={() => setPaymentMethod('mercadopago')}
-                        className="w-5 h-5 accent-[#5D2A71]"
-                      />
-                      <Lock className="h-5 w-5 text-blue-600 ml-3" />
-                      <div className="ml-3">
-                        <p className="font-semibold text-gray-900">Pago online (MercadoPago)</p>
-                        <p className="text-sm text-gray-500">Tarjeta, débito, transferencia, efectivo</p>
-                      </div>
-                    </label>
-
-                    <label className="flex items-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-[#5D2A71] hover:bg-purple-50 transition-all" onClick={() => setPaymentMethod('cash')}>
-                      <input
-                        type="radio"
-                        checked={paymentMethod === 'cash'}
-                        onChange={() => setPaymentMethod('cash')}
-                        className="w-5 h-5 accent-[#5D2A71]"
-                      />
-                      <svg className="h-5 w-5 text-green-600 ml-3" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                      </svg>
-                      <div className="ml-3">
-                        <p className="font-semibold text-gray-900">Efectivo / WhatsApp</p>
-                        <p className="text-sm text-gray-500">Coordinar pago directo por WhatsApp</p>
-                      </div>
-                    </label>
-                  </div>
-                </div>
-
-                {/* Botón de pago */}
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full bg-gradient-to-r from-[#5D2A71] to-[#8B4A99] hover:from-[#4A2259] hover:to-[#6B3A79] text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 disabled:opacity-60 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
-                >
-                  <Lock className="h-5 w-5" />
-                  {loading ? 'Procesando...' : paymentMethod === 'mercadopago' ? 'Pagar con MercadoPago' : 'Enviar a WhatsApp'}
-                </button>
-
-                <a
-                  href="/"
-                  className="block w-full text-center text-gray-600 hover:text-gray-900 font-semibold py-3 transition-colors"
-                >
-                  Volver a la tienda
-                </a>
-              </form>
-            </div>
-
-            {/* Resumen del carrito (sidebar) */}
-            <div className="lg:col-span-1">
-              <div className="bg-white rounded-2xl shadow-lg p-8 sticky top-24">
-                <h3 className="text-2xl font-bold text-[#5D2A71] mb-6">Resumen</h3>
-
-                <div className="space-y-4 mb-6 max-h-72 overflow-y-auto">
-                  {cart.map((it) => (
-                    <div key={it.id} className="flex justify-between items-start pb-4 border-b border-gray-200">
-                      <div className="flex-1">
-                        <p className="font-semibold text-gray-900 text-sm">{it.nombre}</p>
-                        <p className="text-xs text-gray-500">{it.marca}</p>
-                        <p className="text-xs text-gray-600 mt-1">x{it.quantity ?? 1}</p>
-                      </div>
-                      <p className="font-bold text-gray-900 text-right">
-                        ${(it.precio * (it.quantity ?? 1)).toLocaleString()}
-                      </p>
+                    <div className="flex justify-between items-center">
+                      <span className="text-2xl sm:text-4xl font-black">${subtotal.toLocaleString('es-AR')}</span>
                     </div>
-                  ))}
-                </div>
-
-                <div className="space-y-3 pt-6 border-t-2 border-gray-200">
-                  <div className="flex justify-between items-center text-gray-700">
-                    <span>Subtotal</span>
-                    <span className="font-semibold">${subtotal.toLocaleString()}</span>
                   </div>
 
-                  <div className="flex justify-between items-center py-3 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg px-4">
-                    <span className="font-bold text-gray-900">Total</span>
-                    <span className="text-2xl font-bold text-[#5D2A71]">${subtotal.toLocaleString()}</span>
-                  </div>
-                </div>
+                  <button
+                    onClick={handleWhatsAppOrder}
+                    className="w-full h-16 sm:h-20 bg-emerald-500 hover:bg-emerald-400 text-white font-black rounded-2xl sm:rounded-3xl text-sm sm:text-xl shadow-xl shadow-emerald-900/20 transform active:scale-95 sm:hover:scale-105 transition-all group flex items-center justify-center gap-2 sm:gap-3 px-4 sm:px-6 relative z-10"
+                  >
+                    <MessageCircle className="h-5 w-5 sm:h-7 sm:w-7 group-hover:rotate-12 transition-transform shrink-0" />
+                    <span className="truncate">Confirmar por WhatsApp</span>
+                  </button>
 
-                <div className="mt-6 p-4 bg-green-50 rounded-lg border border-green-200">
-                  <p className="text-xs text-green-700 flex items-center gap-2">
-                    <Lock className="h-4 w-4" />
-                    <span><strong>Pago seguro</strong> con MercadoPago</span>
+                  <p className="text-center mt-4 sm:mt-6 text-[10px] sm:text-xs text-purple-200/60 font-medium px-2 leading-relaxed">
+                    Serás redirigido a WhatsApp.
                   </p>
                 </div>
               </div>
             </div>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      </main>
     </div>
   )
 }
