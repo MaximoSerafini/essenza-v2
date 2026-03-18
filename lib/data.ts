@@ -121,7 +121,7 @@ export const perfumes: Perfume[] = [
     marca: "Cacharel",
     nombre: "Amor Amor EDT 100ml",
     imagen: "https://i.imgur.com/qyGR2ty.png",
-    precio: 77000,
+    precio: 70000,
     notas: {
       salida: ["Grosellas negras", "Naranja", "Pomelo"],
       corazon: ["Rosa", "Damasco", "Jazmín"],
