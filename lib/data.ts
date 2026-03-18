@@ -45,7 +45,7 @@ export const perfumes: Perfume[] = [
     marca: "Lattafa Perfumes",
     nombre: "Lattafa Kit Mini Yara Collection",
     imagen: "https://i.imgur.com/nQnokyJ.png",
-    precio: 34000,
+    precio: 50000,
     notas: {
       salida: ["Orquídea", "Heliotropo"],
       corazon: ["Acorde Gourmand", "Frutas tropicales"],
@@ -102,7 +102,7 @@ export const perfumes: Perfume[] = [
     marca: "Lattafa Perfumes",
     nombre: "Lattafa Khamrah (Black) EDP 100ml",
     imagen: "https://i.imgur.com/bl2WvMv.png",
-    precio: 46000,
+    precio: 50000,
     notas: {
       salida: ["Canela", "Cardamomo", "Jengibre"],
       corazon: ["Praliné", "Frutas confitadas", "Café"],
