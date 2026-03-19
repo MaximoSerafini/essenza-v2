@@ -13,7 +13,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { toast } from "@/hooks/use-toast"
 import { Toaster } from "@/components/ui/toaster"
-import { TikTokSection } from "@/components/TikTokSection"
 // para el commit
 
 import { Perfume, perfumes as basePerfumes } from "@/lib/data"
@@ -1045,8 +1044,7 @@ export default function EssenzaPerfumes() {
         </div>
       </section>
 
-      {/* TikTok Section */}
-      <TikTokSection />
+
 
       {/* Filters Section */}
       <section className="py-12 px-4 relative">

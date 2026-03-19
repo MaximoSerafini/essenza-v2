@@ -81,14 +81,12 @@ function TikTokCard({ video, index }: { video: typeof TIKTOK_VIDEOS[0]; index: n
         {/* Play button */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div
-            className={`w-20 h-20 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border-2 border-white/40 transition-all duration-500 ${
-              isHovering ? "scale-110 bg-white/30" : "scale-100"
-            }`}
+            className={`w-20 h-20 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border-2 border-white/40 transition-all duration-500 ${isHovering ? "scale-110 bg-white/30" : "scale-100"
+              }`}
           >
             <Play
-              className={`w-9 h-9 text-white ml-1 transition-transform duration-500 ${
-                isHovering ? "scale-110" : ""
-              }`}
+              className={`w-9 h-9 text-white ml-1 transition-transform duration-500 ${isHovering ? "scale-110" : ""
+                }`}
               fill="white"
             />
           </div>
@@ -112,9 +110,8 @@ function TikTokCard({ video, index }: { video: typeof TIKTOK_VIDEOS[0]; index: n
               <span className="text-white/90 text-xs font-medium">@agustinaa_nieto</span>
             </div>
             <div
-              className={`flex items-center gap-1 text-white/80 text-xs transition-all duration-300 ${
-                isHovering ? "translate-x-0 opacity-100" : "-translate-x-2 opacity-0"
-              }`}
+              className={`flex items-center gap-1 text-white/80 text-xs transition-all duration-300 ${isHovering ? "translate-x-0 opacity-100" : "-translate-x-2 opacity-0"
+                }`}
             >
               <span>Ver</span>
               <ExternalLink className="w-3 h-3" />
@@ -124,9 +121,8 @@ function TikTokCard({ video, index }: { video: typeof TIKTOK_VIDEOS[0]; index: n
 
         {/* Shimmer effect on hover */}
         <div
-          className={`absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transition-opacity duration-700 ${
-            isHovering ? "opacity-100 animate-shimmer" : "opacity-0"
-          }`}
+          className={`absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transition-opacity duration-700 ${isHovering ? "opacity-100 animate-shimmer" : "opacity-0"
+            }`}
           style={{
             backgroundSize: "200% 100%",
             animation: isHovering ? "shimmer 1.5s ease-in-out infinite" : "none",
@@ -228,9 +224,8 @@ export function TikTokSection() {
           <Button
             variant="outline"
             size="icon"
-            className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg transition-opacity duration-300 ${
-              canScrollLeft ? "opacity-100" : "opacity-0 pointer-events-none"
-            }`}
+            className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg transition-opacity duration-300 ${canScrollLeft ? "opacity-100" : "opacity-0 pointer-events-none"
+              }`}
             onClick={() => scroll("left")}
           >
             <ChevronLeft className="h-6 w-6 text-[#5D2A71]" />
@@ -252,9 +247,8 @@ export function TikTokSection() {
           <Button
             variant="outline"
             size="icon"
-            className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg transition-opacity duration-300 ${
-              canScrollRight ? "opacity-100" : "opacity-0 pointer-events-none"
-            }`}
+            className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg transition-opacity duration-300 ${canScrollRight ? "opacity-100" : "opacity-0 pointer-events-none"
+              }`}
             onClick={() => scroll("right")}
           >
             <ChevronRight className="h-6 w-6 text-[#5D2A71]" />
@@ -269,11 +263,10 @@ export function TikTokSection() {
               onClick={() => {
                 scrollRef.current?.scrollTo({ left: idx * 300, behavior: "smooth" })
               }}
-              className={`rounded-full transition-all duration-300 ${
-                idx === activeIndex
+              className={`rounded-full transition-all duration-300 ${idx === activeIndex
                   ? "w-6 h-2.5 bg-[#5D2A71]"
                   : "w-2.5 h-2.5 bg-[#5D2A71]/25 hover:bg-[#5D2A71]/40"
-              }`}
+                }`}
             />
           ))}
         </div>
