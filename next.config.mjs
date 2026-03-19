@@ -17,7 +17,7 @@ const nextConfig = {
       static: 0,
     },
   },
-  // Headers para controlar caché
+  // Headers para controlar caché y permitir iframes de TikTok
   async headers() {
     return [
       {
@@ -28,6 +28,10 @@ const nextConfig = {
             value: process.env.NODE_ENV === 'development' 
               ? 'no-cache, no-store, must-revalidate' 
               : 'public, max-age=31536000, immutable',
+          },
+          {
+            key: 'Content-Security-Policy',
+            value: "frame-src 'self' https://www.tiktok.com;",
           },
         ],
       },

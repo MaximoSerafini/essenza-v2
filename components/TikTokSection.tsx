@@ -4,36 +4,53 @@ import { useEffect, useRef, useState } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-// Videos de perfumes de @agustinaa_nieto - expandido
+// Videos de @agustinaa_nieto
 const TIKTOK_VIDEOS = [
-  { id: "7510350884681862406", title: "Bad Femme: El Perfume de Poder" },
-  { id: "7497360247678340407", title: "Guía de Perfumes para Mujeres" },
-  { id: "7501353444523953413", title: "Comparativa de Fragancias" },
-  { id: "7500290364826324279", title: "Describiendo perfumes con emojis" },
-  { id: "7510350884681862406", title: "Top perfumes para citas" },
-  { id: "7497360247678340407", title: "Fragancias que enamoran" },
-  { id: "7501353444523953413", title: "Perfumes para el verano" },
-  { id: "7500290364826324279", title: "Dupes que valen la pena" },
+  { id: "7613003295333846292", title: "Review de fragancia" },
+  { id: "7608962580731776277", title: "Recomendacion de perfume" },
+  { id: "7569257598357130517", title: "Perfume destacado" },
+  { id: "7573029659730791701", title: "Top de aromas" },
+  { id: "7560793355458792716", title: "Favorito del momento" },
 ]
+
+function TikTokCard({ video }: { video: { id: string; title: string } }) {
+  const [loaded, setLoaded] = useState(false)
+
+  return (
+    <div className="flex-shrink-0 w-[325px] rounded-2xl overflow-hidden shadow-lg bg-black border border-white/10">
+      {!loaded && (
+        <div className="flex items-center justify-center w-full h-[575px] bg-gradient-to-b from-[#1a0a2e] to-[#2d0a3e]">
+          <div className="flex flex-col items-center gap-3 text-white/60">
+            <svg viewBox="0 0 24 24" className="w-12 h-12 animate-pulse" fill="currentColor">
+              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
+            </svg>
+            <span className="text-sm">Cargando video...</span>
+          </div>
+        </div>
+      )}
+      <iframe
+        src={`https://www.tiktok.com/embed/v2/${video.id}?lang=es`}
+        className="w-full"
+        style={{
+          height: "575px",
+          border: "none",
+          display: loaded ? "block" : "none",
+        }}
+        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture;"
+        allowFullScreen
+        onLoad={() => setLoaded(true)}
+        title={video.title}
+      />
+    </div>
+  )
+}
 
 export function TikTokSection() {
   const scrollRef = useRef<HTMLDivElement>(null)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(true)
   const [isHovered, setIsHovered] = useState(false)
-
-  // Cargar script de TikTok
-  useEffect(() => {
-    const script = document.createElement('script')
-    script.src = 'https://www.tiktok.com/embed.js'
-    script.async = true
-    document.body.appendChild(script)
-
-    return () => {
-      const existingScript = document.querySelector('script[src="https://www.tiktok.com/embed.js"]')
-      if (existingScript) existingScript.remove()
-    }
-  }, [])
+  const [activeIndex, setActiveIndex] = useState(0)
 
   // Auto-scroll
   useEffect(() => {
@@ -45,12 +62,12 @@ export function TikTokSection() {
         const maxScroll = scrollWidth - clientWidth
 
         if (scrollLeft >= maxScroll - 10) {
-          scrollRef.current.scrollTo({ left: 0, behavior: 'smooth' })
+          scrollRef.current.scrollTo({ left: 0, behavior: "smooth" })
         } else {
-          scrollRef.current.scrollBy({ left: 340, behavior: 'smooth' })
+          scrollRef.current.scrollBy({ left: 345, behavior: "smooth" })
         }
       }
-    }, 4000)
+    }, 5000)
 
     return () => clearInterval(interval)
   }, [isHovered])
@@ -60,18 +77,20 @@ export function TikTokSection() {
       const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current
       setCanScrollLeft(scrollLeft > 0)
       setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10)
+      const cardWidth = 345
+      setActiveIndex(Math.round(scrollLeft / cardWidth))
     }
   }
 
-  const scroll = (direction: 'left' | 'right') => {
+  const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
-      const scrollAmount = direction === 'left' ? -340 : 340
-      scrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' })
+      const scrollAmount = direction === "left" ? -345 : 345
+      scrollRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" })
     }
   }
 
   return (
-    <section className="py-12 px-4 bg-gradient-to-br from-purple-50/80 to-pink-50/80 backdrop-blur-sm overflow-hidden">
+    <section className="py-16 px-4 bg-gradient-to-br from-purple-50/80 to-pink-50/80 backdrop-blur-sm overflow-hidden">
       <div className="container mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
@@ -84,7 +103,8 @@ export function TikTokSection() {
             </h2>
           </div>
           <p className="text-gray-600 max-w-2xl mx-auto mb-4 font-light text-lg">
-            Descubrí reseñas exclusivas y comparativas de nuestras <span className="font-bold text-purple-900">mejores fragancias</span>
+            Descubrí reseñas exclusivas y comparativas de nuestras{" "}
+            <span className="font-bold text-purple-900">mejores fragancias</span>
           </p>
           <a
             href="https://www.tiktok.com/@agustinaa_nieto"
@@ -109,8 +129,10 @@ export function TikTokSection() {
           <Button
             variant="outline"
             size="icon"
-            className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg transition-opacity duration-300 ${canScrollLeft ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
-            onClick={() => scroll('left')}
+            className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg transition-opacity duration-300 ${
+              canScrollLeft ? "opacity-100" : "opacity-0 pointer-events-none"
+            }`}
+            onClick={() => scroll("left")}
           >
             <ChevronLeft className="h-6 w-6 text-[#5D2A71]" />
           </Button>
@@ -119,29 +141,11 @@ export function TikTokSection() {
           <div
             ref={scrollRef}
             onScroll={updateScrollButtons}
-            className="flex gap-6 overflow-x-auto scroll-smooth px-12"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            className="flex gap-5 overflow-x-auto scroll-smooth px-12"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {TIKTOK_VIDEOS.map((video, idx) => (
-              <div key={`${video.id}-${idx}`} className="flex-shrink-0 w-[300px]">
-                <blockquote
-                  className="tiktok-embed"
-                  cite={`https://www.tiktok.com/@agustinaa_nieto/video/${video.id}`}
-                  data-video-id={video.id}
-                  style={{ maxWidth: '300px', minWidth: '280px' }}
-                >
-                  <section>
-                    <a
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href={`https://www.tiktok.com/@agustinaa_nieto/video/${video.id}`}
-                      className="text-[#5D2A71] hover:text-pink-600"
-                    >
-                      Ver en TikTok
-                    </a>
-                  </section>
-                </blockquote>
-              </div>
+              <TikTokCard key={`${video.id}-${idx}`} video={video} />
             ))}
           </div>
 
@@ -149,8 +153,10 @@ export function TikTokSection() {
           <Button
             variant="outline"
             size="icon"
-            className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg transition-opacity duration-300 ${canScrollRight ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
-            onClick={() => scroll('right')}
+            className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg transition-opacity duration-300 ${
+              canScrollRight ? "opacity-100" : "opacity-0 pointer-events-none"
+            }`}
+            onClick={() => scroll("right")}
           >
             <ChevronRight className="h-6 w-6 text-[#5D2A71]" />
           </Button>
@@ -158,10 +164,17 @@ export function TikTokSection() {
 
         {/* Dots indicator */}
         <div className="flex justify-center gap-2 mt-6">
-          {[0, 1, 2, 3].map((idx) => (
-            <div
+          {TIKTOK_VIDEOS.map((_, idx) => (
+            <button
               key={idx}
-              className="w-2 h-2 rounded-full bg-[#5D2A71]/30 transition-all duration-300"
+              onClick={() => {
+                scrollRef.current?.scrollTo({ left: idx * 345, behavior: "smooth" })
+              }}
+              className={`rounded-full transition-all duration-300 ${
+                idx === activeIndex
+                  ? "w-6 h-2 bg-[#5D2A71]"
+                  : "w-2 h-2 bg-[#5D2A71]/30"
+              }`}
             />
           ))}
         </div>
