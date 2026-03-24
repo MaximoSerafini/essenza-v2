@@ -387,24 +387,7 @@ export const perfumes: Perfume[] = [
     sinDescuento: false,
     sellado: true,
   },
-  {
-    id: 55,
-    marca: "Maison Alhambra",
-    nombre: "Mia Dolcezza Verde 100ml EDP",
-    imagen: "https://i.imgur.com/ZH6ukYM.png",
-    precio: 40000,
-    notas: {
-      salida: ["Grosella negra", "pimienta rosa", "bergamota"],
-      corazon: ["Jazmín", "ylang-ylang", "nardo", "flor de azahar"],
-      fondo: ["Vainilla", "cachemira", "madera de gaiac", "ámbar"],
-    },
-    genero: "Mujer",
-    fragancia_referencia: "Valentino Donna Born in Roma Green Stravaganza",
-    descripcion: "La versión más fresca, vibrante y sofisticada de un clásico femenino.",
-    rating: 4.8,
-    sinDescuento: false,
-    sellado: false,
-  },
+  
   {
     id: 57,
     marca: "Maison Alhambra",
