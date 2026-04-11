@@ -315,24 +315,7 @@ export const perfumes: Perfume[] = [
     sinDescuento: false,
     sellado: true,
   },
-  {
-    id: 109,
-    marca: "Lattafa Perfumes",
-    nombre: "Angham EDP",
-    imagen: "https://i.imgur.com/bB5TfGP.png",
-    precio: 64000,
-    notas: {
-      salida: ["Jengibre", "mandarina", "pimienta rosa"],
-      corazon: ["Lavanda", "praliné", "cacao", "jazmín"],
-      fondo: ["Vainilla", "ámbar", "almizcle"],
-    },
-    genero: "Unisex",
-    fragancia_referencia: "Burberry Goddess - Burberry",
-    descripcion: "Fragancia lanzada en 2024, combina frescura cítrica con dulzura del praliné y cacao.",
-    rating: 4.9,
-    sinDescuento: false,
-    sellado: false,
-  },
+
   {
     id: 17,
     marca: "Perfumeros",
