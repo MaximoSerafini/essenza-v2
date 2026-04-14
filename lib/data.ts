@@ -261,24 +261,7 @@ export const perfumes: Perfume[] = [
     sinDescuento: false,
     sellado: true,
   },
-  {
-    id: 107,
-    marca: "Maison Alhambra",
-    nombre: "Glacier Bella 30ml EDP",
-    imagen: "https://i.imgur.com/iNAD9AI.png",
-    precio: 15000,
-    notas: {
-      salida: ["Pera", "Bergamota"],
-      corazon: ["Notas florales", "Cuero"],
-      fondo: ["Vainilla", "Vetiver", "Ámbar", "Almizcle"]
-    },
-    genero: "Mujer",
-    fragancia_referencia: "La Belle de Jean Paul Gaultier",
-    descripcion: "Aroma femenino moderno con toque fresco y envolvente.",
-    rating: 4.6,
-    sinDescuento: false,
-    sellado: true,
-  },
+  
   {
     id: 108,
     marca: "Maison Alhambra",
